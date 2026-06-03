@@ -1,0 +1,2036 @@
+<!DOCTYPE html>
+<html lang="es" data-theme="dark"><head><script>(function(firebaseConfig, initialAuthToken, appId) {
+        window.__firebase_config = firebaseConfig;
+        window.__initial_auth_token = initialAuthToken;
+        window.__app_id = appId;
+            })("\n{\n  \"apiKey\": \"AIzaSyCqyCcs2R2e7AegGjvFAwG98wlamtbHvZY\",\n  \"authDomain\": \"bard-frontend.firebaseapp.com\",\n  \"projectId\": \"bard-frontend\",\n  \"storageBucket\": \"bard-frontend.firebasestorage.app\",\n  \"messagingSenderId\": \"175205271074\",\n  \"appId\": \"1:175205271074:web:2b7bd4d34d33bf38e6ec7b\"\n}\n","eyJhbGciOiJSUzI1NiIsImtpZCI6Ijg4NWQ3NDljYzY2NDljMDMxOWY1YmJlYWYwMWU4ZmVjZDIyZjk1YzQiLCJ0eXAiOiJKV1QifQ.eyJzdWIiOiJmaXJlYmFzZS1hZG1pbnNkay1mYnN2Y0BiYXJkLWZyb250ZW5kLmlhbS5nc2VydmljZWFjY291bnQuY29tIiwiYXVkIjoiaHR0cHM6Ly9pZGVudGl0eXRvb2xraXQuZ29vZ2xlYXBpcy5jb20vZ29vZ2xlLmlkZW50aXR5LmlkZW50aXR5dG9vbGtpdC52MS5JZGVudGl0eVRvb2xraXQiLCJ1aWQiOiIwMDMxMjc2NzI1MTgzMjAwMzc2NiIsImlzcyI6ImZpcmViYXNlLWFkbWluc2RrLWZic3ZjQGJhcmQtZnJvbnRlbmQuaWFtLmdzZXJ2aWNlYWNjb3VudC5jb20iLCJjbGFpbXMiOnsiYXBwSWQiOiJjXzg1YTdlMDgwNzliNTYxYzZfaW5kZXguaHRtbC04MyJ9LCJleHAiOjE3Nzg5NDMwODgsImlhdCI6MTc3ODkzOTQ4OCwiYWxnIjoiUlMyNTYifQ.HBnF5y6ON7atiCxiClOSgOq5WgX68u8Xf7O0ISfLXIFioX-m5MbumAWowR2OX3dLwEvaP2TZK5p9cR1JAtJE_49WASs9KjR7NPmRy59aCaYhcBeqLSI9-OrWD34ABSdtf-U2AGjuch8DSqiwjn3QxBiTotRVoKVh0j37Qp_-5aYB_g4ZzKsjhuGummBAMgRX0bV6oYG7vjIHawbBchGY0JELAY62AvEuTdNMyik7XS8pQIFIyvMoH31mjOSrPObPcBTICKbCp1hr10P6bSPHw25dOxeoZPJ9r0nG0Vub0nBQdMhu7TxwPYvWCxBdTNnv7-rdxVI3ptM6lLV_4FXWRA","c_85a7e08079b561c6_index.html-83")</script><script>(function(){'use strict';var h=typeof Object.defineProperties=="function"?Object.defineProperty:function(a,b,d){if(a==Array.prototype||a==Object.prototype)return a;a[b]=d.value;return a};function l(a){a=["object"==typeof globalThis&&globalThis,a,"object"==typeof window&&window,"object"==typeof self&&self,"object"==typeof global&&global];for(var b=0;b<a.length;++b){var d=a[b];if(d&&d.Math==Math)return d}throw Error("Cannot find global object");}var n=l(this);
+function p(a,b){if(b)a:{var d=n;a=a.split(".");for(var c=0;c<a.length-1;c++){var e=a[c];if(!(e in d))break a;d=d[e]}a=a[a.length-1];c=d[a];b=b(c);b!=c&&b!=null&&h(d,a,{configurable:!0,writable:!0,value:b})}}function r(a){function b(c){return a.next(c)}function d(c){return a.throw(c)}return new Promise(function(c,e){function f(g){g.done?c(g.value):Promise.resolve(g.value).then(b,d).then(f,e)}f(a.next())})}function t(a){return r(a())}
+p("Object.values",function(a){return a?a:function(b){var d=[],c;for(c in b)Object.prototype.hasOwnProperty.call(b,c)&&d.push(b[c]);return d}});p("Array.prototype.includes",function(a){return a?a:function(b,d){var c=this;c instanceof String&&(c=String(c));var e=c.length;d=d||0;for(d<0&&(d=Math.max(d+e,0));d<e;d++){var f=c[d];if(f===b||Object.is(f,b))return!0}return!1}});/*
+
+ MIT License
+
+ Copyright (c) 2017-2023 W.Y.
+
+ Permission is hereby granted, free of charge, to any person obtaining a copy
+ of this software and associated documentation files (the "Software"), to deal
+ in the Software without restriction, including without limitation the rights
+ to use, copy, modify, merge, publish, distribute, sublicense, and/or sell
+ copies of the Software, and to permit persons to whom the Software is
+ furnished to do so, subject to the following conditions:
+
+ The above copyright notice and this permission notice shall be included in
+ all copies or substantial portions of the Software.
+
+ THE SOFTWARE IS PROVIDED "AS IS", WITHOUT WARRANTY OF ANY KIND, EXPRESS OR
+ IMPLIED, INCLUDING BUT NOT LIMITED TO THE WARRANTIES OF MERCHANTABILITY,
+ FITNESS FOR A PARTICULAR PURPOSE AND NONINFRINGEMENT. IN NO EVENT SHALL THE
+ AUTHORS OR COPYRIGHT HOLDERS BE LIABLE FOR ANY CLAIM, DAMAGES OR OTHER
+ LIABILITY, WHETHER IN AN ACTION OF CONTRACT, TORT OR OTHERWISE, ARISING FROM,
+ OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE
+ SOFTWARE.
+
+*/
+function u(a,b){var d=a.style;b.backgroundColor&&(d.backgroundColor=b.backgroundColor);b.width&&(d.width=`${b.width}px`);b.height&&(d.height=`${b.height}px`);var c=b.style;c!=null&&Object.keys(c).forEach(e=>{d[e]=c[e]})};var v=(()=>{var a=0;return()=>{a+=1;return`u${`0000${(Math.random()*1679616<<0).toString(36)}`.slice(-4)}${a}`}})();function w(a){var b=[];for(let d=0,c=a.length;d<c;d++)b.push(a[d]);return b}let x=null;function y(a={}){return x?x:a.l?x=a.l:x=w(window.getComputedStyle(document.documentElement))}function z(a,b){return(a=(a.ownerDocument.defaultView||window).getComputedStyle(a).getPropertyValue(b))?parseFloat(a.replace("px","")):0}
+function A(a,b={}){var d;if(!(d=b.width)){d=z(a,"border-left-width");var c=z(a,"border-right-width");d=a.clientWidth+d+c}(b=b.height)||(b=z(a,"border-top-width"),c=z(a,"border-bottom-width"),b=a.clientHeight+b+c);return{width:d,height:b}}function B(a){return new Promise((b,d)=>{var c=new Image;c.onload=()=>{c.decode().then(()=>{requestAnimationFrame(()=>b(c))})};c.onerror=d;c.crossOrigin="anonymous";c.decoding="async";c.src=a})}
+function C(a){return t(function*(){return Promise.resolve().then(()=>(new XMLSerializer).serializeToString(a)).then(encodeURIComponent).then(b=>`data:image/svg+xml;charset=utf-8,${b}`)})}
+function D(a,b,d){return t(function*(){var c=document.createElementNS("http://www.w3.org/2000/svg","svg"),e=document.createElementNS("http://www.w3.org/2000/svg","foreignObject");c.setAttribute("width",`${b}`);c.setAttribute("height",`${d}`);c.setAttribute("viewBox",`0 0 ${b} ${d}`);e.setAttribute("width","100%");e.setAttribute("height","100%");e.setAttribute("x","0");e.setAttribute("y","0");e.setAttribute("externalResourcesRequired","true");c.appendChild(e);e.appendChild(a);return C(c)})}
+var E=(a,b)=>{if(a instanceof b)return!0;a=Object.getPrototypeOf(a);return a===null?!1:a.constructor.name===b.name||E(a,b)};function F(a,b){return y(b).map(d=>{var c=a.getPropertyValue(d),e=a.getPropertyPriority(d);return`${d}: ${c}${e?" !important":""};`}).join(" ")}
+function G(a,b,d,c){a=window.getComputedStyle(a,d);var e=a.getPropertyValue("content");if(e!==""&&e!=="none"){var f=v();try{b.className=`${b.className} ${f}`}catch(k){return}e=document.createElement("style");var g=e.appendChild;d=`.${f}:${d}`;a.cssText?(c=a.getPropertyValue("content"),c=`${a.cssText} content: '${c.replace(/'|"/g,"")}';`):c=F(a,c);g.call(e,document.createTextNode(`${d}{${c}}`));b.appendChild(e)}};function H(a){return a.search(/^(data:)/)!==-1}function I(a,b,d){return t(function*(){var c=yield fetch(a,b);if(c.status===404)throw Error(`Resource "${c.url}" not found`);var e=yield c.blob();return new Promise((f,g)=>{var k=new FileReader;k.onerror=g;k.onloadend=()=>{try{f(d({o:c,result:k.result}))}catch(m){g(m)}};k.readAsDataURL(e)})})}const J={};function K(a,b,d){var c=a.replace(/\?.*/,"");d&&(c=a);/ttf|otf|eot|woff2?/i.test(c)&&(c=c.replace(/.*\//,""));return b?`[${b}]${c}`:c}
+function L(a,b,d){return t(function*(){var c=K(a,b,d.C);if(J[c]!=null)return J[c];d.u&&(a+=(/\?/.test(a)?"&":"?")+(new Date).getTime());try{let f=yield I(a,d.i,({o:g,result:k})=>{b||(b=g.headers.get("Content-Type")||"");return k.split(/,/)[1]});var e=`data:${b};base64,${f}`}catch(f){e=d.B||""}return J[c]=e})};const M={P:"application/font-woff",R:"application/font-woff",N:"application/font-truetype",v:"application/vnd.ms-fontobject",H:"image/png",F:"image/jpeg",D:"image/jpeg",A:"image/gif",M:"image/tiff",L:"image/svg+xml",O:"image/webp"};function N(a){return(a=/\.([^./]*?)$/g.exec(a))?a[1]:""};function O(a){return t(function*(){var b=a.toDataURL();return b==="data:,"?a.cloneNode(!1):B(b)})}function aa(a,b){return t(function*(){if(a.currentSrc){var d=document.createElement("canvas");let c=d.getContext("2d");d.width=a.clientWidth;d.height=a.clientHeight;c==null||c.drawImage(a,0,0,d.width,d.height);d=d.toDataURL();return B(d)}d=a.poster;d=yield L(d,M[N(d).toLowerCase()]||"",b);return B(d)})}
+function ba(a,b){return t(function*(){try{let d;if(a==null?0:(d=a.contentDocument)==null?0:d.body)return yield P(a.contentDocument.body,b,!0)}catch(d){}return a.cloneNode(!1)})}function ca(a,b){return t(function*(){return E(a,HTMLCanvasElement)?O(a):E(a,HTMLVideoElement)?aa(a,b):E(a,HTMLIFrameElement)?ba(a,b):a.cloneNode(a.tagName!=null&&a.tagName.toUpperCase()==="SVG")})}
+function da(a,b,d){return t(function*(){if(b.tagName!=null&&b.tagName.toUpperCase()==="SVG")return b;var c=[];if(a.tagName!=null&&a.tagName.toUpperCase()==="SLOT"&&a.assignedNodes)c=w(a.assignedNodes());else{let e;if(E(a,HTMLIFrameElement)&&((e=a.contentDocument)==null?0:e.body))c=w(a.contentDocument.body.childNodes);else{let f;c=w(((f=a.shadowRoot)!=null?f:a).childNodes)}}if(c.length===0||E(a,HTMLVideoElement))return b;yield c.reduce((e,f)=>e.then(()=>P(f,d)).then(g=>{g&&b.appendChild(g)}),Promise.resolve());
+return b})}function ea(a,b,d){var c=b.style;if(c){var e=window.getComputedStyle(a);e.cssText?(c.cssText=e.cssText,c.transformOrigin=e.transformOrigin):y(d).forEach(f=>{var g=e.getPropertyValue(f);f==="font-size"&&g.endsWith("px")&&(g=`${Math.floor(parseFloat(g.substring(0,g.length-2)))-.1}px`);E(a,HTMLIFrameElement)&&f==="display"&&g==="inline"&&(g="block");f==="d"&&b.getAttribute("d")&&(g=`path(${b.getAttribute("d")})`);c.setProperty(f,g,e.getPropertyPriority(f))})}}
+function fa(a,b){E(a,HTMLSelectElement)&&(b=Array.from(b.children).find(d=>a.value===d.getAttribute("value")))&&b.setAttribute("selected","")}
+function ha(a,b){return t(function*(){var d=a.querySelectorAll?a.querySelectorAll("use"):[];if(d.length===0)return a;var c={};for(var e=0;e<d.length;e++){var f=d[e].getAttribute("xlink:href");if(f){let g=document.querySelector(f);a.querySelector(f)||!g||c[f]||(c[f]=yield P(g,b,!0))}}d=Object.values(c);if(d.length){c=document.createElementNS("http://www.w3.org/1999/xhtml","svg");c.setAttribute("xmlns","http://www.w3.org/1999/xhtml");c.style.position="absolute";c.style.width="0";c.style.height="0";
+c.style.overflow="hidden";c.style.display="none";e=document.createElementNS("http://www.w3.org/1999/xhtml","defs");c.appendChild(e);for(f=0;f<d.length;f++)e.appendChild(d[f]);a.appendChild(c)}return a})}
+function P(a,b,d){return t(function*(){return d||!b.filter||b.filter(a)?Promise.resolve(a).then(c=>ca(c,b)).then(c=>da(a,c,b)).then(c=>{E(c,Element)&&(ea(a,c,b),G(a,c,":before",b),G(a,c,":after",b),E(a,HTMLTextAreaElement)&&(c.textContent=a.value),E(a,HTMLInputElement)&&c.setAttribute("value",a.value),fa(a,c));return c}).then(c=>ha(c,b)):null})};const Q=/url\((['"]?)([^'"]+?)\1\)/g,ia=/url\([^)]+\)\s*format\((["']?)([^"']+)\1\)/g,ja=/src:\s*(?:url\([^)]+\)\s*format\([^)]+\)[,;]\s*)+/g;function ka(a){var b=[];a.replace(Q,(d,c,e)=>{b.push(e);return d});return b.filter(d=>!H(d))}
+function la(a,b,d,c){return t(function*(){try{let e=d?(new URL(b,d||void 0)).toString():b,f;f=yield L(e,M[N(b).toLowerCase()]||"",c);return a.replace(new RegExp(`(url\\(['"]?)(${b.replace(/([.*+?^${}()|\[\]\/\\])/g,"\\$1")})(['"]?\\))`,"g"),`$1${f}$3`)}catch(e){}return a})}function ma(a,{I:b}){return b?a.replace(ja,d=>{for(;;){let [c,,e]=ia.exec(d)||[];if(!e)return"";if(e===b)return`src: ${c};`}}):a}
+function R(a,b,d){return t(function*(){if(a.search(Q)===-1)return a;var c=ma(a,d);return ka(c).reduce((e,f)=>e.then(g=>la(g,f,b,d)),Promise.resolve(c))})};function S(a,b,d){return t(function*(){var c,e=(c=b.style)==null?void 0:c.getPropertyValue(a);return e?(c=yield R(e,null,d),b.style.setProperty(a,c,b.style.getPropertyPriority(a)),!0):!1})}function na(a,b){return t(function*(){(yield S("background",a,b))||(yield S("background-image",a,b));(yield S("mask",a,b))||(yield S("-webkit-mask",a,b))||(yield S("mask-image",a,b))||(yield S("-webkit-mask-image",a,b))})}
+function oa(a,b){return t(function*(){var d=E(a,HTMLImageElement);if(d&&!H(a.src)||E(a,SVGImageElement)&&!H(a.href.baseVal)){var c=d?a.src:a.href.baseVal,e=yield L(c,M[N(c).toLowerCase()]||"",b);yield new Promise((f,g)=>{a.onload=f;a.onerror=b.m?(...k)=>{try{f(b.m(...k))}catch(m){g(m)}}:g;a.decode&&(a.decode=f);a.loading==="lazy"&&(a.loading="eager");d?(a.srcset="",a.src=e):a.href.baseVal=e})}})}
+function pa(a,b){return t(function*(){var d=w(a.childNodes).map(c=>T(c,b));yield Promise.all(d).then(()=>a)})}function T(a,b){return t(function*(){E(a,Element)&&(yield na(a,b),yield oa(a,b),yield pa(a,b))})};const U={};function V(a){return t(function*(){var b=U[a];if(b!=null)return b;b=yield(yield fetch(a)).text();b={url:a,cssText:b};return U[a]=b})}function W(a,b){return t(function*(){var d=a.cssText,c=/url\(["']?([^"')]+)["']?\)/g,e=(d.match(/url\([^)]+\)/g)||[]).map(f=>t(function*(){var g=f.replace(c,"$1");g.startsWith("https://")||(g=(new URL(g,a.url)).href);return I(g,b.i,({result:k})=>{d=d.replace(f,`url(${k})`);return[f,k]})}));return Promise.all(e).then(()=>d)})}
+function X(a){if(a==null)return[];var b=[];a=a.replace(/(\/\*[\s\S]*?\*\/)/gi,"");for(var d=RegExp("((@.*?keyframes [\\s\\S]*?){([\\s\\S]*?}\\s*?)})","gi");;){var c=d.exec(a);if(c===null)break;b.push(c[0])}a=a.replace(d,"");d=/@import[\s\S]*?url\([^)]*\)[\s\S]*?;/gi;for(c=RegExp("((\\s*?(?:\\/\\*[\\s\\S]*?\\*\\/)?\\s*?@media[\\s\\S]*?){([\\s\\S]*?)}\\s*?})|(([\\s\\S]*?){([\\s\\S]*?)})","gi");;){let e=d.exec(a);if(e===null)if(e=c.exec(a),e===null)break;else d.lastIndex=c.lastIndex;else c.lastIndex=
+d.lastIndex;b.push(e[0])}return b}
+function qa(a,b){return t(function*(){var d=[],c=[];a.forEach(e=>{if("cssRules"in e)try{w(e.cssRules||[]).forEach((f,g)=>{if(f.type===CSSRule.IMPORT_RULE){let k=g+1;f=V(f.href).then(m=>W(m,b)).then(m=>X(m).forEach(q=>{try{e.insertRule(q,q.startsWith("@import")?k+=1:e.cssRules.length)}catch(Da){}})).catch(()=>{});c.push(f)}})}catch(f){let g=a.find(k=>k.href==null)||document.styleSheets[0];e.href!=null&&c.push(V(e.href).then(k=>W(k,b)).then(k=>X(k).forEach(m=>{g.insertRule(m,g.cssRules.length)})).catch(()=>
+{}))}});return Promise.all(c).then(()=>{a.forEach(e=>{if("cssRules"in e)try{w(e.cssRules||[]).forEach(f=>{d.push(f)})}catch(f){}});return d})})}function ra(a){return a.filter(b=>b.type===CSSRule.FONT_FACE_RULE).filter(b=>b.style.getPropertyValue("src").search(Q)!==-1)}function sa(a,b){return t(function*(){if(a.ownerDocument==null)throw Error("Provided element is not within a Document");var d=w(a.ownerDocument.styleSheets);d=yield qa(d,b);return ra(d)})}
+function ta(a){function b(c){(c.style.fontFamily||getComputedStyle(c).fontFamily).split(",").forEach(e=>{d.add(e.trim().replace(/["']/g,""))});Array.from(c.children).forEach(e=>{e instanceof HTMLElement&&b(e)})}var d=new Set;b(a);return d}function ua(a,b){return t(function*(){var d=yield sa(a,b),c=ta(a);return(yield Promise.all(d.filter(e=>c.has(e.style.fontFamily.trim().replace(/["']/g,""))).map(e=>R(e.cssText,e.parentStyleSheet?e.parentStyleSheet.href:null,b)))).join("\n")})}
+function va(a,b){return t(function*(){var d=b.j!=null?b.j:b.K?null:yield ua(a,b);if(d){let c=document.createElement("style");c.appendChild(document.createTextNode(d));a.firstChild?a.insertBefore(c,a.firstChild):a.appendChild(c)}})};function wa(a,b={}){return t(function*(){var {width:d,height:c}=A(a,b),e=yield P(a,b,!0);yield va(e,b);yield T(e,b);u(e,b);return yield D(e,d,c)})}
+function xa(a,b={}){return t(function*(){var {width:d,height:c}=A(a,b),e=yield wa(a,b);e=yield B(e);var f=document.createElement("canvas"),g=f.getContext("2d"),k=b.G||window.devicePixelRatio||1,m=b.h||d,q=b.g||c;f.width=m*k;f.height=q*k;!b.J&&(f.width>16384||f.height>16384)&&(f.width>16384&&f.height>16384?f.width>f.height?(f.height*=16384/f.width,f.width=16384):(f.width*=16384/f.height,f.height=16384):f.width>16384?(f.height*=16384/f.width,f.width=16384):(f.width*=16384/f.height,f.height=16384));
+f.style.width=`${m}`;f.style.height=`${q}`;b.backgroundColor&&(g.fillStyle=b.backgroundColor,g.fillRect(0,0,f.width,f.height));g.drawImage(e,0,0,f.width,f.height);return f})}function ya(a,b={}){return t(function*(){return(yield xa(a,b)).toDataURL()})};const za=["gemini.google.com","corp.google.com","proxy.googlers.com"];function Y(){return document.body.querySelectorAll('[class*="animate"]').length>0}function Z(a){return t(function*(){try{return yield ya(a,{h:a.offsetWidth,g:a.offsetHeight})}catch(d){var b=a.offsetHeight;let c=document.createElement("canvas");c.width=a.offsetWidth;c.height=b;return c.toDataURL("image/png")}})}
+function Aa(){return t(function*(){var a=document.body.offsetWidth,b=document.body.offsetHeight,d=document.body.cloneNode(!0);d.querySelectorAll('[class*="animate"]').forEach(c=>{c.classList.remove(...Array.from(c.classList).filter(e=>e.startsWith("animate")))});d.style.width=`${a}px`;d.style.height=`${b}px`;return d})}
+function Ba(a){return t(function*(){var b=document.body;if(Y()){var d=yield Aa();b=d;document.body.appendChild(d)}d=yield Z(b);Y()&&document.body.removeChild(b);window.parent.postMessage({type:"SEND_SCREENSHOT",image:d,topOffset:document.documentElement.scrollTop},a.origin)})}function Ca(a){return t(function*(){var b={type:"SEND_SCREENSHOT_FOR_DATA_VISUALIZATION",image:yield Z(document.body),topOffset:0};window.parent.postMessage(b,a.origin)})}
+window.addEventListener("message",a=>t(function*(){if(za.some(d=>a.origin.includes(d))){var b=a.data;b&&(b.type==="MAKE_SCREENSHOT"&&(yield Ba(a)),b.type==="MAKE_SCREENSHOT_FOR_DATA_VISUALIZATION"&&(yield Ca(a)))}}));
+})();</script><script>(function() {
+  // Ensure this script is executed only once
+  if (window.firebaseAuthBridgeScriptLoaded) {
+    return;
+  }
+  window.firebaseAuthBridgeScriptLoaded = true;
+
+  let nextTokenPromiseId = 0;
+
+  // Stores { resolve, reject } for ongoing token requests
+  const pendingTokenPromises = {};
+
+  // Listen for messages from the Host Application
+  window.addEventListener('message', function(event) {
+
+    const messageData = event.data;
+
+  if (messageData && messageData.type === 'RESOLVE_NEW_FIREBASE_TOKEN') {
+      const { success, token, error, promiseId } = messageData ?? {};
+      if (pendingTokenPromises[promiseId]) {
+        if (success) {
+          pendingTokenPromises[promiseId].resolve(token);
+        } else {
+          pendingTokenPromises[promiseId].reject(new Error(error || 'Token refresh failed from host.'));
+        }
+        delete pendingTokenPromises[promiseId];
+      }
+    }
+  });
+
+  // Expose a function for the Generated App to request a new Firebase token
+  window.requestNewFirebaseToken = function() {
+    const currentPromiseId = nextTokenPromiseId++;
+    const promise = new Promise((resolve, reject) => {
+      pendingTokenPromises[currentPromiseId] = { resolve, reject };
+    });
+    if (window.parent && window.parent !== window) {
+      window.parent.postMessage({
+        type: 'REQUEST_NEW_FIREBASE_TOKEN',
+        promiseId: currentPromiseId
+      }, '*');
+    } else {
+      pendingTokenPromises[currentPromiseId].reject(new Error('No parent window to request token from.'));
+      delete pendingTokenPromises[currentPromiseId];
+    }
+    return promise;
+  };
+})();</script><script>
+let realOriginalGetUserMedia = null;
+if (navigator.mediaDevices && navigator.mediaDevices.getUserMedia) {
+  realOriginalGetUserMedia = navigator.mediaDevices.getUserMedia.bind(navigator.mediaDevices);
+}
+
+(function() {
+  if (navigator.mediaDevices && navigator.mediaDevices.__proto__) {
+    try {
+      Object.defineProperty(navigator.mediaDevices.__proto__, 'getUserMedia', {
+        get: function() {
+          return undefined; // Or throw an error
+        },
+        configurable: false
+      });
+    } catch (error) {
+      console.error("Error defining prototype getter:", error);
+    }
+  }
+})();
+
+(function() {
+  const pendingMediaResolvers = {};
+  let nextMediaPromiseId = 0;
+
+  function requestMediaPermissions(constraints) {
+    const mediaPromiseId = nextMediaPromiseId++;
+    const promise = new Promise((resolve, reject) => {
+      pendingMediaResolvers[mediaPromiseId] = (granted) => {
+        delete pendingMediaResolvers[mediaPromiseId];
+        resolve(granted);
+      };
+    });
+
+    window.parent.postMessage({
+      type: 'requestMediaPermission',
+      constraints: constraints,
+      promiseId: mediaPromiseId,
+    }, '*');
+
+    return promise;
+  }
+
+  let originalGetUserMedia = realOriginalGetUserMedia;
+
+  function interceptGetUserMedia() {
+    if (navigator.mediaDevices) {
+      Object.defineProperty(navigator.mediaDevices, 'getUserMedia', {
+        value: function(constraints) {
+          return requestMediaPermissions(constraints).then((granted) => {
+            if (granted) {
+              if (originalGetUserMedia) {
+                return originalGetUserMedia(constraints);
+              } else {
+                throw new Error("Original getUserMedia not available.");
+              }
+            } else {
+              throw new DOMException('Permission denied', 'NotAllowedError');
+            }
+          });
+        },
+        writable: false,
+        configurable: false
+      });
+    }
+  }
+
+  interceptGetUserMedia();
+
+  const observer = new MutationObserver(function(mutationsList, observer) {
+    for (const mutation of mutationsList) {
+      if (mutation.type === 'reconfigured' && mutation.name === 'getUserMedia' && mutation.object === navigator.mediaDevices) {
+        interceptGetUserMedia();
+      } else if (mutation.type === 'attributes' && mutation.attributeName === 'getUserMedia' && mutation.target === navigator.mediaDevices) {
+        interceptGetUserMedia();
+      } else if (mutation.type === 'childList' && mutation.addedNodes) {
+        mutation.addedNodes.forEach(node => {
+          if (node === navigator.mediaDevices) {
+            interceptGetUserMedia();
+          }
+        });
+      }
+    }
+  });
+
+  function interceptSpeechRecognition() {
+    if (!window.SpeechRecognition && !window.webkitSpeechRecognition) {
+      return;
+    }
+
+    const OriginalSpeechRecognition = window.SpeechRecognition || window.webkitSpeechRecognition;
+
+    const SpeechRecognitionWrapper = function(...args) {
+      const recognizer = new OriginalSpeechRecognition(...args);
+      const originalStart = recognizer.start.bind(recognizer);
+
+      recognizer.start = function() {
+        requestMediaPermissions({ audio: true }).then(granted => {
+          if (granted) {
+            originalStart();
+          } else {
+            const errorEvent = new SpeechRecognitionErrorEvent('error');
+            errorEvent.error = 'not-allowed'; // This is the standard error for permission denial.
+            recognizer.dispatchEvent(errorEvent);
+          }
+        });
+      };
+
+      return recognizer;
+    };
+
+    SpeechRecognitionWrapper.prototype = OriginalSpeechRecognition.prototype;
+    SpeechRecognitionWrapper.prototype.constructor = SpeechRecognitionWrapper;
+
+    if (window.SpeechRecognition) {
+      window.SpeechRecognition = SpeechRecognitionWrapper;
+    }
+    if (window.webkitSpeechRecognition) {
+      window.webkitSpeechRecognition = SpeechRecognitionWrapper;
+    }
+  }
+
+  interceptSpeechRecognition();
+
+  window.addEventListener('message', function(event) {
+    if (event.data) {
+      if (event.data.type === 'resolveMediaPermission') {
+        const { promiseId, granted } = event.data;
+        if (pendingMediaResolvers[promiseId]) {
+          pendingMediaResolvers[promiseId](granted);
+        }
+      }
+    }
+  });
+
+})();</script><script ws-interception-config="{&quot;parentOrigin&quot;:&quot;https://gemini.google.com&quot;,&quot;proxiedDomains&quot;:[]}">(function(){'use strict';var u=typeof Object.defineProperties=="function"?Object.defineProperty:function(b,d,e){if(b==Array.prototype||b==Object.prototype)return b;b[d]=e.value;return b};function v(b){b=["object"==typeof globalThis&&globalThis,b,"object"==typeof window&&window,"object"==typeof self&&self,"object"==typeof global&&global];for(var d=0;d<b.length;++d){var e=b[d];if(e&&e.Math==Math)return e}throw Error("Cannot find global object");}var w=v(this);
+function y(b,d){if(d)a:{var e=w;b=b.split(".");for(var h=0;h<b.length-1;h++){var k=b[h];if(!(k in e))break a;e=e[k]}b=b[b.length-1];h=e[b];d=d(h);d!=h&&d!=null&&u(e,b,{configurable:!0,writable:!0,value:d})}}function z(b){function d(h){return b.next(h)}function e(h){return b.throw(h)}return new Promise(function(h,k){function m(n){n.done?h(n.value):Promise.resolve(n.value).then(d,e).then(m,k)}m(b.next())})}y("globalThis",function(b){return b||w});/*
+
+ Copyright The Closure Library Authors.
+ SPDX-License-Identifier: Apache-2.0
+*/
+function A(b,d){function e(){}e.prototype=d.prototype;b.i=d.prototype;b.prototype=new e;b.prototype.constructor=b;b.g=function(h,k,m){for(var n=Array(arguments.length-2),p=2;p<arguments.length;p++)n[p-2]=arguments[p];return d.prototype[k].apply(h,n)}};function B(b,d,e="*"){function h(a){if(typeof a==="string")return F.encode(a).buffer;if(a instanceof ArrayBuffer)return a.slice(0);if(ArrayBuffer.isView(a))return a.buffer.slice(a.byteOffset,a.byteOffset+a.byteLength);throw Error("Invalid data type");}function k(a){a=h(a);var f={type:"send",data:new Uint8Array(a)},g;(g=r)==null||g.postMessage(f,[a])}function m(){if(!r)throw Error("Data port not captured yet.");r.onmessage=a=>{if(a.data.type==="message"){a=new MessageEvent("message",{data:G.decode(a.data.data)});
+let f;(f=c.onmessage)==null||f.call(c,a);c.dispatchEvent(a)}}}function n(){if(!t)throw Error("Control port not captured yet.");t.onmessage=a=>{switch(a.data.type){case "open":l=1;var f=new Event("open"),g;(g=c.onopen)==null||g.call(c,f);c.dispatchEvent(f);q.forEach(H=>{k(H)});q=[];break;case "close":g=a.data;l=3;g=new CloseEvent("close",{code:g.code,reason:g.reason,wasClean:g.wasClean});(f=c.onclose)==null||f.call(c,g);c.dispatchEvent(g);break;case "error":l=3;f=new Event("error");let x;(x=c.onerror)==
+null||x.call(c,f);c.dispatchEvent(f)}}}function p(a){return z(function*(){var f=new MessageChannel;t=f.port1;var g=new MessageChannel;r=g.port1;n();m();window.parent.postMessage({type:"websocket_open",portOrdering:["control","data"],url:b,protocols:a||[],connectionId:I},e,[f.port2,g.port2])}())}var c=Reflect.construct(EventTarget,[],new.target);c.CONNECTING=0;c.OPEN=1;c.CLOSING=2;c.CLOSED=3;c.url=b;c.binaryType="arraybuffer";c.protocol="";c.h="";var l=0,t=null,r=null,q=[],F=new TextEncoder,G=new TextDecoder;
+c.onopen=null;c.onmessage=null;c.onclose=null;c.onerror=null;Object.defineProperty(c,"readyState",{get:()=>l,enumerable:!0,configurable:!0});Object.defineProperty(c,"bufferedAmount",{get:()=>{var a=0;q.forEach(f=>{a+=typeof f==="string"?f.length:f.byteLength});return a},enumerable:!0,configurable:!0});var I=function(){var a;return((a=globalThis.crypto)==null?0:a.randomUUID)?globalThis.crypto.randomUUID():"xxxxxxxx-xxxx-4xxx-yxxx-xxxxxxxxxxxx".replace(/[xy]/g,f=>{var g=Math.random()*16|0;return(f===
+"x"?g:g&3|8).toString(16)})}();c.send=a=>{if(l===1)a instanceof Blob?a.arrayBuffer().then(f=>{k(f)}):k(a);else if(l===0)if(typeof a==="string")q.push(a);else if(a instanceof ArrayBuffer||ArrayBuffer.isView(a))q.push(h(a));else throw Error("Sending Blob is not supported before the connection is open.");else console.debug("WebSocket send called in CLOSING or CLOSED state; ignored.")};c.close=(a=1E3,f="")=>{if(l!==2&&l!==3){l=2;a={type:"close",code:a,reason:f,wasClean:a===1E3};var g;(g=t)==null||g.postMessage(a)}};
+Promise.resolve().then(()=>p(d));return c}A(B,EventTarget);var C=document.currentScript,D=C==null?void 0:C.getAttribute("ws-interception-config");if(!D)throw Error("WebSocket Interceptor: Missing ws-interception-config attribute in the script tag.");var E=JSON.parse(D);if(!E.parentOrigin||typeof E.parentOrigin!=="string")throw Error("WebSocket Interceptor: Invalid parentOrigin in ws-interception-config");
+(function(b){var d=Object.getOwnPropertyDescriptor(window,"WebSocket");if(!d||d.writable||d.configurable)d=Object.assign(function(e,h){try{let k=(new URL(e)).hostname;if(b.proxiedDomains.some(m=>k===m||k.endsWith(`.${m}`)))return new B(e,h,b.parentOrigin)}catch(k){throw window.parent.postMessage({type:"websocket_blocked",url:e,reason:"blocked_invalid_url"},b.parentOrigin),new DOMException(`WebSocket connection to '${e}' is not allowed in Canvas.`,"SecurityError");}window.parent.postMessage({type:"websocket_blocked",
+url:e,reason:"blocked_domain_not_allowlisted"},b.parentOrigin);throw new DOMException(`WebSocket connection to '${e}' is not allowed in Canvas.`,"SecurityError");},{CONNECTING:0,OPEN:1,CLOSING:2,CLOSED:3}),Object.defineProperty(window,"WebSocket",{value:d,writable:!1,configurable:!1})})({proxiedDomains:E.proxiedDomains||[],parentOrigin:E.parentOrigin});}).call(this);
+</script><script>((function(modelInformation) {
+  const originalFetch = window.fetch;
+  // TODO: b/421908508 - Move these out of the script and match all generative AI model calls.
+  let googleLlmBaseApiUrls = [
+    'https://generativelanguage.googleapis.com/v1beta/models/' + modelInformation.textModelName + ':streamGenerateContent',
+    'https://generativelanguage.googleapis.com/v1beta/models/' + modelInformation.textModelName + ':generateContent',
+    'https://generativelanguage.googleapis.com/v1beta/models/' + modelInformation.imageModelName + ':predict',
+    'https://generativelanguage.googleapis.com/v1beta/models/' + modelInformation.imageModelName + ':predictLongRunning',
+    'https://generativelanguage.googleapis.com/v1beta/models/' + modelInformation.imageEditModelName + ':generateContent',
+    'https://generativelanguage.googleapis.com/v1beta/models/' + modelInformation.imageTransformModelName + ':generateContent',
+    'https://generativelanguage.googleapis.com/v1beta/models/' + modelInformation.videoModelName + ':predict',
+    'https://generativelanguage.googleapis.com/v1beta/models/' + modelInformation.videoModelName + ':predictLongRunning',
+    'https://generativelanguage.googleapis.com/v1beta/models/' + modelInformation.ttsModelName + ':generateContent',
+  ];
+  modelInformation.deprecatedTextModelNames.forEach((modelName) => {
+    googleLlmBaseApiUrls.push(
+      'https://generativelanguage.googleapis.com/v1beta/models/' + modelName + ':streamGenerateContent',
+      'https://generativelanguage.googleapis.com/v1beta/models/' + modelName + ':generateContent',
+    );
+  });
+  modelInformation.deprecatedImageModelNames.forEach((modelName) => {
+    googleLlmBaseApiUrls.push(
+      'https://generativelanguage.googleapis.com/v1beta/models/' + modelName + ':predict',
+      'https://generativelanguage.googleapis.com/v1beta/models/' + modelName + ':predictLongRunning',
+      'https://generativelanguage.googleapis.com/v1beta/models/' + modelName + ':generateContent',
+      'https://generativelanguage.googleapis.com/v1beta/models/' + modelName + ':streamGenerateContent',
+    );
+  });
+  modelInformation.deprecatedGenerateImageModelNames.forEach((modelName) => {
+    googleLlmBaseApiUrls.push(
+      'https://generativelanguage.googleapis.com/v1beta/models/' + modelName + ':generateContent',
+      'https://generativelanguage.googleapis.com/v1beta/models/' + modelName + ':streamGenerateContent',
+    );
+  });
+
+  const pendingFetchResolvers = {};
+  let nextPromiseId = 0;
+
+  function handleStringInput(input, optionsArgument) {
+    const actualUrl = input;
+    const fetchCallArgs = [actualUrl, optionsArgument];
+    const effectiveOptions = optionsArgument || {};
+    const bodyForApiKeyCheck = effectiveOptions.body;
+    const bodyForPostMessage = effectiveOptions.body;
+    return { actualUrl, fetchCallArgs, effectiveOptions, bodyForApiKeyCheck, bodyForPostMessage };
+  }
+
+  function handleRequestInput(input, optionsArgument) {
+    const actualUrl = input.url;
+    const fetchCallArgs = [input, optionsArgument];
+    const effectiveOptions = { method: input.method, headers: new Headers(input.headers) };
+    let bodyForApiKeyCheck;
+    let bodyForPostMessage;
+
+    if (optionsArgument) {
+      if (optionsArgument.method) effectiveOptions.method = optionsArgument.method;
+      if (optionsArgument.headers) effectiveOptions.headers = new Headers(optionsArgument.headers);
+      if ('body' in optionsArgument) {
+        bodyForApiKeyCheck = optionsArgument.body;
+        bodyForPostMessage = optionsArgument.body;
+      } else {
+        bodyForApiKeyCheck = undefined;
+        bodyForPostMessage = input.body;
+      }
+    } else {
+      bodyForApiKeyCheck = undefined;
+      bodyForPostMessage = input.body;
+    }
+    return { actualUrl, fetchCallArgs, effectiveOptions, bodyForApiKeyCheck, bodyForPostMessage };
+  }
+
+  window.fetch = function(input, optionsArgument) {
+    let actualUrl;
+    let fetchCallArgs;
+    let effectiveOptions = {};
+    let bodyForApiKeyCheck;
+    let bodyForPostMessage;
+
+    if (typeof input === 'string') {
+      ({actualUrl, fetchCallArgs, effectiveOptions, bodyForApiKeyCheck, bodyForPostMessage} = handleStringInput(input, optionsArgument));
+    } else if (input instanceof Request) {
+      ({actualUrl, fetchCallArgs, effectiveOptions, bodyForApiKeyCheck, bodyForPostMessage} = handleRequestInput(input, optionsArgument));
+    } else {
+      return originalFetch.apply(window, [input, optionsArgument]);
+    }
+
+    effectiveOptions.method = effectiveOptions.method || 'GET';
+    if (!effectiveOptions.headers) {
+      effectiveOptions.headers = new Headers();
+    }
+
+
+    if (typeof actualUrl === 'string' && googleLlmBaseApiUrls.some((url) => actualUrl.startsWith(url))) {
+      let apiKeyIsNull = true;
+
+      const regex = new RegExp("models/([^:]+)");
+      const modelNameMatch = actualUrl.match(regex);
+      const modelName = modelNameMatch ? modelNameMatch[1] : 'unspecified';
+
+
+      try {
+        const urlObject = new URL(actualUrl);  // Use URL object for robust parsing
+        const apiKeyParam = urlObject.searchParams.get('key');
+        if (apiKeyParam) {
+          apiKeyIsNull = false;
+        }
+      } catch (e) {
+        // Continue checks even if URL parsing fails
+      }
+
+      if (apiKeyIsNull && effectiveOptions.headers) {
+        const h = new Headers(effectiveOptions.headers);
+        const apiKeyHeaderValue = h.get('X-API-Key') || h.get('x-api-key');
+        if (apiKeyHeaderValue) {
+          apiKeyIsNull = false;
+          return originalFetch.apply(window, fetchCallArgs);
+        }
+      }
+
+      if (apiKeyIsNull && effectiveOptions.method && ['POST', 'PUT', 'PATCH'].includes(effectiveOptions.method.toUpperCase()) && typeof bodyForApiKeyCheck === 'string') {
+        try {
+          const bodyData = JSON.parse(bodyForApiKeyCheck);
+          if (bodyData && bodyData.apiKey) {
+            apiKeyIsNull = false;
+            return originalFetch.apply(window, fetchCallArgs);
+          }
+        } catch (e) {
+          // Ignore JSON parsing errors
+        }
+      }
+
+      if(apiKeyIsNull) {
+        const promiseId = nextPromiseId++;
+        const promise = new Promise((resolve) => {
+          pendingFetchResolvers[promiseId] = (resolvedResponse) => {
+            delete pendingFetchResolvers[promiseId];
+            resolve(resolvedResponse);
+          };
+        });
+
+        let serializedBodyForPostMessage;
+        if (typeof bodyForPostMessage === 'string' || bodyForPostMessage == null) {
+            serializedBodyForPostMessage = bodyForPostMessage;
+        } else if (bodyForPostMessage instanceof ReadableStream) {
+            serializedBodyForPostMessage = null;
+        } else {
+            try {
+                serializedBodyForPostMessage = JSON.stringify(bodyForPostMessage);
+            } catch (e) {
+                serializedBodyForPostMessage = null;
+            }
+        }
+
+        const messageOptions = {
+            method: effectiveOptions.method,
+            headers: Object.fromEntries(new Headers(effectiveOptions.headers).entries()),
+            body: serializedBodyForPostMessage
+        };
+
+        window.parent.postMessage({
+          type: 'requestFetch',
+          url: actualUrl,
+          modelName: modelName,
+          options: messageOptions,
+          promiseId: promiseId,
+        }, '*');
+
+        return promise;
+      }
+      return originalFetch.apply(window, fetchCallArgs);
+    }
+    return originalFetch.apply(window, fetchCallArgs);
+  };
+
+  window.addEventListener('message', function(event) {
+    if (event.data && event.data.type === 'resolveFetch') {
+      const { promiseId, response } = event.data;
+      if (pendingFetchResolvers[promiseId]) {
+        try {
+          const reconstructedResponse = new Response(response.body, {
+            status: response.status,
+            statusText: response.statusText,
+            headers: new Headers(response.headers),
+          });
+          pendingFetchResolvers[promiseId](reconstructedResponse);
+        } catch (error) {
+          pendingFetchResolvers[promiseId](new Response(null, { status: 500, statusText: "Interceptor Response Reconstruction Error" }));
+        }
+      }
+    }
+  });
+
+}))({"textModelName":"gemini-3-flash-preview","imageModelName":"imagen-4.0-generate-001","imageEditModelName":"gemini-3.1-flash-image-preview","imageTransformModelName":"gemini-3-pro-image-preview-11-2025","videoModelName":"veo-2.0-generate-001","ttsModelName":"gemini-2.5-flash-preview-tts","deprecatedTextModelNames":["gemini-2.0-flash","gemini-2.5-flash","gemini-2.5-flash-preview-04-17","gemini-2.5-flash-preview-05-20","gemini-2.5-flash-preview-09-2025"],"deprecatedImageModelNames":["imagen-3.0-generate-001","imagen-3.0-generate-002"],"deprecatedGenerateImageModelNames":["gemini-2.5-flash-image-preview","gemini-2.5-flash-image"]})</script><script>(function(){'use strict';function a(){window.parent.postMessage({type:"interaction"},"*")}window.addEventListener("click",a,{capture:!0,passive:!0});window.addEventListener("touchstart",a,{capture:!0,passive:!0});window.addEventListener("keydown",a,{capture:!0,passive:!0});}).call(this);
+</script><script>(function() {
+  const originalConsoleLog = console.log;
+  const originalConsoleError = console.error;
+
+    /**
+   * Normalizes an error event or a promise rejection reason into a structured error object.
+   * @param {*} errorEventOrReason The error object or reason.
+   * @return {object} Structured error data { message, name, stack }.
+   */
+  function getErrorObject(errorEventOrReason) {
+    if (errorEventOrReason instanceof Error) {
+      return {
+        message: errorEventOrReason.message,
+        name: errorEventOrReason.name,
+        stack: errorEventOrReason.stack,
+      };
+    }
+    // Fallback for non-Error objects.
+    try {
+      return {
+        message: JSON.stringify(errorEventOrReason),
+        name: 'UnknownErrorType',
+        stack: null,
+      };
+    } catch (e) {
+      return {
+        message: String(errorEventOrReason),
+        name: 'UnknownErrorTypeNonStringifiable',
+        stack: null,
+      };
+    }
+  }
+
+  /**
+   * Converts an array of arguments (from log/error) into a single string.
+   * Handles Error objects specially to include their message and stack.
+   * @param {Array<*>} args - Arguments passed to console methods.
+   * @return {string} A string representation of the arguments.
+   */
+  function stringifyArgs(args) {
+    return args
+      .map((arg) => {
+        if (arg instanceof Error) {
+          const {message, stack} = arg;
+          return `Error: ${message}${stack ? ('\nStack: ' + stack) : ''}`;
+        }
+        if (typeof arg === 'object' && arg !== null) {
+          try {
+            return JSON.stringify(arg);
+          } catch (error) {
+            return '[Circular Object]';
+          }
+        } else {
+          return String(arg);
+        }
+      })
+      .join(' ');
+  }
+
+  console.log = function(...args) {
+    const logString = stringifyArgs(args);
+    window.parent.postMessage({ type: 'log', message: logString }, '*');
+    originalConsoleLog.apply(console, args);
+  };
+
+  console.error = function(...args) {
+    let errorData;
+    if (args.length > 0 && args[0] instanceof Error) {
+      const err = args[0];
+      // If the first arg is an Error, capture its details.
+      errorData = {
+        type: 'error',
+        source: 'CONSOLE_ERROR',
+        ...getErrorObject(err),
+        rawArgsString: stringifyArgs(args.slice(1)),
+        timestamp: new Date().toISOString(),
+      };
+    } else {
+      // If not an Error object, treat all args as a general error message.
+      errorData = {
+        type: 'error',
+        source: 'CONSOLE_ERROR',
+        message: stringifyArgs(args),
+        name: 'ConsoleLoggedError',
+        stack: null,
+        timestamp: new Date().toISOString(),
+      };
+    }
+    window.parent.postMessage(errorData, '*');
+    originalConsoleError.apply(console, args);
+  };
+
+  // Listen for global unhandled synchronous errors.
+  window.addEventListener('error', function(event) {
+    const errorDetails = event.error ? getErrorObject(event.error) : {
+      message: event.message,
+      name: 'GlobalError',
+      stack: null,
+      filename: event.filename,
+      lineno: event.lineno,
+      colno: event.colno,
+    };
+
+    window.parent.postMessage({
+      type: 'error',
+      source: 'global',
+      ...errorDetails,
+      message: errorDetails.message || event.message,
+      timestamp: new Date().toISOString(),
+    }, '*');
+  });
+
+  // Listen for unhandled promise rejections (asynchronous errors).
+  window.addEventListener('unhandledrejection', function(event) {
+    const errorDetails = getErrorObject(event.reason);
+
+    window.parent.postMessage({
+      type: 'error',
+      source: 'unhandledrejection',
+      ...errorDetails,
+      message: errorDetails.message || 'Unhandled Promise Rejection',
+      timestamp: new Date().toISOString(),
+    }, '*');
+  });
+
+})();</script>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Refracción de la Luz — Leyes de Snell</title>
+    
+    <!-- Fuentes -->
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;600;800&amp;family=Poppins:wght@400;600&amp;display=swap" rel="stylesheet">
+    
+    <!-- Iconos -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    
+    <!-- KaTeX para matemáticas -->
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/katex@0.16.8/dist/katex.min.css">
+    <script src="https://cdn.jsdelivr.net/npm/katex@0.16.8/dist/katex.min.js" crossorigin="anonymous"></script>
+
+    <style>
+        /* ═══════════════════════════════════════════ */
+        /* 🎨 VARIABLES Y ESTILOS BASE               */
+        /* ═══════════════════════════════════════════ */
+        :root {
+            /* Tema Oscuro (Defecto) */
+            --bg-body: #050510;
+            --glass-bg: rgba(20, 20, 35, 0.4);
+            --glass-border: rgba(255, 255, 255, 0.1);
+            --text-main: #f0f0f5;
+            --text-muted: #a0a0b0;
+            --accent-cyan: #00f0ff;
+            --accent-magenta: #ff0055;
+            --accent-yellow: #ffcc00;
+            --panel-bg: rgba(10, 10, 20, 0.6);
+            --slider-track: rgba(255, 255, 255, 0.1);
+        }
+
+        [data-theme="light"] {
+            --bg-body: #e5e7eb;
+            --glass-bg: rgba(255, 255, 255, 0.6);
+            --glass-border: rgba(0, 0, 0, 0.1);
+            --text-main: #1f2937;
+            --text-muted: #4b5563;
+            --accent-cyan: #0284c7;
+            --accent-magenta: #be123c;
+            --accent-yellow: #ca8a04;
+            --panel-bg: rgba(243, 244, 246, 0.8);
+            --slider-track: rgba(0, 0, 0, 0.1);
+        }
+
+        * {
+            box-sizing: border-box;
+            margin: 0;
+            padding: 0;
+            user-select: none; /* Prevenir selección de texto en UI */
+        }
+
+        body {
+            font-family: 'Inter', sans-serif;
+            color: var(--text-main);
+            height: 100vh;
+            overflow: hidden;
+            display: flex;
+            flex-direction: column;
+            /* Aurora Background */
+            background: 
+                radial-gradient(circle at 15% 50%, rgba(0, 240, 255, 0.15), transparent 25%),
+                radial-gradient(circle at 85% 30%, rgba(255, 0, 85, 0.15), transparent 25%),
+                var(--bg-body);
+            background-size: cover;
+            transition: background-color 0.5s ease;
+        }
+
+        /* Utilidades Glassmorphism */
+        .glass {
+            background: var(--glass-bg);
+            backdrop-filter: blur(16px);
+            -webkit-backdrop-filter: blur(16px);
+            border: 1px solid var(--glass-border);
+            box-shadow: 0 8px 32px 0 rgba(0, 0, 0, 0.2);
+        }
+
+        /* ═══════════════════════════════════════════ */
+        /* 🎀 RIBBON SUPERIOR                        */
+        /* ═══════════════════════════════════════════ */
+        header {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            padding: 10px 24px;
+            z-index: 100;
+            border-bottom: 1px solid var(--glass-border);
+        }
+
+        .logo-container {
+            display: flex;
+            align-items: center;
+            gap: 15px;
+            cursor: pointer;
+        }
+
+        .logo-icon {
+            width: 40px;
+            height: 40px;
+            border-radius: 50%;
+            background: rgba(255,255,255,0.05);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            box-shadow: inset 2px 2px 5px rgba(255,255,255,0.1), inset -3px -3px 7px rgba(0,0,0,0.5);
+            position: relative;
+            overflow: hidden;
+        }
+
+        .logo-icon::before {
+            content: '';
+            position: absolute;
+            width: 150%; height: 2px;
+            background: var(--accent-cyan);
+            transform: rotate(-30deg);
+            box-shadow: 0 0 10px var(--accent-cyan);
+            animation: pulseGlow 2s infinite alternate;
+        }
+
+        @keyframes pulseGlow {
+            0% { opacity: 0.5; box-shadow: 0 0 5px var(--accent-cyan); }
+            100% { opacity: 1; box-shadow: 0 0 20px var(--accent-cyan); }
+        }
+
+        .title h1 {
+            font-family: 'Poppins', sans-serif;
+            font-size: 1.2rem;
+            font-weight: 600;
+            background: linear-gradient(45deg, var(--accent-cyan), #a855f7);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+        }
+
+        .title p { font-size: 0.75rem; color: var(--text-muted); }
+
+        .header-actions button {
+            background: transparent;
+            border: 1px solid var(--glass-border);
+            color: var(--text-main);
+            padding: 8px 16px;
+            border-radius: 20px;
+            margin-left: 10px;
+            cursor: pointer;
+            transition: all 0.3s;
+            display: flex; align-items: center; gap: 8px;
+        }
+
+        .header-actions button:hover {
+            background: rgba(255,255,255,0.1);
+            transform: translateY(-2px);
+        }
+
+        /* ═══════════════════════════════════════════ */
+        /* 📑 BARRA DE PESTAÑAS                      */
+        /* ═══════════════════════════════════════════ */
+        .tabs {
+            display: flex;
+            justify-content: center;
+            gap: 10px;
+            padding: 10px;
+            z-index: 90;
+        }
+
+        .tab {
+            padding: 8px 24px;
+            border-radius: 20px;
+            cursor: pointer;
+            font-weight: 600;
+            font-size: 0.9rem;
+            color: var(--text-muted);
+            transition: all 0.3s ease;
+            display: flex; align-items: center; gap: 8px;
+        }
+
+        .tab.active {
+            color: var(--text-main);
+            background: var(--glass-bg);
+            border: 1px solid var(--glass-border);
+            box-shadow: 0 0 15px rgba(0, 240, 255, 0.2);
+        }
+
+        /* ═══════════════════════════════════════════ */
+        /* 🏗️ LAYOUT PRINCIPAL Y PANELES            */
+        /* ═══════════════════════════════════════════ */
+        main {
+            display: flex;
+            flex: 1;
+            overflow: hidden;
+            position: relative;
+        }
+
+        .panel {
+            background: var(--panel-bg);
+            backdrop-filter: blur(10px);
+            border-right: 1px solid var(--glass-border);
+            border-left: 1px solid var(--glass-border);
+            overflow-y: auto;
+            display: flex;
+            flex-direction: column;
+            transition: width 0.3s ease;
+        }
+
+        .panel-left { width: 320px; min-width: 250px; }
+        .panel-right { width: 260px; min-width: 200px; }
+        .panel-center { flex: 1; position: relative; background: #000; } /* Canvas area */
+
+        /* Scrolbar personalizada */
+        ::-webkit-scrollbar { width: 6px; }
+        ::-webkit-scrollbar-track { background: transparent; }
+        ::-webkit-scrollbar-thumb { background: rgba(150,150,150,0.3); border-radius: 10px; }
+
+        /* Estilos de controles internos */
+        .control-group {
+            padding: 15px;
+            border-bottom: 1px solid var(--glass-border);
+        }
+        
+        .control-group h3 {
+            font-size: 0.85rem;
+            text-transform: uppercase;
+            letter-spacing: 1px;
+            color: var(--text-muted);
+            margin-bottom: 15px;
+            display: flex; align-items: center; justify-content: space-between;
+        }
+
+        /* Dropdowns */
+        select {
+            width: 100%;
+            padding: 10px;
+            background: rgba(0,0,0,0.2);
+            color: var(--text-main);
+            border: 1px solid var(--glass-border);
+            border-radius: 8px;
+            outline: none;
+            font-family: inherit;
+            margin-bottom: 10px;
+            appearance: none;
+        }
+        
+        .media-info {
+            font-family: monospace;
+            font-size: 0.8rem;
+            background: rgba(0,240,255,0.1);
+            padding: 8px;
+            border-radius: 6px;
+            border-left: 3px solid var(--accent-cyan);
+            margin-bottom: 15px;
+        }
+
+        /* Sliders (Neumórficos) */
+        .slider-container { margin-bottom: 15px; }
+        .slider-header { display: flex; justify-content: space-between; margin-bottom: 8px; font-size: 0.9rem;}
+        
+        input[type=range] {
+            -webkit-appearance: none;
+            width: 100%;
+            background: transparent;
+        }
+        input[type=range]::-webkit-slider-thumb {
+            -webkit-appearance: none;
+            height: 18px; width: 18px;
+            border-radius: 50%;
+            background: var(--text-main);
+            box-shadow: 0 0 10px rgba(255,255,255,0.5);
+            cursor: pointer;
+            margin-top: -7px;
+        }
+        input[type=range]::-webkit-slider-runnable-track {
+            width: 100%; height: 4px;
+            cursor: pointer;
+            background: var(--slider-track);
+            border-radius: 2px;
+        }
+        
+        /* Estado TIR Slider */
+        .tir-active input[type=range]::-webkit-slider-thumb {
+            background: var(--accent-magenta);
+            box-shadow: 0 0 15px var(--accent-magenta);
+        }
+
+        .alert-banner {
+            background: rgba(255, 0, 85, 0.2);
+            color: #ff88aa;
+            padding: 8px;
+            border-radius: 6px;
+            font-size: 0.8rem;
+            text-align: center;
+            border: 1px solid rgba(255,0,85,0.3);
+            display: none;
+            animation: popIn 0.3s ease;
+        }
+        @keyframes popIn { from {transform: scale(0.9); opacity:0;} to {transform:scale(1); opacity:1;} }
+
+        /* Toggles */
+        .toggle-row {
+            display: flex; justify-content: space-between; align-items: center;
+            margin-bottom: 10px; font-size: 0.9rem;
+        }
+        .switch { position: relative; display: inline-block; width: 40px; height: 20px; }
+        .switch input { opacity: 0; width: 0; height: 0; }
+        .slider {
+            position: absolute; cursor: pointer; top: 0; left: 0; right: 0; bottom: 0;
+            background-color: rgba(255,255,255,0.1); transition: .4s; border-radius: 20px;
+        }
+        .slider:before {
+            position: absolute; content: ""; height: 14px; width: 14px; left: 3px; bottom: 3px;
+            background-color: var(--text-main); transition: .4s; border-radius: 50%;
+        }
+        input:checked + .slider { background-color: var(--accent-cyan); }
+        input:checked + .slider:before { transform: translateX(20px); }
+
+        /* Controles de Color */
+        input[type="color"] {
+            -webkit-appearance: none; border: none; width: 30px; height: 30px;
+            border-radius: 5px; cursor: pointer; background: transparent;
+        }
+        input[type="color"]::-webkit-color-swatch-wrapper { padding: 0; }
+        input[type="color"]::-webkit-color-swatch { border: 1px solid var(--glass-border); border-radius: 5px; }
+
+        /* Botones Panel Derecho */
+        .btn-action {
+            width: 100%; padding: 10px; margin-bottom: 10px;
+            background: rgba(255,255,255,0.05); color: var(--text-main);
+            border: 1px solid var(--glass-border); border-radius: 8px;
+            cursor: pointer; transition: 0.3s;
+        }
+        .btn-action:hover { background: rgba(255,255,255,0.15); }
+
+        /* ═══════════════════════════════════════════ */
+        /* 🖼️ CANVAS Y PANELES CENTRALES             */
+        /* ═══════════════════════════════════════════ */
+        canvas {
+            display: block; width: 100%; height: 100%;
+        }
+        
+        .view-container {
+            position: absolute; top: 0; left: 0; width: 100%; height: 100%;
+            display: none; /* Oculto por defecto, JS controla */
+        }
+        .view-container.active { display: block; }
+
+        /* Controles flotantes Canvas */
+        .canvas-controls {
+            position: absolute; top: 20px; right: 20px;
+            display: flex; gap: 8px; z-index: 10;
+        }
+        .canvas-btn {
+            width: 36px; height: 36px; border-radius: 8px;
+            background: var(--glass-bg); border: 1px solid var(--glass-border);
+            color: var(--text-main); cursor: pointer; backdrop-filter: blur(5px);
+            transition: all 0.2s; display: flex; align-items: center; justify-content: center;
+        }
+        .canvas-btn:hover { transform: scale(1.1); background: rgba(255,255,255,0.2); }
+        .canvas-btn.active { color: var(--accent-cyan); border-color: var(--accent-cyan); }
+
+        /* Ecuación Flotante en vivo */
+        .live-equation {
+            position: absolute; bottom: 20px; left: 20px;
+            padding: 15px; border-radius: 12px; font-size: 1.1rem;
+            pointer-events: none; transition: all 0.3s;
+        }
+        .typewriter-effect { animation: highlight 0.5s ease; }
+        @keyframes highlight { 0% { transform: scale(1.05); text-shadow: 0 0 10px cyan;} 100% {transform: scale(1);} }
+
+        /* ═══════════════════════════════════════════ */
+        /* 🦶 FOOTER                                 */
+        /* ═══════════════════════════════════════════ */
+        footer {
+            text-align: center; padding: 10px; font-size: 0.8rem;
+            color: var(--text-muted); border-top: 1px solid var(--glass-border);
+            background: var(--panel-bg); z-index: 100;
+        }
+
+        /* ═══════════════════════════════════════════ */
+        /* 📚 MODALES (Teoría y Ayuda)               */
+        /* ═══════════════════════════════════════════ */
+        .modal-overlay {
+            position: fixed; top: 0; left: 0; width: 100%; height: 100%;
+            background: rgba(0,0,0,0.6); backdrop-filter: blur(5px);
+            display: none; justify-content: center; align-items: center; z-index: 1000;
+            opacity: 0; transition: opacity 0.3s;
+        }
+        .modal-overlay.active { display: flex; opacity: 1; }
+        .modal-content {
+            background: var(--bg-body); width: 80%; max-width: 800px; max-height: 85vh;
+            border-radius: 16px; border: 1px solid var(--glass-border);
+            padding: 30px; overflow-y: auto; position: relative;
+            box-shadow: 0 20px 50px rgba(0,0,0,0.5); transform: translateY(20px); transition: 0.3s;
+        }
+        .modal-overlay.active .modal-content { transform: translateY(0); }
+        .modal-close {
+            position: absolute; top: 20px; right: 20px; background: transparent; border: none;
+            color: var(--text-muted); font-size: 1.5rem; cursor: pointer; transition: 0.3s;
+        }
+        .modal-close:hover { color: var(--accent-magenta); transform: rotate(90deg); }
+        .modal-body h2 { margin-bottom: 20px; color: var(--accent-cyan); }
+        .modal-body h3 { margin: 20px 0 10px 0; color: var(--text-main); }
+        .modal-body p, .modal-body li { line-height: 1.6; color: var(--text-muted); margin-bottom: 10px; }
+        .math-block { background: rgba(0,0,0,0.2); padding: 10px; border-radius: 8px; text-align: center; margin: 15px 0;}
+
+        /* Cursores */
+        .cursor-grab { cursor: grab !important; }
+        .cursor-grabbing { cursor: grabbing !important; }
+        
+        /* Confetti Canvas */
+        #confetti-canvas { position: fixed; top: 0; left: 0; pointer-events: none; z-index: 9999; }
+        
+        /* Responsive */
+        @media (max-width: 768px) {
+            main { flex-direction: column; }
+            .panel { width: 100% !important; border-bottom: 1px solid var(--glass-border); max-height: 30vh;}
+            .panel-right { display: none; } /* Ocultar panel visual en móvil */
+            .tabs { flex-wrap: wrap; }
+            .title h1 { font-size: 1rem; }
+        }
+    </style>
+<style>@keyframes shake { 0%{transform:translate(2px,1px) rotate(0deg);} 10%{transform:translate(-1px,-2px) rotate(-1deg);} 20%{transform:translate(-3px,0px) rotate(1deg);} 30%{transform:translate(0px,2px) rotate(0deg);} 40%{transform:translate(1px,-1px) rotate(1deg);} 50%{transform:translate(-1px,2px) rotate(-1deg);} 60%{transform:translate(-3px,1px) rotate(0deg);} 70%{transform:translate(2px,1px) rotate(-1deg);} 80%{transform:translate(-1px,-1px) rotate(1deg);} 90%{transform:translate(2px,2px) rotate(0deg);} 100%{transform:translate(1px,-2px) rotate(-1deg);} }</style></head>
+<body>
+
+    <!-- 🎀 HEADER -->
+    <header class="glass">
+        <div class="logo-container" id="logo-btn" title="Doble clic para easter egg 😉">
+            <div class="logo-icon"></div>
+            <div class="title">
+                <h1>Refracción de la Luz — Leyes de Snell</h1>
+                <p>Simulador Óptico Interactivo</p>
+            </div>
+        </div>
+        <div class="header-actions">
+            <button onclick="openModal('theory-modal')"><i class="fas fa-book-open"></i> Teoría</button>
+            <button onclick="openModal('help-modal')"><i class="fas fa-question-circle"></i> Ayuda</button>
+        </div>
+    </header>
+
+    <!-- 📑 TABS -->
+    <nav class="tabs glass">
+        <div class="tab active" data-target="view-sim"><i class="fas fa-microscope"></i> Simulación</div>
+        <div class="tab" data-target="view-graph"><i class="fas fa-chart-line"></i> Gráficas</div>
+        <div class="tab" data-target="view-dispersion"><i class="fas fa-rainbow"></i> Dispersión</div>
+    </nav>
+
+    <!-- 🏗️ MAIN CONTENT -->
+    <main>
+        <!-- 📏 PANEL IZQUIERDO -->
+        <aside class="panel panel-left" id="panel-left">
+            
+            <!-- Sección A: Medios -->
+            <div class="control-group">
+                <h3><i class="fas fa-layer-group"></i> Medios Ópticos</h3>
+                <label for="m1-select" style="font-size:0.8rem; color:var(--text-muted)">Medio 1 (Incidencia):</label>
+                <select id="m1-select"><option value="vacio">🌌 Vacío</option><option value="aire">💨 Aire</option><option value="hielo">🧊 Hielo</option><option value="agua">💧 Agua</option><option value="fluorita">💠 Fluorita</option><option value="cuarzo">🔮 Cuarzo Fundido</option><option value="vidrioCrown">🪟 Vidrio Crown</option><option value="vidrioFlint">🔭 Vidrio Flint</option><option value="zafiro">🔷 Zafiro</option><option value="diamante">💎 Diamante</option></select>
+                <div class="media-info" id="m1-info">n₁ = 1.003 | v₁ = 2.99×10⁸ m/s</div>
+                
+                <label for="m2-select" style="font-size:0.8rem; color:var(--text-muted)">Medio 2 (Refracción):</label>
+                <select id="m2-select"><option value="vacio">🌌 Vacío</option><option value="aire">💨 Aire</option><option value="hielo">🧊 Hielo</option><option value="agua">💧 Agua</option><option value="fluorita">💠 Fluorita</option><option value="cuarzo">🔮 Cuarzo Fundido</option><option value="vidrioCrown">🪟 Vidrio Crown</option><option value="vidrioFlint">🔭 Vidrio Flint</option><option value="zafiro">🔷 Zafiro</option><option value="diamante">💎 Diamante</option></select>
+                <div class="media-info" id="m2-info">n₂ = 1.333 | v₂ = 2.25×10⁸ m/s</div>
+                
+                <div id="critical-angle-info" class="media-info" style="display:none; border-color:var(--accent-magenta); color:var(--accent-magenta);">
+                    θ_c (Crítico) = 45.0°
+                </div>
+            </div>
+
+            <!-- Sección B: Ángulo -->
+            <div class="control-group" id="angle-section">
+                <h3><i class="fas fa-angle-left"></i> Ángulo de Incidencia (θ₁)</h3>
+                <div class="slider-header">
+                    <span id="theta1-val">45.0°</span>
+                    <span>( <span id="theta1-rad">0.785 rad</span> )</span>
+                </div>
+                <div class="slider-container">
+                    <input type="range" id="theta1-slider" min="0" max="90" step="0.5" value="45">
+                </div>
+                <div id="tir-warning" class="alert-banner" style="display: none;">
+                    <i class="fas fa-exclamation-triangle"></i> Reflexión Total Interna (θ₁ &gt; θ_c)
+                </div>
+            </div>
+
+            <!-- Sección C: Visibilidad -->
+            <div class="control-group">
+                <h3><i class="fas fa-eye"></i> Visibilidad</h3>
+                <div class="toggle-row"><span>🔴 Rayo Incidente</span> <label class="switch"><input type="checkbox" id="tg-inc" checked=""><span class="slider"></span></label></div>
+                <div class="toggle-row"><span>🟡 Rayo Reflejado</span> <label class="switch"><input type="checkbox" id="tg-ref"><span class="slider"></span></label></div>
+                <div class="toggle-row"><span>🔵 Rayo Refractado</span> <label class="switch"><input type="checkbox" id="tg-refr" checked=""><span class="slider"></span></label></div>
+                <div class="toggle-row"><span>➖ Normal y Arcos</span> <label class="switch"><input type="checkbox" id="tg-norm" checked=""><span class="slider"></span></label></div>
+                <div class="toggle-row"><span>🏷 Etiquetas</span> <label class="switch"><input type="checkbox" id="tg-lbl" checked=""><span class="slider"></span></label></div>
+                <div class="toggle-row"><span>✨ Efecto Glow</span> <label class="switch"><input type="checkbox" id="tg-glow" checked=""><span class="slider"></span></label></div>
+            </div>
+
+            <!-- Sección D: Multi-Rayo -->
+            <div class="control-group" id="multiray-section">
+                <h3><i class="fas fa-stream"></i> Comparador Multi-rayo</h3>
+                <div class="toggle-row"><span>Activar Multi-rayo</span> <label class="switch"><input type="checkbox" id="tg-multi"><span class="slider"></span></label></div>
+                <p style="font-size: 0.75rem; color: var(--text-muted); margin-bottom: 5px;">Muestra cómo refractan diferentes medios a la vez.</p>
+            </div>
+        </aside>
+
+        <!-- 🖼️ PANEL CENTRAL -->
+        <section class="panel-center" id="canvas-container">
+            <!-- VISTA: SIMULACIÓN -->
+            <div id="view-sim" class="view-container active">
+                <canvas id="sim-canvas" width="603" height="560" style="width: 603px; height: 560px;"></canvas>
+                <div class="canvas-controls glass">
+                    <button class="canvas-btn" id="btn-zoom-in" title="Zoom In"><i class="fas fa-search-plus"></i></button>
+                    <button class="canvas-btn" id="btn-zoom-out" title="Zoom Out"><i class="fas fa-search-minus"></i></button>
+                    <button class="canvas-btn" id="btn-pan" title="Mover (Pan)"><i class="fas fa-hand-paper"></i></button>
+                    <button class="canvas-btn" id="btn-reset" title="Restablecer Vista"><i class="fas fa-home"></i></button>
+                    <button class="canvas-btn" id="btn-download" title="Descargar Simulación (HTML)"><i class="fas fa-download"></i></button>
+                    <button class="canvas-btn" id="btn-fullscreen" title="Pantalla Completa"><i class="fas fa-expand"></i></button>
+                </div>
+                <div class="live-equation glass" id="live-eq-container"><span class="katex-display"><span class="katex"><span class="katex-mathml"><math xmlns="http://www.w3.org/1998/Math/MathML" display="block"><semantics><mtable rowspacing="0.25em" columnalign="right left" columnspacing="0em"><mtr><mtd><mstyle scriptlevel="0" displaystyle="true"><mrow><msub><mi>n</mi><mn>1</mn></msub><mi>sin</mi><mo>⁡</mo><mo stretchy="false">(</mo><msub><mi>θ</mi><mn>1</mn></msub><mo stretchy="false">)</mo></mrow></mstyle></mtd><mtd><mstyle scriptlevel="0" displaystyle="true"><mrow><mrow></mrow><mo>=</mo><msub><mi>n</mi><mn>2</mn></msub><mi>sin</mi><mo>⁡</mo><mo stretchy="false">(</mo><msub><mi>θ</mi><mn>2</mn></msub><mo stretchy="false">)</mo></mrow></mstyle></mtd></mtr><mtr><mtd><mstyle scriptlevel="0" displaystyle="true"><mrow><mn>1.00</mn><mi>sin</mi><mo>⁡</mo><mo stretchy="false">(</mo><mn>45.</mn><msup><mn>0</mn><mo>∘</mo></msup><mo stretchy="false">)</mo></mrow></mstyle></mtd><mtd><mstyle scriptlevel="0" displaystyle="true"><mrow><mrow></mrow><mo>=</mo><mn>1.33</mn><mi>sin</mi><mo>⁡</mo><mo stretchy="false">(</mo><mn>32.</mn><msup><mn>1</mn><mo>∘</mo></msup><mo stretchy="false">)</mo></mrow></mstyle></mtd></mtr></mtable><annotation encoding="application/x-tex">\begin{aligned} n_1 \sin(\theta_1) &amp;= n_2 \sin(\theta_2) \\ 1.00 \sin(45.0^\circ) &amp;= 1.33 \sin(32.1^\circ) \end{aligned}</annotation></semantics></math></span><span class="katex-html" aria-hidden="true"><span class="base"><span class="strut" style="height: 3em; vertical-align: -1.25em;"></span><span class="mord"><span class="mtable"><span class="col-align-r"><span class="vlist-t vlist-t2"><span class="vlist-r"><span class="vlist" style="height: 1.75em;"><span class="" style="top: -3.91em;"><span class="pstrut" style="height: 3em;"></span><span class="mord"><span class="mord"><span class="mord mathnormal">n</span><span class="msupsub"><span class="vlist-t vlist-t2"><span class="vlist-r"><span class="vlist" style="height: 0.3011em;"><span class="" style="top: -2.55em; margin-left: 0em; margin-right: 0.05em;"><span class="pstrut" style="height: 2.7em;"></span><span class="sizing reset-size6 size3 mtight"><span class="mord mtight">1</span></span></span></span><span class="vlist-s">​</span></span><span class="vlist-r"><span class="vlist" style="height: 0.15em;"><span class=""></span></span></span></span></span></span><span class="mspace" style="margin-right: 0.1667em;"></span><span class="mop">sin</span><span class="mopen">(</span><span class="mord"><span class="mord mathnormal" style="margin-right: 0.0278em;">θ</span><span class="msupsub"><span class="vlist-t vlist-t2"><span class="vlist-r"><span class="vlist" style="height: 0.3011em;"><span class="" style="top: -2.55em; margin-left: -0.0278em; margin-right: 0.05em;"><span class="pstrut" style="height: 2.7em;"></span><span class="sizing reset-size6 size3 mtight"><span class="mord mtight">1</span></span></span></span><span class="vlist-s">​</span></span><span class="vlist-r"><span class="vlist" style="height: 0.15em;"><span class=""></span></span></span></span></span></span><span class="mclose">)</span></span></span><span class="" style="top: -2.41em;"><span class="pstrut" style="height: 3em;"></span><span class="mord"><span class="mord">1.00</span><span class="mspace" style="margin-right: 0.1667em;"></span><span class="mop">sin</span><span class="mopen">(</span><span class="mord">45.</span><span class="mord"><span class="mord">0</span><span class="msupsub"><span class="vlist-t"><span class="vlist-r"><span class="vlist" style="height: 0.7241em;"><span class="" style="top: -3.113em; margin-right: 0.05em;"><span class="pstrut" style="height: 2.7em;"></span><span class="sizing reset-size6 size3 mtight"><span class="mbin mtight">∘</span></span></span></span></span></span></span></span><span class="mclose">)</span></span></span></span><span class="vlist-s">​</span></span><span class="vlist-r"><span class="vlist" style="height: 1.25em;"><span class=""></span></span></span></span></span><span class="col-align-l"><span class="vlist-t vlist-t2"><span class="vlist-r"><span class="vlist" style="height: 1.75em;"><span class="" style="top: -3.91em;"><span class="pstrut" style="height: 3em;"></span><span class="mord"><span class="mord"></span><span class="mspace" style="margin-right: 0.2778em;"></span><span class="mrel">=</span><span class="mspace" style="margin-right: 0.2778em;"></span><span class="mord"><span class="mord mathnormal">n</span><span class="msupsub"><span class="vlist-t vlist-t2"><span class="vlist-r"><span class="vlist" style="height: 0.3011em;"><span class="" style="top: -2.55em; margin-left: 0em; margin-right: 0.05em;"><span class="pstrut" style="height: 2.7em;"></span><span class="sizing reset-size6 size3 mtight"><span class="mord mtight">2</span></span></span></span><span class="vlist-s">​</span></span><span class="vlist-r"><span class="vlist" style="height: 0.15em;"><span class=""></span></span></span></span></span></span><span class="mspace" style="margin-right: 0.1667em;"></span><span class="mop">sin</span><span class="mopen">(</span><span class="mord"><span class="mord mathnormal" style="margin-right: 0.0278em;">θ</span><span class="msupsub"><span class="vlist-t vlist-t2"><span class="vlist-r"><span class="vlist" style="height: 0.3011em;"><span class="" style="top: -2.55em; margin-left: -0.0278em; margin-right: 0.05em;"><span class="pstrut" style="height: 2.7em;"></span><span class="sizing reset-size6 size3 mtight"><span class="mord mtight">2</span></span></span></span><span class="vlist-s">​</span></span><span class="vlist-r"><span class="vlist" style="height: 0.15em;"><span class=""></span></span></span></span></span></span><span class="mclose">)</span></span></span><span class="" style="top: -2.41em;"><span class="pstrut" style="height: 3em;"></span><span class="mord"><span class="mord"></span><span class="mspace" style="margin-right: 0.2778em;"></span><span class="mrel">=</span><span class="mspace" style="margin-right: 0.2778em;"></span><span class="mord">1.33</span><span class="mspace" style="margin-right: 0.1667em;"></span><span class="mop">sin</span><span class="mopen">(</span><span class="mord">32.</span><span class="mord"><span class="mord">1</span><span class="msupsub"><span class="vlist-t"><span class="vlist-r"><span class="vlist" style="height: 0.7241em;"><span class="" style="top: -3.113em; margin-right: 0.05em;"><span class="pstrut" style="height: 2.7em;"></span><span class="sizing reset-size6 size3 mtight"><span class="mbin mtight">∘</span></span></span></span></span></span></span></span><span class="mclose">)</span></span></span></span><span class="vlist-s">​</span></span><span class="vlist-r"><span class="vlist" style="height: 1.25em;"><span class=""></span></span></span></span></span></span></span></span></span></span></span></div>
+            </div>
+
+            <!-- VISTA: GRÁFICAS -->
+            <div id="view-graph" class="view-container">
+                <canvas id="graph-canvas" width="603" height="560" style="width: 603px; height: 560px;"></canvas>
+            </div>
+
+            <!-- VISTA: DISPERSIÓN -->
+            <div id="view-dispersion" class="view-container">
+                <canvas id="disp-canvas" width="603" height="560" style="width: 603px; height: 560px;"></canvas>
+                <div style="position: absolute; bottom: 20px; left: 50%; transform: translateX(-50%); width: 300px; padding: 15px;" class="glass">
+                    <label style="display:block; text-align:center; margin-bottom:10px; font-size:0.9rem;">Ángulo del Prisma: <span id="prism-angle-val">60°</span></label>
+                    <input type="range" id="prism-slider" min="30" max="75" step="1" value="60" style="width:100%">
+                </div>
+            </div>
+        </section>
+
+        <!-- 🎨 PANEL DERECHO -->
+        <aside class="panel panel-right">
+            <div class="control-group">
+                <h3><i class="fas fa-paint-brush"></i> Estilos</h3>
+                
+                <div style="margin-bottom: 10px;">
+                    <label style="font-size: 0.8rem;">Tema Visual:</label>
+                    <div class="toggle-row" style="margin-top: 5px;">
+                        <span>🌙 Oscuro / ☀️ Claro</span> 
+                        <label class="switch"><input type="checkbox" id="tg-theme"><span class="slider"></span></label>
+                    </div>
+                </div>
+
+                <div class="toggle-row">
+                    <span>Fondo Medio 1</span>
+                    <input type="color" id="col-m1" value="#141423">
+                </div>
+                <div class="toggle-row">
+                    <span>Fondo Medio 2</span>
+                    <input type="color" id="col-m2" value="#0a1a3a">
+                </div>
+                <div class="toggle-row">
+                    <span>Color Incidente</span>
+                    <input type="color" id="col-inc" value="#00f0ff">
+                </div>
+                <div class="toggle-row">
+                    <span>Color Refractado</span>
+                    <input type="color" id="col-refr" value="#00ffaa">
+                </div>
+            </div>
+
+            <div class="control-group">
+                <h3><i class="fas fa-sliders-h"></i> Ajustes Finos</h3>
+                <label style="font-size:0.8rem; display:block; margin-bottom:5px;">Grosor de rayos (<span id="thick-val">3</span>px)</label>
+                <input type="range" id="thick-slider" min="1" max="8" value="3" class="slider-container">
+                
+                <label style="font-size:0.8rem; display:block; margin-bottom:5px; margin-top:10px;">Intensidad Glow (<span id="glow-val">15</span>)</label>
+                <input type="range" id="glow-slider" min="0" max="40" value="15" class="slider-container">
+            </div>
+
+            <div class="control-group" style="border-bottom: none;">
+                <h3><i class="fas fa-file-export"></i> Exportar</h3>
+                <button class="btn-action" id="btn-export"><i class="fas fa-file-code"></i> Descargar HTML</button>
+                <button class="btn-action" id="btn-copy"><i class="fas fa-copy"></i> Copiar Valores</button>
+                <button class="btn-action" id="btn-pool" style="border-color: var(--accent-cyan); color: var(--accent-cyan);"><i class="fas fa-swimming-pool"></i> Modo Piscina</button>
+            </div>
+        </aside>
+    </main>
+
+    <!-- 🦶 FOOTER -->
+    <footer>
+        © 2026 — Néstor Fabio Montoya Palacios | Física Óptica Interactiva ⚡
+    </footer>
+
+    <!-- MODALES -->
+    <div class="modal-overlay" id="theory-modal">
+        <div class="modal-content">
+            <button class="modal-close" onclick="closeModal('theory-modal')"><i class="fas fa-times"></i></button>
+            <div class="modal-body">
+                <h2>📖 Teoría de la Refracción</h2>
+                <p>La <strong>refracción</strong> es el cambio de dirección y velocidad que experimenta una onda al pasar de un medio a otro con distinto índice de refracción. Solo se produce si la onda incide oblicuamente sobre la superficie de separación de los dos medios y si estos tienen índices de refracción distintos.</p>
+                
+                <h3>1. Índice de Refracción ($n$)</h3>
+                <p>Es una medida que determina cuánto se reduce la velocidad de la luz en el interior del medio. Se define como:</p>
+                <div class="math-block" id="eq-index"><span class="katex-display"><span class="katex"><span class="katex-mathml"><math xmlns="http://www.w3.org/1998/Math/MathML" display="block"><semantics><mrow><mi>n</mi><mo>=</mo><mfrac><mi>c</mi><mi>v</mi></mfrac></mrow><annotation encoding="application/x-tex">n = \frac{c}{v}</annotation></semantics></math></span><span class="katex-html" aria-hidden="true"><span class="base"><span class="strut" style="height: 0.4306em;"></span><span class="mord mathnormal">n</span><span class="mspace" style="margin-right: 0.2778em;"></span><span class="mrel">=</span><span class="mspace" style="margin-right: 0.2778em;"></span></span><span class="base"><span class="strut" style="height: 1.7936em; vertical-align: -0.686em;"></span><span class="mord"><span class="mopen nulldelimiter"></span><span class="mfrac"><span class="vlist-t vlist-t2"><span class="vlist-r"><span class="vlist" style="height: 1.1076em;"><span class="" style="top: -2.314em;"><span class="pstrut" style="height: 3em;"></span><span class="mord"><span class="mord mathnormal" style="margin-right: 0.0359em;">v</span></span></span><span class="" style="top: -3.23em;"><span class="pstrut" style="height: 3em;"></span><span class="frac-line" style="border-bottom-width: 0.04em;"></span></span><span class="" style="top: -3.677em;"><span class="pstrut" style="height: 3em;"></span><span class="mord"><span class="mord mathnormal">c</span></span></span></span><span class="vlist-s">​</span></span><span class="vlist-r"><span class="vlist" style="height: 0.686em;"><span class=""></span></span></span></span></span><span class="mclose nulldelimiter"></span></span></span></span></span></span></div>
+                <p>Donde $c$ es la velocidad de la luz en el vacío ($3 \times 10^8$ m/s) y $v$ es la velocidad en el medio.</p>
+
+                <h3>2. Leyes de Snell</h3>
+                <p><strong>Primera Ley:</strong> El rayo incidente, la normal a la superficie de separación y el rayo refractado se encuentran en el mismo plano.</p>
+                <p><strong>Segunda Ley (Ecuación de Snell):</strong> Relaciona los ángulos con los índices de refracción:</p>
+                <div class="math-block" id="eq-snell"><span class="katex-display"><span class="katex"><span class="katex-mathml"><math xmlns="http://www.w3.org/1998/Math/MathML" display="block"><semantics><mrow><msub><mi>n</mi><mn>1</mn></msub><mi>sin</mi><mo>⁡</mo><mo stretchy="false">(</mo><msub><mi>θ</mi><mn>1</mn></msub><mo stretchy="false">)</mo><mo>=</mo><msub><mi>n</mi><mn>2</mn></msub><mi>sin</mi><mo>⁡</mo><mo stretchy="false">(</mo><msub><mi>θ</mi><mn>2</mn></msub><mo stretchy="false">)</mo></mrow><annotation encoding="application/x-tex">n_1 \sin(\theta_1) = n_2 \sin(\theta_2)</annotation></semantics></math></span><span class="katex-html" aria-hidden="true"><span class="base"><span class="strut" style="height: 1em; vertical-align: -0.25em;"></span><span class="mord"><span class="mord mathnormal">n</span><span class="msupsub"><span class="vlist-t vlist-t2"><span class="vlist-r"><span class="vlist" style="height: 0.3011em;"><span class="" style="top: -2.55em; margin-left: 0em; margin-right: 0.05em;"><span class="pstrut" style="height: 2.7em;"></span><span class="sizing reset-size6 size3 mtight"><span class="mord mtight">1</span></span></span></span><span class="vlist-s">​</span></span><span class="vlist-r"><span class="vlist" style="height: 0.15em;"><span class=""></span></span></span></span></span></span><span class="mspace" style="margin-right: 0.1667em;"></span><span class="mop">sin</span><span class="mopen">(</span><span class="mord"><span class="mord mathnormal" style="margin-right: 0.0278em;">θ</span><span class="msupsub"><span class="vlist-t vlist-t2"><span class="vlist-r"><span class="vlist" style="height: 0.3011em;"><span class="" style="top: -2.55em; margin-left: -0.0278em; margin-right: 0.05em;"><span class="pstrut" style="height: 2.7em;"></span><span class="sizing reset-size6 size3 mtight"><span class="mord mtight">1</span></span></span></span><span class="vlist-s">​</span></span><span class="vlist-r"><span class="vlist" style="height: 0.15em;"><span class=""></span></span></span></span></span></span><span class="mclose">)</span><span class="mspace" style="margin-right: 0.2778em;"></span><span class="mrel">=</span><span class="mspace" style="margin-right: 0.2778em;"></span></span><span class="base"><span class="strut" style="height: 1em; vertical-align: -0.25em;"></span><span class="mord"><span class="mord mathnormal">n</span><span class="msupsub"><span class="vlist-t vlist-t2"><span class="vlist-r"><span class="vlist" style="height: 0.3011em;"><span class="" style="top: -2.55em; margin-left: 0em; margin-right: 0.05em;"><span class="pstrut" style="height: 2.7em;"></span><span class="sizing reset-size6 size3 mtight"><span class="mord mtight">2</span></span></span></span><span class="vlist-s">​</span></span><span class="vlist-r"><span class="vlist" style="height: 0.15em;"><span class=""></span></span></span></span></span></span><span class="mspace" style="margin-right: 0.1667em;"></span><span class="mop">sin</span><span class="mopen">(</span><span class="mord"><span class="mord mathnormal" style="margin-right: 0.0278em;">θ</span><span class="msupsub"><span class="vlist-t vlist-t2"><span class="vlist-r"><span class="vlist" style="height: 0.3011em;"><span class="" style="top: -2.55em; margin-left: -0.0278em; margin-right: 0.05em;"><span class="pstrut" style="height: 2.7em;"></span><span class="sizing reset-size6 size3 mtight"><span class="mord mtight">2</span></span></span></span><span class="vlist-s">​</span></span><span class="vlist-r"><span class="vlist" style="height: 0.15em;"><span class=""></span></span></span></span></span></span><span class="mclose">)</span></span></span></span></span></div>
+
+                <h3>3. Ángulo Crítico y Reflexión Total Interna</h3>
+                <p>Cuando la luz pasa de un medio más denso a uno menos denso ($n_1 &gt; n_2$), el rayo se aleja de la normal. Si el ángulo de incidencia es suficientemente grande, el ángulo de refracción alcanza los 90°. A este ángulo se le llama <strong>ángulo crítico</strong> ($\theta_c$):</p>
+                <div class="math-block" id="eq-crit"><span class="katex-display"><span class="katex"><span class="katex-mathml"><math xmlns="http://www.w3.org/1998/Math/MathML" display="block"><semantics><mrow><msub><mi>θ</mi><mi>c</mi></msub><mo>=</mo><mi>arcsin</mi><mo>⁡</mo><mrow><mo fence="true">(</mo><mfrac><msub><mi>n</mi><mn>2</mn></msub><msub><mi>n</mi><mn>1</mn></msub></mfrac><mo fence="true">)</mo></mrow></mrow><annotation encoding="application/x-tex">\theta_c = \arcsin\left(\frac{n_2}{n_1}\right)</annotation></semantics></math></span><span class="katex-html" aria-hidden="true"><span class="base"><span class="strut" style="height: 0.8444em; vertical-align: -0.15em;"></span><span class="mord"><span class="mord mathnormal" style="margin-right: 0.0278em;">θ</span><span class="msupsub"><span class="vlist-t vlist-t2"><span class="vlist-r"><span class="vlist" style="height: 0.1514em;"><span class="" style="top: -2.55em; margin-left: -0.0278em; margin-right: 0.05em;"><span class="pstrut" style="height: 2.7em;"></span><span class="sizing reset-size6 size3 mtight"><span class="mord mathnormal mtight">c</span></span></span></span><span class="vlist-s">​</span></span><span class="vlist-r"><span class="vlist" style="height: 0.15em;"><span class=""></span></span></span></span></span></span><span class="mspace" style="margin-right: 0.2778em;"></span><span class="mrel">=</span><span class="mspace" style="margin-right: 0.2778em;"></span></span><span class="base"><span class="strut" style="height: 2.4em; vertical-align: -0.95em;"></span><span class="mop">arcsin</span><span class="mspace" style="margin-right: 0.1667em;"></span><span class="minner"><span class="mopen delimcenter" style="top: 0em;"><span class="delimsizing size3">(</span></span><span class="mord"><span class="mopen nulldelimiter"></span><span class="mfrac"><span class="vlist-t vlist-t2"><span class="vlist-r"><span class="vlist" style="height: 1.1076em;"><span class="" style="top: -2.314em;"><span class="pstrut" style="height: 3em;"></span><span class="mord"><span class="mord"><span class="mord mathnormal">n</span><span class="msupsub"><span class="vlist-t vlist-t2"><span class="vlist-r"><span class="vlist" style="height: 0.3011em;"><span class="" style="top: -2.55em; margin-left: 0em; margin-right: 0.05em;"><span class="pstrut" style="height: 2.7em;"></span><span class="sizing reset-size6 size3 mtight"><span class="mord mtight">1</span></span></span></span><span class="vlist-s">​</span></span><span class="vlist-r"><span class="vlist" style="height: 0.15em;"><span class=""></span></span></span></span></span></span></span></span><span class="" style="top: -3.23em;"><span class="pstrut" style="height: 3em;"></span><span class="frac-line" style="border-bottom-width: 0.04em;"></span></span><span class="" style="top: -3.677em;"><span class="pstrut" style="height: 3em;"></span><span class="mord"><span class="mord"><span class="mord mathnormal">n</span><span class="msupsub"><span class="vlist-t vlist-t2"><span class="vlist-r"><span class="vlist" style="height: 0.3011em;"><span class="" style="top: -2.55em; margin-left: 0em; margin-right: 0.05em;"><span class="pstrut" style="height: 2.7em;"></span><span class="sizing reset-size6 size3 mtight"><span class="mord mtight">2</span></span></span></span><span class="vlist-s">​</span></span><span class="vlist-r"><span class="vlist" style="height: 0.15em;"><span class=""></span></span></span></span></span></span></span></span></span><span class="vlist-s">​</span></span><span class="vlist-r"><span class="vlist" style="height: 0.836em;"><span class=""></span></span></span></span></span><span class="mclose nulldelimiter"></span></span><span class="mclose delimcenter" style="top: 0em;"><span class="delimsizing size3">)</span></span></span></span></span></span></span></div>
+                <p>Para ángulos mayores a $\theta_c$, toda la luz se refleja de vuelta al primer medio. Esto es la <strong>reflexión total interna</strong>, principio base de la fibra óptica.</p>
+            </div>
+        </div>
+    </div>
+
+    <div class="modal-overlay" id="help-modal">
+        <div class="modal-content">
+            <button class="modal-close" onclick="closeModal('help-modal')"><i class="fas fa-times"></i></button>
+            <div class="modal-body">
+                <h2>❓ Manual de Usuario</h2>
+                <ul>
+                    <li><strong>Pestañas Superiores:</strong> Navega entre la simulación interactiva, las gráficas matemáticas y el experimento de dispersión de prisma.</li>
+                    <li><strong>Panel Izquierdo:</strong> Selecciona los medios ópticos. Observa cómo cambian las velocidades. Usa el deslizador para cambiar el ángulo de incidencia (θ₁).</li>
+                    <li><strong>Modo Multi-rayo:</strong> Actívalo para ver líneas punteadas de cómo otros medios refractarían la misma luz.</li>
+                    <li><strong>Panel Derecho:</strong> Personaliza los colores del laboratorio, grosor de rayos y cambia entre modo claro/oscuro.</li>
+                    <li><strong>Controles del Canvas:</strong> Usa los botones flotantes sobre el lienzo para hacer zoom o mover la vista (paneo).</li>
+                    <li><strong>Exportar:</strong> Guarda una captura de tu simulación actual como PNG.</li>
+                </ul>
+                <p style="text-align:center; margin-top: 20px; font-style: italic; color: var(--accent-magenta);">¡Intenta hacer doble clic en el logo superior izquierdo para una sorpresa cromática!</p>
+            </div>
+        </div>
+    </div>
+
+    <canvas id="confetti-canvas"></canvas>
+
+    <!-- ⚙️ LÓGICA JAVASCRIPT -->
+    <script>
+        // ┌─────────────────────────────────────────┐
+        // │ 🔧 TABLA DE ÍNDICES DE REFRACCIÓN       │
+        // └─────────────────────────────────────────┘
+        const MEDIOS = {
+            vacio:       { id:'vacio', nombre: "Vacío",          n: 1.000, emoji: "🌌", color1: '#050505', color2: '#111' },
+            aire:        { id:'aire', nombre: "Aire",           n: 1.003, emoji: "💨", color1: '#141423', color2: '#1e293b' },
+            hielo:       { id:'hielo', nombre: "Hielo",          n: 1.309, emoji: "🧊", color1: '#0f2030', color2: '#bae6fd' },
+            agua:        { id:'agua', nombre: "Agua",           n: 1.333, emoji: "💧", color1: '#0a1a3a', color2: '#0284c7' },
+            fluorita:    { id:'fluorita', nombre: "Fluorita",       n: 1.434, emoji: "💠", color1: '#2e1065', color2: '#8b5cf6' },
+            cuarzo:      { id:'cuarzo', nombre: "Cuarzo Fundido", n: 1.458, emoji: "🔮", color1: '#3f2c3d', color2: '#fbcfe8' },
+            vidrioCrown: { id:'vidrioCrown', nombre: "Vidrio Crown",   n: 1.520, emoji: "🪟", color1: '#1e3a2f', color2: '#6ee7b7' },
+            vidrioFlint: { id:'vidrioFlint', nombre: "Vidrio Flint",   n: 1.620, emoji: "🔭", color1: '#451a03', color2: '#fdba74' },
+            zafiro:      { id:'zafiro', nombre: "Zafiro",         n: 1.770, emoji: "🔷", color1: '#020617', color2: '#3b82f6' },
+            diamante:    { id:'diamante', nombre: "Diamante",       n: 2.417, emoji: "💎", color1: '#172554', color2: '#e0f2fe' }
+        };
+
+        const C_LIGHT = 3.00; // x10^8 m/s
+
+        // ┌─────────────────────────────────────────┐
+        // │ 🧠 ESTADO GLOBAL DE LA APLICACIÓN       │
+        // └─────────────────────────────────────────┘
+        const State = {
+            m1: MEDIOS.aire,
+            m2: MEDIOS.agua,
+            theta1_deg: 45,
+            theta2_deg: 0, // calculado
+            critical_angle: null,
+            isTIR: false,
+            
+            // UI & Visibilidad
+            showInc: true, showRef: false, showRefr: true,
+            showNorm: true, showLbl: true, showGlow: true, showMulti: false,
+            
+            // Visuales
+            theme: 'dark',
+            colors: {
+                bg1: '#141423', bg2: '#0a1a3a',
+                rayInc: '#00f0ff', rayRef: '#ff0055', rayRefr: '#00ffaa'
+            },
+            rayWidth: 3, glowInt: 15,
+            
+            // Canvas Transform
+            scale: 1, offsetX: 0, offsetY: 0, isPanning: false,
+            
+            // Easter Eggs
+            rainbowMode: false,
+            poolMode: false,
+            audioCtx: null
+        };
+
+        // Utilidades DOM
+        const $ = id => document.getElementById(id);
+        
+        // ┌─────────────────────────────────────────┐
+        // │ 🔬 MÓDULO: FÍSICA Y MATEMÁTICAS         │
+        // └─────────────────────────────────────────┘
+        function updatePhysics() {
+            let n1 = State.m1.n;
+            let n2 = State.m2.n;
+            let th1_rad = State.theta1_deg * Math.PI / 180;
+            
+            // Ángulo crítico
+            if (n1 > n2) {
+                State.critical_angle = Math.asin(n2 / n1) * 180 / Math.PI;
+            } else {
+                State.critical_angle = null;
+            }
+
+            // Ley de Snell: sin(th2) = (n1/n2) * sin(th1)
+            let sin_th2 = (n1 / n2) * Math.sin(th1_rad);
+            
+            if (sin_th2 > 1 || isNaN(sin_th2)) {
+                // Reflexión Total Interna
+                State.isTIR = true;
+                State.theta2_deg = null;
+                playTIRSound(); // Disparar sonido si entra a TIR
+            } else {
+                State.isTIR = false;
+                State.theta2_deg = Math.asin(sin_th2) * 180 / Math.PI;
+                hasPlayedTIRSound = false; // Reset flag
+            }
+            
+            updateUIValues();
+            renderEquation();
+            requestAnimationFrame(drawAll);
+        }
+
+        // ┌─────────────────────────────────────────┐
+        // │ 🎵 MÓDULO: AUDIO WEB API (Easter Egg)   │
+        // └─────────────────────────────────────────┘
+        let hasPlayedTIRSound = false;
+        function playTIRSound() {
+            if (hasPlayedTIRSound) return;
+            hasPlayedTIRSound = true;
+            
+            try {
+                if (!State.audioCtx) State.audioCtx = new (window.AudioContext || window.webkitAudioContext)();
+                if (State.audioCtx.state === 'suspended') State.audioCtx.resume();
+                
+                const osc = State.audioCtx.createOscillator();
+                const gain = State.audioCtx.createGain();
+                
+                osc.connect(gain);
+                gain.connect(State.audioCtx.destination);
+                
+                osc.type = 'sine';
+                osc.frequency.setValueAtTime(600, State.audioCtx.currentTime);
+                osc.frequency.exponentialRampToValueAtTime(100, State.audioCtx.currentTime + 0.3);
+                
+                gain.gain.setValueAtTime(0.3, State.audioCtx.currentTime);
+                gain.gain.exponentialRampToValueAtTime(0.01, State.audioCtx.currentTime + 0.3);
+                
+                osc.start();
+                osc.stop(State.audioCtx.currentTime + 0.3);
+                
+                // Efecto visual en canvas (shake)
+                $('canvas-container').style.animation = 'none';
+                setTimeout(() => $('canvas-container').style.animation = 'shake 0.3s ease', 10);
+            } catch (e) { console.log("Audio not supported or blocked"); }
+        }
+
+        // Añadir keyframe para shake al css dinámicamente
+        const styleSheet = document.createElement("style");
+        styleSheet.innerText = `@keyframes shake { 0%{transform:translate(2px,1px) rotate(0deg);} 10%{transform:translate(-1px,-2px) rotate(-1deg);} 20%{transform:translate(-3px,0px) rotate(1deg);} 30%{transform:translate(0px,2px) rotate(0deg);} 40%{transform:translate(1px,-1px) rotate(1deg);} 50%{transform:translate(-1px,2px) rotate(-1deg);} 60%{transform:translate(-3px,1px) rotate(0deg);} 70%{transform:translate(2px,1px) rotate(-1deg);} 80%{transform:translate(-1px,-1px) rotate(1deg);} 90%{transform:translate(2px,2px) rotate(0deg);} 100%{transform:translate(1px,-2px) rotate(-1deg);} }`;
+        document.head.appendChild(styleSheet);
+
+
+        // ┌─────────────────────────────────────────┐
+        // │ 🎨 MÓDULO: RENDERIZADO CANVAS PRINCIPAL │
+        // └─────────────────────────────────────────┘
+        const canvas = $('sim-canvas');
+        const ctx = canvas.getContext('2d');
+        
+        function resizeCanvas() {
+            const rect = $('canvas-container').getBoundingClientRect();
+            // Soporte Retina/HiDPI
+            const dpr = window.devicePixelRatio || 1;
+            canvas.width = rect.width * dpr;
+            canvas.height = rect.height * dpr;
+            ctx.scale(dpr, dpr);
+            canvas.style.width = `${rect.width}px`;
+            canvas.style.height = `${rect.height}px`;
+            
+            // Gráficas y Prisma también
+            const cg = $('graph-canvas'); cg.width = rect.width*dpr; cg.height = rect.height*dpr; cg.getContext('2d').scale(dpr,dpr); cg.style.width=`${rect.width}px`; cg.style.height=`${rect.height}px`;
+            const cd = $('disp-canvas'); cd.width = rect.width*dpr; cd.height = rect.height*dpr; cd.getContext('2d').scale(dpr,dpr); cd.style.width=`${rect.width}px`; cd.style.height=`${rect.height}px`;
+            
+            drawAll();
+        }
+
+        function drawSimulation() {
+            const w = canvas.width / (window.devicePixelRatio || 1);
+            const h = canvas.height / (window.devicePixelRatio || 1);
+            
+            ctx.clearRect(0, 0, w, h);
+            
+            ctx.save();
+            // Aplicar transformaciones (Pan & Zoom)
+            ctx.translate(w/2 + State.offsetX, h/2 + State.offsetY);
+            ctx.scale(State.scale, State.scale);
+            
+            const originX = 0; const originY = 0;
+            const rayLength = Math.max(w, h) * 1.5;
+
+            // 1. DIBUJAR MEDIOS (Fondos)
+            ctx.fillStyle = State.colors.bg1;
+            ctx.fillRect(-w*5, -h*5, w*10, h*5);
+            ctx.fillStyle = State.colors.bg2;
+            ctx.fillRect(-w*5, 0, w*10, h*5);
+
+            // Ondas Pool Mode (Decorativo)
+            if(State.poolMode) drawPoolWaves(w, h);
+
+            // 2. INTERFAZ Y NORMAL
+            // Interfaz
+            ctx.beginPath();
+            ctx.moveTo(-w*5, 0); ctx.lineTo(w*5, 0);
+            ctx.strokeStyle = State.theme === 'dark' ? 'rgba(255,255,255,0.5)' : 'rgba(0,0,0,0.5)';
+            ctx.lineWidth = 2;
+            ctx.stroke();
+
+            // Normal
+            if (State.showNorm) {
+                ctx.beginPath();
+                ctx.setLineDash([5, 5]);
+                ctx.moveTo(0, -h*5); ctx.lineTo(0, h*5);
+                ctx.strokeStyle = State.theme === 'dark' ? 'rgba(255,255,255,0.3)' : 'rgba(0,0,0,0.3)';
+                ctx.lineWidth = 1;
+                ctx.stroke();
+                ctx.setLineDash([]);
+                
+                if (State.showLbl) {
+                    ctx.fillStyle = ctx.strokeStyle;
+                    ctx.font = '12px Inter';
+                    ctx.fillText('Normal', 10, -h/2 + 20);
+                }
+            }
+
+            // Colores Dinámicos (Rainbow mode)
+            let colInc = State.colors.rayInc;
+            let colRef = State.colors.rayRef;
+            let colRefr = State.colors.rayRefr;
+            
+            if (State.rainbowMode) {
+                const hue = (Date.now() / 20) % 360;
+                colInc = `hsl(${hue}, 100%, 50%)`;
+                colRef = `hsl(${(hue+120)%360}, 100%, 50%)`;
+                colRefr = `hsl(${(hue+240)%360}, 100%, 50%)`;
+                requestAnimationFrame(drawSimulation); // Bucle continuo
+            }
+
+            // Preparar glow
+            if (State.showGlow) {
+                ctx.shadowBlur = State.glowInt;
+            }
+
+            const th1_rad = (90 - State.theta1_deg) * Math.PI / 180; // Ángulo desde el eje X negativo superior
+            
+            // 3. RAYO INCIDENTE (Viene desde el cuadrante superior izquierdo, hacia 0,0)
+            if (State.showInc) {
+                const startX = -rayLength * Math.cos(th1_rad);
+                const startY = -rayLength * Math.sin(th1_rad);
+                
+                drawRay(startX, startY, 0, 0, colInc, "Incidente", 1);
+                if (State.showNorm && State.theta1_deg > 0) drawArc(0, 0, State.theta1_deg, -90, -90 - State.theta1_deg, colInc, 'θ₁');
+            }
+
+            // 4. RAYO REFLEJADO
+            if (State.showRef || State.isTIR) {
+                // En TIR, el reflejado se intensifica y siempre se muestra
+                const int = State.isTIR ? 2 : 1; 
+                const endX = rayLength * Math.cos(th1_rad); // Cuadrante superior derecho
+                const endY = -rayLength * Math.sin(th1_rad);
+                
+                drawRay(0, 0, endX, endY, colRef, State.isTIR ? "RTI" : "Reflejado", int);
+                if (State.showNorm && State.theta1_deg > 0 && !State.isTIR) drawArc(0, 0, State.theta1_deg, -90, -90 + State.theta1_deg, colRef, 'θᵣ');
+            }
+
+            // 5. RAYO REFRACTADO (Multi o Simple)
+            if (State.showRefr && !State.isTIR) {
+                if (State.showMulti) {
+                    // Dibujar rayos para varios medios típicos
+                    ['vacio', 'agua', 'vidrioCrown', 'diamante'].forEach(mKey => {
+                        let n_test = MEDIOS[mKey].n;
+                        let sin_t2 = (State.m1.n / n_test) * Math.sin(State.theta1_deg * Math.PI/180);
+                        if(sin_t2 <= 1 && !isNaN(sin_t2)) {
+                            let ang_rad = Math.asin(sin_t2);
+                            let drawAng = (90 - (ang_rad*180/Math.PI)) * Math.PI / 180;
+                            const rx = rayLength * Math.cos(drawAng);
+                            const ry = rayLength * Math.sin(drawAng);
+                            ctx.globalAlpha = 0.4;
+                            drawRay(0, 0, rx, ry, '#fff', MEDIOS[mKey].nombre, 0.5, true);
+                            ctx.globalAlpha = 1.0;
+                        }
+                    });
+                }
+
+                // Rayo principal refractado
+                const th2_rad = (90 - State.theta2_deg) * Math.PI / 180;
+                const endX = rayLength * Math.cos(th2_rad);
+                const endY = rayLength * Math.sin(th2_rad); // Positivo hacia abajo
+                
+                drawRay(0, 0, endX, endY, colRefr, "Refractado", 1);
+                if (State.showNorm && State.theta2_deg > 0) drawArc(0, 0, State.theta2_deg, 90, 90 - State.theta2_deg, colRefr, 'θ₂');
+            }
+
+            // Reset shadow
+            ctx.shadowBlur = 0;
+            
+            // Punto de incidencia brillante
+            ctx.beginPath();
+            ctx.arc(0, 0, 5, 0, Math.PI * 2);
+            ctx.fillStyle = '#fff';
+            ctx.shadowBlur = 10; ctx.shadowColor = '#fff';
+            ctx.fill();
+            ctx.shadowBlur = 0;
+
+            ctx.restore();
+
+            // 6. ETIQUETAS DE MEDIOS (Fijas en esquinas)
+            if (State.showLbl) {
+                ctx.font = 'bold 16px Poppins';
+                ctx.fillStyle = State.theme === 'dark' ? '#fff' : '#000';
+                ctx.fillText(`${State.m1.emoji} ${State.m1.nombre}`, 20, 40);
+                ctx.font = '12px Inter';
+                ctx.fillText(`n₁ = ${State.m1.n.toFixed(3)}`, 20, 60);
+
+                ctx.font = 'bold 16px Poppins';
+                ctx.fillText(`${State.m2.emoji} ${State.m2.nombre}`, 20, h - 40);
+                ctx.font = '12px Inter';
+                ctx.fillText(`n₂ = ${State.m2.n.toFixed(3)}`, 20, h - 20);
+            }
+        }
+
+        // Funciones auxiliares dibujo
+        function drawRay(x1, y1, x2, y2, color, label, intensityMult=1, isDashed=false) {
+            ctx.beginPath();
+            if(isDashed) ctx.setLineDash([10, 10]);
+            ctx.moveTo(x1, y1); ctx.lineTo(x2, y2);
+            ctx.strokeStyle = color;
+            ctx.lineWidth = State.rayWidth * intensityMult;
+            if(State.showGlow) ctx.shadowColor = color;
+            ctx.stroke();
+            ctx.setLineDash([]);
+
+            // Flecha en la mitad
+            const midX = (x1 + x2) / 2; const midY = (y1 + y2) / 2;
+            const angle = Math.atan2(y2 - y1, x2 - x1);
+            ctx.save();
+            ctx.translate(midX, midY);
+            ctx.rotate(angle);
+            ctx.beginPath();
+            ctx.moveTo(0, 0); ctx.lineTo(-15, -7); ctx.lineTo(-15, 7);
+            ctx.fillStyle = color; ctx.fill();
+            
+            if (State.showLbl && !isDashed) {
+                ctx.rotate(-angle); // Enderezar texto
+                ctx.font = '12px Inter'; ctx.fillStyle = '#fff';
+                ctx.shadowBlur = 4; ctx.shadowColor = '#000'; // Fondo oscuro texto
+                ctx.fillText(label, 15, -15);
+            }
+            ctx.restore();
+        }
+
+        function drawArc(x, y, degrees, startDeg, endDeg, color, label) {
+            const radius = 60;
+            ctx.beginPath();
+            // Convertir a radianes matemáticos de canvas
+            let sRad = startDeg * Math.PI/180;
+            let eRad = endDeg * Math.PI/180;
+            // Asegurar que dibuje en la dirección correcta
+            ctx.arc(x, y, radius, Math.min(sRad, eRad), Math.max(sRad, eRad));
+            ctx.strokeStyle = color;
+            ctx.lineWidth = 2;
+            ctx.stroke();
+
+            if (State.showLbl) {
+                // Posicionar etiqueta en el medio del arco
+                const midRad = (sRad + eRad) / 2;
+                const txtX = x + (radius + 20) * Math.cos(midRad);
+                const txtY = y + (radius + 20) * Math.sin(midRad);
+                
+                ctx.fillStyle = color;
+                ctx.font = 'bold 14px Inter';
+                ctx.shadowBlur = 2; ctx.shadowColor = '#000';
+                ctx.fillText(`${label}=${degrees.toFixed(1)}°`, txtX - 15, txtY + 5);
+                ctx.shadowBlur = 0;
+            }
+        }
+        
+        function drawPoolWaves(w, h) {
+            ctx.fillStyle = 'rgba(255,255,255,0.05)';
+            let t = Date.now() / 1000;
+            for(let i=0; i<5; i++) {
+                ctx.beginPath();
+                for(let x=-w; x<w; x+=20) {
+                    let y = Math.sin(x*0.01 + t + i) * 20 + i*40;
+                    if(x===-w) ctx.moveTo(x, y); else ctx.lineTo(x, y);
+                }
+                ctx.stroke();
+            }
+            requestAnimationFrame(drawSimulation);
+        }
+
+        // ┌─────────────────────────────────────────┐
+        // │ 📊 MÓDULO: GRÁFICAS                     │
+        // └─────────────────────────────────────────┘
+        function drawGraph() {
+            const canvasG = $('graph-canvas');
+            const ctxG = canvasG.getContext('2d');
+            const w = canvasG.width / window.devicePixelRatio;
+            const h = canvasG.height / window.devicePixelRatio;
+            
+            ctxG.clearRect(0,0,w,h);
+            
+            // Layout: Curva Snell izquierda, Barras derecha
+            const margin = 50;
+            const graphW = (w/2) - margin*2;
+            const graphH = h - margin*2;
+            
+            ctxG.fillStyle = State.theme==='dark'?'#fff':'#000';
+            ctxG.font = 'bold 16px Poppins';
+            ctxG.fillText("Curva de Snell (θ₂ vs θ₁)", margin, margin - 20);
+            
+            // Dibujar Ejes Snell
+            ctxG.beginPath();
+            ctxG.moveTo(margin, margin + graphH); ctxG.lineTo(margin + graphW, margin + graphH); // X
+            ctxG.moveTo(margin, margin + graphH); ctxG.lineTo(margin, margin); // Y
+            ctxG.strokeStyle = State.theme==='dark'?'rgba(255,255,255,0.5)':'rgba(0,0,0,0.5)';
+            ctxG.lineWidth = 2; ctxG.stroke();
+            
+            // Ticks
+            ctxG.font = '10px Inter';
+            for(let i=0; i<=90; i+=15) {
+                let x = margin + (i/90)*graphW;
+                ctxG.fillText(i+'°', x-10, margin+graphH+15);
+                let y = margin + graphH - (i/90)*graphH;
+                ctxG.fillText(i+'°', margin-25, y+5);
+            }
+
+            // Línea y=x (referencia)
+            ctxG.beginPath();
+            ctxG.moveTo(margin, margin+graphH); ctxG.lineTo(margin+graphW, margin);
+            ctxG.strokeStyle = 'rgba(150,150,150,0.3)'; ctxG.setLineDash([5,5]); ctxG.stroke(); ctxG.setLineDash([]);
+
+            // Curva real
+            ctxG.beginPath();
+            ctxG.moveTo(margin, margin+graphH);
+            let n1 = State.m1.n; let n2 = State.m2.n;
+            let limitTh1 = 90;
+            if(n1 > n2) limitTh1 = Math.asin(n2/n1) * 180/Math.PI; // Hasta angulo critico
+            
+            for(let t1=0; t1<=limitTh1; t1+=1) {
+                let sin_t2 = (n1/n2) * Math.sin(t1 * Math.PI/180);
+                let t2 = Math.asin(sin_t2) * 180/Math.PI;
+                let px = margin + (t1/90)*graphW;
+                let py = margin + graphH - (t2/90)*graphH;
+                ctxG.lineTo(px, py);
+            }
+            ctxG.strokeStyle = State.colors.rayRefr;
+            ctxG.lineWidth = 3;
+            ctxG.stroke();
+
+            // Punto actual
+            if(!State.isTIR) {
+                let px = margin + (State.theta1_deg/90)*graphW;
+                let py = margin + graphH - (State.theta2_deg/90)*graphH;
+                ctxG.beginPath(); ctxG.arc(px, py, 6, 0, Math.PI*2);
+                ctxG.fillStyle = State.colors.rayInc; ctxG.fill();
+                ctxG.fillStyle = State.theme==='dark'?'#fff':'#000';
+                ctxG.fillText(`(${State.theta1_deg}°, ${State.theta2_deg.toFixed(1)}°)`, px+10, py-10);
+            }
+
+            // Gráfica de Barras (Índices) derecha
+            const barX = w/2 + margin;
+            ctxG.font = 'bold 16px Poppins';
+            ctxG.fillText("Índice de Refracción (n)", barX, margin - 20);
+            
+            let i = 0;
+            const barHeight = graphH / Object.keys(MEDIOS).length * 0.6;
+            const space = graphH / Object.keys(MEDIOS).length;
+            
+            for (let key in MEDIOS) {
+                let m = MEDIOS[key];
+                let py = margin + i*space;
+                let barW = (m.n / 2.5) * graphW; // normalizado max n~2.4 (Diamante)
+                
+                // Resaltar seleccionados
+                if(m.id === State.m1.id) ctxG.fillStyle = State.colors.rayInc;
+                else if(m.id === State.m2.id) ctxG.fillStyle = State.colors.rayRefr;
+                else ctxG.fillStyle = 'rgba(150,150,150,0.5)';
+                
+                ctxG.fillRect(barX + 80, py, barW, barHeight);
+                
+                ctxG.fillStyle = State.theme==='dark'?'#fff':'#000';
+                ctxG.font = '12px Inter';
+                ctxG.fillText(m.nombre.substring(0,10), barX, py + 12);
+                ctxG.fillText(m.n.toFixed(3), barX + 85 + barW, py + 12);
+                i++;
+            }
+        }
+
+        // ┌─────────────────────────────────────────┐
+        // │ 🌈 MÓDULO: DISPERSIÓN (Prisma)          │
+        // └─────────────────────────────────────────┘
+        function drawDispersion() {
+            const canvasD = $('disp-canvas');
+            const ctxD = canvasD.getContext('2d');
+            const w = canvasD.width / window.devicePixelRatio;
+            const h = canvasD.height / window.devicePixelRatio;
+            
+            ctxD.clearRect(0,0,w,h);
+            
+            const prismAngle = parseInt($('prism-slider').value);
+            $('prism-angle-val').innerText = prismAngle + '°';
+            
+            const cx = w/2; const cy = h/2 + 50;
+            const side = 250;
+            
+            // Dibujar Prisma Triangular
+            const A_rad = prismAngle * Math.PI/180;
+            // Geometría isósceles
+            const h_prism = side * Math.sin(A_rad/2);
+            
+            ctxD.beginPath();
+            ctxD.moveTo(cx, cy - side*Math.cos(A_rad/2)); // Vertice sup
+            ctxD.lineTo(cx - h_prism, cy + 100); // Vert inf izq
+            ctxD.lineTo(cx + h_prism, cy + 100); // Vert inf der
+            ctxD.closePath();
+            
+            ctxD.fillStyle = State.theme==='dark'?'rgba(255,255,255,0.1)':'rgba(0,100,255,0.1)';
+            ctxD.strokeStyle = 'rgba(255,255,255,0.3)';
+            ctxD.fill(); ctxD.stroke();
+            
+            // Rayo de luz blanca incidente (desde la izquierda)
+            const pIncY = cy;
+            const pIncX = cx - h_prism + (side*Math.cos(A_rad/2) + 100)*Math.tan(A_rad/2)*0.5; // Aproximacion punto intersección
+            
+            ctxD.beginPath(); ctxD.moveTo(0, pIncY); ctxD.lineTo(cx-h_prism*0.6, pIncY);
+            ctxD.strokeStyle = '#ffffff'; ctxD.lineWidth = 4;
+            ctxD.shadowBlur = 10; ctxD.shadowColor = '#fff'; ctxD.stroke();
+            
+            // Espectro visible (Aproximación de Cauchy n = A + B/L^2)
+            // Valores simulados para crear el abanico
+            const colors = [
+                {c: '#ff0000', n: 1.514}, // Rojo
+                {c: '#ff7f00', n: 1.516}, // Naranja
+                {c: '#ffff00', n: 1.518}, // Amarillo
+                {c: '#00ff00', n: 1.520}, // Verde
+                {c: '#0000ff', n: 1.524}, // Azul
+                {c: '#8b00ff', n: 1.528}  // Violeta
+            ];
+            
+            ctxD.shadowBlur = 5;
+            colors.forEach((col, idx) => {
+                // Matemáticas simplificadas para visualización del prisma
+                // Asumimos incidencia horizontal.
+                let ang_inc1 = A_rad/2; // Respecto a la normal de la cara izq
+                let ang_ref1 = Math.asin(Math.sin(ang_inc1)/col.n);
+                
+                // Dentro del prisma
+                let ang_inc2 = A_rad - ang_ref1;
+                let ang_ref2 = Math.asin(col.n * Math.sin(ang_inc2));
+                
+                let dev_total = ang_inc1 + ang_ref2 - A_rad;
+                
+                // Coords salida (aprox)
+                let outX = cx + h_prism*0.6;
+                let outY = pIncY + Math.tan(ang_ref1)*side*0.5;
+                
+                // Dibujar dentro
+                ctxD.beginPath(); ctxD.moveTo(cx-h_prism*0.6, pIncY); ctxD.lineTo(outX, outY);
+                ctxD.strokeStyle = col.c; ctxD.lineWidth = 2; ctxD.globalAlpha = 0.5; ctxD.stroke();
+                
+                // Dibujar fuera
+                let finalAng = dev_total; // Angulo hacia abajo
+                ctxD.globalAlpha = 1.0;
+                ctxD.beginPath(); ctxD.moveTo(outX, outY);
+                ctxD.lineTo(outX + 500*Math.cos(finalAng), outY + 500*Math.sin(finalAng));
+                ctxD.shadowColor = col.c; ctxD.stroke();
+            });
+            ctxD.shadowBlur = 0;
+        }
+
+        function drawAll() {
+            // Solo dibujar la vista activa por rendimiento
+            const activeTab = document.querySelector('.tab.active').dataset.target;
+            if(activeTab === 'view-sim') drawSimulation();
+            if(activeTab === 'view-graph') drawGraph();
+            if(activeTab === 'view-dispersion') drawDispersion();
+        }
+
+        // ┌─────────────────────────────────────────┐
+        // │ 🎛️ MÓDULO: INTERFAZ DE USUARIO (UI)     │
+        // └─────────────────────────────────────────┘
+        function initUI() {
+            // 1. Llenar selects
+            const s1 = $('m1-select'); const s2 = $('m2-select');
+            for(let key in MEDIOS) {
+                let opt1 = document.createElement('option'); opt1.value = key; opt1.text = `${MEDIOS[key].emoji} ${MEDIOS[key].nombre}`;
+                let opt2 = document.createElement('option'); opt2.value = key; opt2.text = `${MEDIOS[key].emoji} ${MEDIOS[key].nombre}`;
+                s1.add(opt1); s2.add(opt2);
+            }
+            s1.value = 'aire'; s2.value = 'agua';
+
+            // 2. Event Listeners
+            s1.onchange = (e) => { State.m1 = MEDIOS[e.target.value]; $('col-m1').value = State.m1.color1; State.colors.bg1=State.m1.color1; triggerEqAnimation(); updatePhysics(); };
+            s2.onchange = (e) => { State.m2 = MEDIOS[e.target.value]; $('col-m2').value = State.m2.color2; State.colors.bg2=State.m2.color2; triggerEqAnimation(); updatePhysics(); };
+            
+            const slider = $('theta1-slider');
+            slider.oninput = (e) => { State.theta1_deg = parseFloat(e.target.value); updatePhysics(); };
+            
+            // Toggles
+            $('tg-inc').onchange = e => { State.showInc = e.target.checked; drawAll(); };
+            $('tg-ref').onchange = e => { State.showRef = e.target.checked; drawAll(); };
+            $('tg-refr').onchange = e => { State.showRefr = e.target.checked; drawAll(); };
+            $('tg-norm').onchange = e => { State.showNorm = e.target.checked; drawAll(); };
+            $('tg-lbl').onchange = e => { State.showLbl = e.target.checked; drawAll(); };
+            $('tg-glow').onchange = e => { State.showGlow = e.target.checked; drawAll(); };
+            $('tg-multi').onchange = e => { State.showMulti = e.target.checked; drawAll(); };
+            
+            // Estilos y Tema
+            $('tg-theme').onchange = e => { 
+                State.theme = e.target.checked ? 'light' : 'dark';
+                document.documentElement.setAttribute('data-theme', State.theme);
+                drawAll(); 
+            };
+            $('col-m1').oninput = e => { State.colors.bg1 = e.target.value; drawAll(); };
+            $('col-m2').oninput = e => { State.colors.bg2 = e.target.value; drawAll(); };
+            $('col-inc').oninput = e => { State.colors.rayInc = e.target.value; drawAll(); };
+            $('col-refr').oninput = e => { State.colors.rayRefr = e.target.value; drawAll(); };
+            
+            $('thick-slider').oninput = e => { State.rayWidth = parseInt(e.target.value); $('thick-val').innerText=e.target.value; drawAll(); };
+            $('glow-slider').oninput = e => { State.glowInt = parseInt(e.target.value); $('glow-val').innerText=e.target.value; drawAll(); };
+            
+            $('prism-slider').oninput = drawAll;
+
+            // Tabs
+            document.querySelectorAll('.tab').forEach(t => {
+                t.onclick = () => {
+                    document.querySelectorAll('.tab').forEach(x=>x.classList.remove('active'));
+                    document.querySelectorAll('.view-container').forEach(x=>x.classList.remove('active'));
+                    t.classList.add('active');
+                    $(t.dataset.target).classList.add('active');
+                    
+                    // Ajustar UI según tab
+                    $('angle-section').style.display = t.dataset.target === 'view-dispersion' ? 'none' : 'block';
+                    $('multiray-section').style.display = t.dataset.target === 'view-sim' ? 'block' : 'none';
+                    
+                    resizeCanvas();
+                }
+            });
+
+            // Canvas Controls (Pan & Zoom)
+            $('btn-zoom-in').onclick = () => { State.scale *= 1.2; drawAll(); };
+            $('btn-zoom-out').onclick = () => { State.scale /= 1.2; drawAll(); };
+            $('btn-reset').onclick = () => { State.scale = 1; State.offsetX = 0; State.offsetY = 0; drawAll(); };
+            
+            // Nuevos botones: Descargar y Pantalla Completa
+            $('btn-download').onclick = () => $('btn-export').click();
+            
+            $('btn-fullscreen').onclick = () => {
+                if (!document.fullscreenElement) {
+                    document.documentElement.requestFullscreen().catch(err => console.log(err));
+                } else {
+                    if (document.exitFullscreen) document.exitFullscreen();
+                }
+            };
+
+            // Escuchar cambios de pantalla completa (ej. tecla Esc) para actualizar el ícono
+            document.addEventListener('fullscreenchange', () => {
+                const fsBtn = $('btn-fullscreen');
+                if (document.fullscreenElement) {
+                    fsBtn.innerHTML = '<i class="fas fa-compress"></i>';
+                    fsBtn.title = "Salir de Pantalla Completa";
+                } else {
+                    fsBtn.innerHTML = '<i class="fas fa-expand"></i>';
+                    fsBtn.title = "Pantalla Completa";
+                }
+            });
+            
+            let panBtn = $('btn-pan');
+            panBtn.onclick = () => {
+                State.isPanning = !State.isPanning;
+                panBtn.classList.toggle('active');
+                canvas.classList.toggle('cursor-grab');
+            };
+
+            // Paneo con Mouse
+            let startX, startY;
+            canvas.addEventListener('mousedown', e => {
+                if(!State.isPanning) return;
+                canvas.classList.add('cursor-grabbing');
+                startX = e.clientX - State.offsetX;
+                startY = e.clientY - State.offsetY;
+                
+                const onMove = e => {
+                    State.offsetX = e.clientX - startX;
+                    State.offsetY = e.clientY - startY;
+                    drawAll();
+                };
+                const onUp = () => {
+                    canvas.classList.remove('cursor-grabbing');
+                    document.removeEventListener('mousemove', onMove);
+                    document.removeEventListener('mouseup', onUp);
+                };
+                document.addEventListener('mousemove', onMove);
+                document.addEventListener('mouseup', onUp);
+            });
+
+            // Easter Egg: Logo
+            let clicks = 0;
+            $('logo-btn').onclick = () => {
+                clicks++;
+                if(clicks === 2) { // Doble click
+                    State.rainbowMode = !State.rainbowMode;
+                    clicks = 0;
+                    if(State.rainbowMode) drawSimulation(); // Iniciar loop
+                }
+                setTimeout(()=>clicks=0, 500);
+            };
+
+            // Exportar
+            $('btn-export').onclick = () => {
+                const htmlContent = "<!DOCTYPE html>\n" + document.documentElement.outerHTML;
+                const blob = new Blob([htmlContent], { type: "text/html;charset=utf-8" });
+                const url = URL.createObjectURL(blob);
+                const link = document.createElement('a');
+                link.download = `simulador_snell_${Date.now()}.html`;
+                link.href = url;
+                link.click();
+                URL.revokeObjectURL(url);
+                triggerConfetti();
+            };
+
+            // Copiar
+            $('btn-copy').onclick = () => {
+                const text = `Simulación Ley de Snell:\nMedio 1: ${State.m1.nombre} (n=${State.m1.n})\nMedio 2: ${State.m2.nombre} (n=${State.m2.n})\nÁngulo Incidencia: ${State.theta1_deg}°\nÁngulo Refracción: ${State.isTIR ? 'RTI' : State.theta2_deg.toFixed(2)+'°'}`;
+                navigator.clipboard.writeText(text);
+                const b = $('btn-copy'); b.innerHTML = '<i class="fas fa-check"></i> Copiado!';
+                setTimeout(()=> b.innerHTML = '<i class="fas fa-copy"></i> Copiar Valores', 2000);
+            };
+
+            // Pool Mode
+            $('btn-pool').onclick = () => {
+                State.poolMode = !State.poolMode;
+                $('m1-select').value = 'aire'; $('m2-select').value = 'agua';
+                $('m1-select').dispatchEvent(new Event('change'));
+                $('btn-pool').style.background = State.poolMode ? 'rgba(0,240,255,0.2)' : '';
+            }
+        }
+
+        function updateUIValues() {
+            $('theta1-val').innerText = State.theta1_deg.toFixed(1) + '°';
+            $('theta1-rad').innerText = (State.theta1_deg * Math.PI/180).toFixed(3) + ' rad';
+            $('theta1-slider').value = State.theta1_deg;
+            
+            let v1 = C_LIGHT / State.m1.n;
+            let v2 = C_LIGHT / State.m2.n;
+            $('m1-info').innerText = `n₁ = ${State.m1.n.toFixed(3)} | v₁ = ${v1.toFixed(2)}×10⁸ m/s`;
+            $('m2-info').innerText = `n₂ = ${State.m2.n.toFixed(3)} | v₂ = ${v2.toFixed(2)}×10⁸ m/s`;
+
+            if (State.critical_angle) {
+                $('critical-angle-info').style.display = 'block';
+                $('critical-angle-info').innerText = `θ_c (Crítico) = ${State.critical_angle.toFixed(1)}°`;
+            } else {
+                $('critical-angle-info').style.display = 'none';
+            }
+
+            const angleSection = $('angle-section');
+            if (State.isTIR) {
+                angleSection.classList.add('tir-active');
+                $('tir-warning').style.display = 'block';
+            } else {
+                angleSection.classList.remove('tir-active');
+                $('tir-warning').style.display = 'none';
+            }
+        }
+
+        function renderEquation() {
+            const container = $('live-eq-container');
+            if(State.isTIR) {
+                container.innerHTML = `<span style="color:var(--accent-magenta); font-weight:bold;">¡Reflexión Total Interna!</span>`;
+                return;
+            }
+            
+            let t1 = State.theta1_deg.toFixed(1);
+            let t2 = State.theta2_deg.toFixed(1);
+            let n1 = State.m1.n.toFixed(2);
+            let n2 = State.m2.n.toFixed(2);
+            
+            // String para KaTeX
+            let tex = `\\begin{aligned} n_1 \\sin(\\theta_1) &= n_2 \\sin(\\theta_2) \\\\ ${n1} \\sin(${t1}^\\circ) &= ${n2} \\sin(${t2}^\\circ) \\end{aligned}`;
+            
+            try {
+                katex.render(tex, container, { displayMode: true, throwOnError: false });
+            } catch(e) { console.error("KaTeX error", e); }
+        }
+
+        function triggerEqAnimation() {
+            const eq = $('live-eq-container');
+            eq.classList.remove('typewriter-effect');
+            void eq.offsetWidth; // trigger reflow
+            eq.classList.add('typewriter-effect');
+        }
+
+        // Modales
+        function openModal(id) { $(id).classList.add('active'); }
+        function closeModal(id) { $(id).classList.remove('active'); }
+
+        // Renderizar KaTeX estático en Modal Teoría
+        window.addEventListener('DOMContentLoaded', () => {
+            katex.render("n = \\frac{c}{v}", $('eq-index'), {displayMode: true});
+            katex.render("n_1 \\sin(\\theta_1) = n_2 \\sin(\\theta_2)", $('eq-snell'), {displayMode: true});
+            katex.render("\\theta_c = \\arcsin\\left(\\frac{n_2}{n_1}\\right)", $('eq-crit'), {displayMode: true});
+        });
+
+        // ┌─────────────────────────────────────────┐
+        // │ 🎉 EASTER EGG: CONFETTI ESPECTRAL       │
+        // └─────────────────────────────────────────┘
+        function triggerConfetti() {
+            const confC = $('confetti-canvas');
+            const cCtx = confC.getContext('2d');
+            confC.width = window.innerWidth; confC.height = window.innerHeight;
+            
+            let particles = [];
+            const colors = ['#ff0000', '#ff7f00', '#ffff00', '#00ff00', '#0000ff', '#4b0082', '#9400d3'];
+            
+            for(let i=0; i<100; i++) {
+                particles.push({
+                    x: window.innerWidth/2, y: window.innerHeight,
+                    vx: (Math.random()-0.5)*20, vy: -(Math.random()*15 + 10),
+                    c: colors[Math.floor(Math.random()*colors.length)],
+                    s: Math.random()*5 + 5
+                });
+            }
+            
+            function animateConfetti() {
+                cCtx.clearRect(0,0,confC.width, confC.height);
+                let active = false;
+                particles.forEach(p => {
+                    p.x += p.vx; p.y += p.vy; p.vy += 0.5; // gravedad
+                    if(p.y < confC.height) active = true;
+                    cCtx.fillStyle = p.c;
+                    cCtx.fillRect(p.x, p.y, p.s, p.s);
+                });
+                if(active) requestAnimationFrame(animateConfetti);
+                else cCtx.clearRect(0,0,confC.width, confC.height);
+            }
+            animateConfetti();
+        }
+
+        // ┌─────────────────────────────────────────┐
+        // │ 🚀 INICIALIZACIÓN                       │
+        // └─────────────────────────────────────────┘
+        window.onload = () => {
+            initUI();
+            updatePhysics(); // Calcula estado inicial
+            resizeCanvas();  // Dibuja
+            window.addEventListener('resize', () => { resizeCanvas(); drawAll(); });
+            
+            // Cerrar modales clicando fuera
+            document.querySelectorAll('.modal-overlay').forEach(el => {
+                el.addEventListener('click', e => { if(e.target === el) closeModal(el.id); });
+            });
+        };
+
+    </script>
+
+</body></html>
