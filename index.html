@@ -1,0 +1,548 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width,initial-scale=1.0">
+<title>Refracción de la Luz — Cuaderno Interactivo</title>
+<meta name="description" content="Cuaderno interactivo de Física sobre Refracción de la Luz y Leyes de Snell. UTP Risaralda.">
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800;900&family=JetBrains+Mono:wght@400;700&family=Playfair+Display:wght@700;800;900&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css">
+<script>window.MathJax={tex:{inlineMath:[['\\(','\\)']],displayMath:[['\\[','\\]']]},startup:{typeset:true}};</script>
+<script src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-mml-chtml.js" async></script>
+<style>
+:root{--bg:linear-gradient(135deg,#0f0c29,#302b63,#24243e);--page-bg:#fdfdff;--text:#2c3e50;--heading:#1565c0;--accent:#1565c0;--accent2:#ff6b6b;--accent3:#00c9a7;--gold:#ffd700;--grid:rgba(100,149,237,0.05);--nav-bg:rgba(255,255,255,0.88);--font:'Inter',sans-serif;--font-serif:'Playfair Display',serif;--font-mono:'JetBrains Mono',monospace}
+*,*::before,*::after{box-sizing:border-box;margin:0;padding:0}
+html,body{height:100%;overflow:hidden}
+body{font-family:var(--font);background:var(--bg);color:var(--text);font-size:15px;line-height:1.7}
+#progress-bar{position:fixed;top:0;left:0;height:4px;background:linear-gradient(90deg,var(--accent),var(--accent2));z-index:1000;transition:width .3s}
+#dark-toggle{position:fixed;top:12px;left:12px;z-index:1001;background:none;border:none;font-size:22px;cursor:pointer;color:var(--heading);opacity:.7}
+#dark-toggle:hover{opacity:1}
+#page-info{position:fixed;top:12px;left:50%;transform:translateX(-50%);z-index:1001;font-size:12px;color:#aaa;opacity:.8;font-weight:500}
+body.dark{--bg:linear-gradient(135deg,#0a0a1a,#1a1a3e,#0f0f2e);--page-bg:rgba(20,25,45,.95);--text:#e0e8f0;--heading:#90caf9;--accent:#64b5f6;--accent2:#ff8a80;--accent3:#69f0ae;--grid:rgba(100,149,237,0.03);--nav-bg:rgba(15,20,40,0.92)}
+#book-container{width:100%;height:100%;display:flex;align-items:center;justify-content:center}
+#book{width:min(95vw,1100px);height:min(88vh,720px);perspective:2000px;position:relative;transform-style:preserve-3d}
+.spread{position:absolute;inset:0;display:none;opacity:0;transition:opacity .4s,transform .4s}
+.spread.active{display:flex;opacity:1}
+.spread.flip-out-fwd{display:flex!important;animation:flipFwd .5s ease-in forwards;transform-origin:left center}
+.spread.flip-in-fwd{display:flex!important;animation:flipInFwd .5s ease-out forwards;transform-origin:right center}
+.spread.flip-out-back{display:flex!important;animation:flipBack .5s ease-in forwards;transform-origin:right center}
+.spread.flip-in-back{display:flex!important;animation:flipInBack .5s ease-out forwards;transform-origin:left center}
+@keyframes flipFwd{0%{transform:perspective(2000px) rotateY(0);opacity:1}100%{transform:perspective(2000px) rotateY(-100deg);opacity:0}}
+@keyframes flipBack{0%{transform:perspective(2000px) rotateY(0);opacity:1}100%{transform:perspective(2000px) rotateY(100deg);opacity:0}}
+@keyframes flipInFwd{0%{transform:perspective(2000px) rotateY(100deg);opacity:0}100%{transform:perspective(2000px) rotateY(0);opacity:1}}
+@keyframes flipInBack{0%{transform:perspective(2000px) rotateY(-100deg);opacity:0}100%{transform:perspective(2000px) rotateY(0);opacity:1}}
+.page{flex:1;background:var(--page-bg);padding:32px 36px;overflow-y:auto;position:relative;box-shadow:2px 2px 20px rgba(0,0,0,.1);background-image:repeating-linear-gradient(var(--grid) 0 1px,transparent 1px 28px),repeating-linear-gradient(90deg,var(--grid) 0 1px,transparent 1px 28px);background-size:28px 28px;scrollbar-width:thin;border:1px solid rgba(255,255,255,.08)}
+.page::-webkit-scrollbar{width:5px}.page::-webkit-scrollbar-thumb{background:var(--accent);border-radius:3px}
+.page-left{border-radius:12px 0 0 12px;border-right:none}.page-right{border-radius:0 12px 12px 0;border-left:none}
+.page .page-num{position:absolute;bottom:8px;font-size:11px;color:var(--text);opacity:.4}
+.page-left .page-num{left:15px}.page-right .page-num{right:15px}
+.spiral{width:40px;display:flex;flex-direction:column;justify-content:space-around;align-items:center;background:linear-gradient(90deg,rgba(240,242,245,.3) 0%,#b0c4de 8%,#4a9edd 25%,#2575c4 40%,#1a6ab5 50%,#2575c4 60%,#4a9edd 75%,#b0c4de 92%,rgba(240,242,245,.3) 100%);border-radius:1px;flex-shrink:0;z-index:2;box-shadow:inset 0 0 8px rgba(0,0,0,.1)}
+.spiral-ring{width:38px;height:20px;border-radius:50%;background:linear-gradient(170deg,#e8e8e8 0%,#c0c0c0 8%,#a0a0a0 18%,#787878 35%,#606060 50%,#787878 65%,#a0a0a0 82%,#c8c8c8 92%,#e0e0e0 100%);box-shadow:0 4px 6px rgba(0,0,0,.35),0 -2px 3px rgba(255,255,255,.4);position:relative}
+.spiral-ring::before{content:"";position:absolute;inset:3px 6px;border-radius:50%;background:linear-gradient(175deg,#909090 0%,#b8b8b8 25%,#d8d8d8 45%,#c0c0c0 55%,#a0a0a0 75%,#808080 100%);box-shadow:inset 0 3px 5px rgba(0,0,0,.45)}
+.spiral-ring::after{content:"";position:absolute;top:2px;left:25%;width:50%;height:6px;background:linear-gradient(180deg,rgba(255,255,255,.85),rgba(255,255,255,0));border-radius:50%}
+h1.book-title{font-family:var(--font-serif);font-size:2.4em;color:var(--heading);margin-bottom:5px;line-height:1.2}
+h2.section-title{font-family:var(--font);font-size:1.25em;color:var(--heading);font-weight:800;margin:18px 0 10px;padding:8px 14px;border-radius:10px;background:linear-gradient(135deg,rgba(21,101,192,.08),rgba(21,101,192,.02));border-left:4px solid var(--accent);display:flex;align-items:center;gap:8px;letter-spacing:.3px}
+h2.section-title i{font-size:.85em;opacity:.7}
+h3.sub-title{font-size:1.02em;color:var(--accent2);font-weight:700;margin:14px 0 6px;display:flex;align-items:center;gap:6px}
+h3.sub-title::before{content:'';width:4px;height:100%;min-height:16px;background:var(--accent2);border-radius:2px;display:inline-block}
+p{line-height:1.7;margin-bottom:.6rem;font-size:.9em}
+.def-box{background:linear-gradient(135deg,rgba(21,101,192,.06),rgba(21,101,192,.02));border-left:4px solid var(--accent);padding:12px 16px;border-radius:0 12px 12px 0;margin:10px 0;transition:transform .2s,box-shadow .2s}
+.def-box:hover{transform:translateX(4px);box-shadow:0 2px 12px rgba(21,101,192,.1)}
+.formula-box{border:2px solid rgba(21,101,192,.2);padding:14px;border-radius:14px;text-align:center;margin:12px 0;background:linear-gradient(135deg,rgba(21,101,192,.04),transparent)}
+.example-box{background:linear-gradient(135deg,rgba(0,201,167,.06),rgba(0,201,167,.02));border-left:4px solid var(--accent3);padding:12px 16px;border-radius:0 12px 12px 0;margin:10px 0;transition:transform .2s}
+.example-box:hover{transform:translateX(4px)}
+.example-box::before{content:'✅ Ejemplo Resuelto';display:block;font-weight:800;color:var(--accent3);font-size:.7rem;text-transform:uppercase;letter-spacing:1px;margin-bottom:3px}
+.note-box{background:linear-gradient(135deg,rgba(255,215,0,.08),rgba(255,215,0,.02));border-left:4px solid var(--gold);padding:12px 16px;border-radius:0 12px 12px 0;margin:10px 0;transition:transform .2s}
+.note-box:hover{transform:translateX(4px)}
+.warning-box{background:linear-gradient(135deg,rgba(255,107,107,.06),rgba(255,107,107,.02));border-left:4px solid var(--accent2);padding:12px 16px;border-radius:0 12px 12px 0;margin:10px 0}
+table.styled-table{width:100%;border-collapse:separate;border-spacing:0;margin:10px 0;font-size:.85em;border-radius:10px;overflow:hidden;box-shadow:0 1px 8px rgba(0,0,0,.06)}
+table.styled-table thead th{background:linear-gradient(135deg,var(--accent),#1976d2);color:#fff;padding:9px 10px;text-align:left;font-weight:600;font-size:.82em}
+table.styled-table tbody td{padding:7px 10px;border-bottom:1px solid rgba(0,0,0,.05)}
+table.styled-table tbody tr:hover{background:rgba(21,101,192,.06)}
+.cover-page{display:flex;flex-direction:column;align-items:center;justify-content:center;text-align:center;background:linear-gradient(160deg,#0a1628 0%,#1a2a4a 30%,#1565c0 60%,#0d47a1 100%)!important;color:#fff!important;background-image:none!important;position:relative;overflow:hidden}
+.cover-page::before{content:'';position:absolute;inset:0;background:url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 400 200'%3E%3Cpath d='M0,100 Q50,50 100,100 T200,100 T300,100 T400,100' fill='none' stroke='rgba(255,255,255,.06)' stroke-width='2'/%3E%3C/svg%3E") repeat;background-size:400px 200px;animation:waveScroll 8s linear infinite;opacity:.8}
+@keyframes waveScroll{0%{background-position:0 0}100%{background-position:400px 0}}
+.cover-page h1{color:#fff;font-size:2.6em;text-shadow:0 3px 20px rgba(0,0,0,.4);position:relative;z-index:1;font-family:var(--font-serif)}
+.cover-page .subtitle{font-size:1.1em;opacity:.9;margin:6px 0 18px;border-bottom:2px solid rgba(255,255,255,.3);padding-bottom:8px;display:inline-block;position:relative;z-index:1}
+.cover-page .badge{background:rgba(255,255,255,.1);padding:10px 28px;border-radius:25px;font-weight:600;margin:12px 0;backdrop-filter:blur(10px);border:1px solid rgba(255,255,255,.15);position:relative;z-index:1;animation:badgePulse 2.5s ease-in-out infinite}
+@keyframes badgePulse{0%,100%{transform:scale(1);box-shadow:0 0 0 0 rgba(255,255,255,.2)}50%{transform:scale(1.04);box-shadow:0 0 20px 5px rgba(76,201,240,.15)}}
+.cover-page .author{margin-top:25px;font-size:.85em;opacity:.7;position:relative;z-index:1}
+.cover-wave{font-size:4.5em;margin-bottom:12px;opacity:.9;position:relative;z-index:1;animation:coverFloat 3s ease-in-out infinite}
+@keyframes coverFloat{0%,100%{transform:translateY(0)}50%{transform:translateY(-8px)}}
+.toc-item{padding:10px 14px;border-radius:10px;cursor:pointer;display:flex;align-items:center;gap:12px;transition:all .25s;margin-bottom:3px;border:1px solid transparent}
+.toc-item:hover{background:linear-gradient(135deg,rgba(21,101,192,.08),rgba(21,101,192,.03));border-color:rgba(21,101,192,.15);transform:translateX(6px)}
+.toc-num{background:linear-gradient(135deg,var(--accent),#1976d2);color:#fff;width:28px;height:28px;border-radius:8px;display:flex;align-items:center;justify-content:center;font-size:.78em;font-weight:700;flex-shrink:0;box-shadow:0 2px 8px rgba(21,101,192,.25)}
+.quiz-q{background:var(--page-bg);border-radius:8px;padding:10px;margin:6px 0;box-shadow:0 1px 4px rgba(0,0,0,.05)}
+.quiz-q h4{color:var(--accent);margin-bottom:5px;font-size:.85em}
+.quiz-opt{display:block;width:100%;padding:6px 10px;margin:3px 0;border-radius:8px;border:2px solid rgba(0,0,0,.06);cursor:pointer;transition:all .2s;font-size:.82em;text-align:left;background:none;color:var(--text);font-family:var(--font)}
+.quiz-opt:hover{border-color:var(--accent);background:rgba(21,101,192,.05)}
+.quiz-opt.correct{border-color:var(--accent3);background:rgba(0,201,167,.1);font-weight:700}
+.quiz-opt.wrong{border-color:var(--accent2);background:rgba(255,107,107,.1)}
+.quiz-feedback{margin-top:4px;font-size:.78em;display:none;color:var(--accent3)}
+.gloss-item{padding:4px 0;border-bottom:1px solid rgba(0,0,0,.05);font-size:.82em}
+.gloss-term{color:var(--accent);font-weight:700}
+details summary{color:var(--accent);cursor:pointer;font-weight:700;font-size:.82em}
+#nav-bar{position:fixed;bottom:18px;left:50%;transform:translateX(-50%);display:flex;gap:8px;padding:8px 16px;background:var(--nav-bg);border-radius:50px;box-shadow:0 8px 40px rgba(0,0,0,.18);backdrop-filter:blur(20px);z-index:1000;align-items:center;border:1px solid rgba(255,255,255,.12)}
+.nav-btn{width:42px;height:42px;border-radius:50%;border:none;background:linear-gradient(145deg,var(--accent),#1976d2);color:#fff;font-size:16px;cursor:pointer;display:flex;align-items:center;justify-content:center;transition:all .25s}
+.nav-btn:hover{transform:scale(1.12) translateY(-2px);box-shadow:0 6px 20px rgba(21,101,192,.45)}
+.nav-btn:active{transform:scale(.95)}
+.nav-btn:disabled{opacity:.25;cursor:not-allowed;transform:none;box-shadow:none}
+#chat-toggle{position:fixed;bottom:18px;right:20px;width:52px;height:52px;border-radius:50%;border:none;background:linear-gradient(135deg,var(--accent),#7c3aed);color:#fff;font-size:22px;cursor:pointer;z-index:1001;box-shadow:0 4px 20px rgba(21,101,192,.4);transition:all .3s;display:flex;align-items:center;justify-content:center}
+#chat-toggle:hover{transform:scale(1.1);box-shadow:0 6px 30px rgba(21,101,192,.6)}
+#chat-panel{position:fixed;bottom:80px;right:20px;width:380px;max-height:500px;background:var(--page-bg);border-radius:16px;box-shadow:0 10px 50px rgba(0,0,0,.3);border:1px solid rgba(21,101,192,.2);z-index:1001;display:none;flex-direction:column;overflow:hidden;backdrop-filter:blur(20px)}
+#chat-panel.open{display:flex}
+#chat-header{padding:14px 18px;background:linear-gradient(135deg,var(--accent),#1976d2);color:#fff;font-weight:700;font-size:.95em;display:flex;justify-content:space-between;align-items:center}
+#chat-header button{background:none;border:none;color:#fff;font-size:18px;cursor:pointer;opacity:.7}
+#chat-header button:hover{opacity:1}
+#chat-messages{flex:1;overflow-y:auto;padding:14px;max-height:340px;display:flex;flex-direction:column;gap:10px}
+.chat-msg{padding:10px 14px;border-radius:12px;font-size:.82em;line-height:1.5;max-width:90%;word-wrap:break-word}
+.chat-msg.user{background:linear-gradient(135deg,var(--accent),#1976d2);color:#fff;align-self:flex-end;border-bottom-right-radius:4px}
+.chat-msg.bot{background:rgba(21,101,192,.08);color:var(--text);align-self:flex-start;border-bottom-left-radius:4px;border:1px solid rgba(21,101,192,.1)}
+.chat-msg.bot .mathjax-rendered{font-size:.9em}
+#chat-input-area{display:flex;padding:10px;gap:8px;border-top:1px solid rgba(0,0,0,.06)}
+#chat-input{flex:1;padding:10px 14px;border-radius:25px;border:2px solid rgba(21,101,192,.15);background:var(--page-bg);color:var(--text);font-family:var(--font);font-size:.85em;outline:none;transition:border-color .3s}
+#chat-input:focus{border-color:var(--accent)}
+#chat-send{width:40px;height:40px;border-radius:50%;border:none;background:linear-gradient(135deg,var(--accent),#1976d2);color:#fff;cursor:pointer;font-size:16px;display:flex;align-items:center;justify-content:center;transition:all .2s}
+#chat-send:hover{transform:scale(1.1)}
+#chat-send:disabled{opacity:.4;cursor:not-allowed;transform:none}
+#api-key-area{padding:14px;display:flex;flex-direction:column;gap:8px}
+#api-key-area label{font-size:.78em;color:var(--text);font-weight:600}
+#api-key-input{padding:10px;border-radius:10px;border:2px solid rgba(21,101,192,.15);background:var(--page-bg);color:var(--text);font-family:var(--font-mono);font-size:.78em}
+#api-key-btn{padding:8px;border-radius:10px;border:none;background:linear-gradient(135deg,var(--accent),#1976d2);color:#fff;cursor:pointer;font-weight:700;font-size:.82em}
+.typing-indicator{display:flex;gap:4px;padding:10px 14px;align-self:flex-start}
+.typing-indicator span{width:8px;height:8px;border-radius:50%;background:var(--accent);animation:typeDot 1.4s infinite;opacity:.4}
+.typing-indicator span:nth-child(2){animation-delay:.2s}
+.typing-indicator span:nth-child(3){animation-delay:.4s}
+@keyframes typeDot{0%,100%{opacity:.4;transform:translateY(0)}50%{opacity:1;transform:translateY(-4px)}}
+
+.sim-page{display:flex;flex-direction:column;align-items:center;justify-content:center;gap:12px;text-align:center}
+.sim-page iframe{width:100%;flex:1;border:none;border-radius:10px;min-height:0}
+.sim-fullscreen{padding:10px 22px;border-radius:12px;border:2px solid var(--accent);background:linear-gradient(135deg,rgba(21,101,192,.1),transparent);color:var(--accent);font-weight:700;font-size:.88em;cursor:pointer;transition:all .3s;font-family:var(--font);display:inline-flex;align-items:center;gap:8px}
+.sim-fullscreen:hover{background:linear-gradient(135deg,var(--accent),#1976d2);color:#fff;transform:translateY(-2px);box-shadow:0 4px 20px rgba(21,101,192,.3)}
+#scientist-selector{display:flex;gap:6px;padding:10px 14px;flex-wrap:wrap;justify-content:center;border-bottom:1px solid rgba(0,0,0,.06)}
+.sci-btn{display:flex;flex-direction:column;align-items:center;gap:3px;padding:6px 8px;border-radius:10px;border:2px solid transparent;background:none;cursor:pointer;transition:all .25s;min-width:58px}
+.sci-btn:hover{background:rgba(21,101,192,.06);border-color:rgba(21,101,192,.12)}
+.sci-btn.active{border-color:var(--accent);background:rgba(21,101,192,.08)}
+.sci-face{width:36px;height:36px;border-radius:50%;overflow:hidden;border:2px solid rgba(21,101,192,.15);background:#e8eef5;display:flex;align-items:center;justify-content:center;font-size:12px;position:relative}
+.sci-face svg{width:100%;height:100%}
+.sci-name{font-size:.58em;font-weight:700;color:var(--text);line-height:1.1;text-align:center}
+.sci-quote{font-size:.7em;color:var(--accent);font-style:italic;padding:4px 14px;text-align:center;opacity:.8;border-bottom:1px solid rgba(0,0,0,.04);min-height:28px}
+
+@media(max-width:768px){#book{width:98vw;height:85vh}.page{padding:18px 16px;font-size:13px}.spiral{display:none!important}.page-left{border-radius:12px}.page-right{display:none!important}#chat-panel{width:calc(100vw - 20px);right:10px;bottom:75px}}
+
+.img-box{margin:10px 0;border-radius:12px;overflow:hidden;box-shadow:0 2px 12px rgba(0,0,0,.08);border:1px solid rgba(21,101,192,.1);transition:transform .3s}
+.img-box:hover{transform:scale(1.01)}
+.img-box img{width:100%;display:block;cursor:pointer;transition:filter .3s}
+.img-box img:hover{filter:brightness(1.05)}
+.img-cap{padding:6px 12px;font-size:.72em;color:var(--text);opacity:.7;text-align:center;font-style:italic;background:rgba(21,101,192,.03)}
+#sim-overlay{position:fixed;inset:0;background:rgba(0,0,0,.85);z-index:2000;display:none;align-items:center;justify-content:center;backdrop-filter:blur(5px)}
+#sim-overlay.open{display:flex}
+#sim-frame-wrap{width:min(95vw,1200px);height:min(90vh,750px);border-radius:16px;overflow:hidden;box-shadow:0 20px 60px rgba(0,0,0,.5);position:relative;background:var(--page-bg)}
+#sim-frame-wrap iframe{width:100%;height:100%;border:none}
+#sim-close{position:absolute;top:10px;right:14px;z-index:2001;width:40px;height:40px;border-radius:50%;border:none;background:rgba(255,0,0,.8);color:#fff;font-size:18px;cursor:pointer;display:flex;align-items:center;justify-content:center;transition:all .2s}
+#sim-close:hover{background:#ff0000;transform:scale(1.1)}
+.sim-btn{display:inline-flex;align-items:center;gap:8px;padding:10px 20px;border-radius:12px;border:2px solid var(--accent);background:linear-gradient(135deg,rgba(21,101,192,.1),rgba(21,101,192,.04));color:var(--accent);font-weight:700;font-size:.88em;cursor:pointer;transition:all .3s;font-family:var(--font);margin:8px 0}
+.sim-btn:hover{background:linear-gradient(135deg,var(--accent),#1976d2);color:#fff;transform:translateY(-2px);box-shadow:0 4px 20px rgba(21,101,192,.3)}
+.sim-btn i{font-size:1.1em}
+#img-modal{position:fixed;inset:0;background:rgba(0,0,0,.9);z-index:2000;display:none;align-items:center;justify-content:center;cursor:zoom-out;backdrop-filter:blur(5px)}
+#img-modal.open{display:flex}
+#img-modal img{max-width:92vw;max-height:90vh;border-radius:8px;box-shadow:0 10px 40px rgba(0,0,0,.5)}
+
+</style>
+</head>
+<body>
+<div id="progress-bar" style="width:0%"></div>
+<button id="dark-toggle" onclick="document.body.classList.toggle('dark')" title="Modo oscuro"><i class="fas fa-moon"></i></button>
+<span id="page-info"></span>
+<div id="book-container"><div id="book">
+<div class="spread active" data-spread="0">
+<div class="page page-left cover-page">
+<div class="cover-wave" style="filter:drop-shadow(0 0 20px rgba(255,255,255,.3))">&#x1F52C;</div>
+<h1 class="book-title" style="font-size:2.4em;letter-spacing:2px;color:#fff">REFRACCIÓN<br>DE LA LUZ</h1>
+<div class="subtitle">Leyes de Snell y Fenómenos Ópticos — Cuaderno Interactivo</div>
+<div class="badge"><i class="fas fa-atom" style="margin-right:6px"></i> Óptica Geométrica</div>
+<div class="author">Presentado por: Juan José Pérez Herrera &amp; Deisy Patricia Angarita<br><small style="opacity:.6">UTP— Pereira, Risaralda — 2026</small></div>
+</div><div class="spiral"><div class="spiral-ring"></div><div class="spiral-ring"></div><div class="spiral-ring"></div><div class="spiral-ring"></div><div class="spiral-ring"></div><div class="spiral-ring"></div><div class="spiral-ring"></div><div class="spiral-ring"></div><div class="spiral-ring"></div><div class="spiral-ring"></div></div>
+<div class="page page-right" style="padding-top:30px">
+<h2 class="section-title"><i class="fas fa-list"></i> Índice de Contenidos</h2>
+<div class="toc-item" onclick="goTo(1)"><span class="toc-num">1</span> Fundamentos e Índice de Refracción</div>
+<div class="toc-item" onclick="goTo(1)"><span class="toc-num">2</span> La Ley de Snell — Formulación Analítica</div>
+<div class="toc-item" onclick="goTo(2)"><span class="toc-num">3</span> Comportamiento de Rayos en la Interfaz</div>
+<div class="toc-item" onclick="goTo(2)"><span class="toc-num">4</span> Ángulo Crítico y Reflexión Interna Total</div>
+<div class="toc-item" onclick="goTo(3)"><span class="toc-num">5</span> Profundidad Aparente y Desplazamiento Lateral</div>
+<div class="toc-item" onclick="goTo(3)"><span class="toc-num">6</span> Dispersión de la Luz y Prismas</div>
+<div class="toc-item" onclick="goTo(4)"><span class="toc-num">7</span> Ejercicios tipo ICFES</div>
+<div class="toc-item" onclick="goTo(4)"><span class="toc-num">8</span> Problemas de Desarrollo Matemático</div>
+<div class="toc-item" onclick="goTo(5)"><span class="toc-num">9</span> Resumen, Mapa Conceptual y Glosario</div>
+<div class="toc-item" onclick="goTo(6)"><span class="toc-num">⚡</span> Simulador Interactivo de Leyes de Snell</div>
+<div class="img-box" style="margin-top:12px"><img src="IMAGENES/Leyes de Snell y Fenómenos Ópticos.png" alt="Leyes de Snell" onclick="openImg(this.src)"><div class="img-cap">Fig. 0 — Mapa visual: Leyes de Snell y fenómenos ópticos</div></div>
+<span class="page-num">ii</span></div></div>
+
+<div class="spread" data-spread="1">
+<div class="page page-left">
+<h2 class="section-title"><i class="fas fa-lightbulb"></i> Fundamentos de la Refracción</h2>
+<p>La <strong>refracción</strong> es el cambio de dirección que experimenta un rayo de luz al pasar de un medio transparente a otro con distinta densidad óptica. Este cambio se produce porque la velocidad de propagación de la luz varía según el medio material que atraviesa.</p>
+<p>En el vacío, la luz viaja a la velocidad máxima posible en el universo: \(c = 3{,}00 \times 10^8\) m/s. Cuando penetra en un medio material —agua, vidrio o diamante—, la interacción electromagnética con los átomos del medio reduce su velocidad de fase. Esta variación de velocidad constituye la causa física fundamental de la refracción.</p>
+<p>Para que la refracción ocurra se requieren dos condiciones simultáneas: (1) que la luz incida <strong>oblicuamente</strong> sobre la superficie de separación entre ambos medios, y (2) que dichos medios posean índices de refracción diferentes. Si el rayo incide perpendicularmente a la interfaz, atraviesa el medio sin desviarse, aunque su velocidad sí cambia.</p>
+<div class="def-box"><p><strong>📌 Elementos geométricos fundamentales:</strong><br>• <strong>Rayo incidente:</strong> rayo que viaja desde el primer medio hacia la superficie de separación.<br>• <strong>Rayo refractado:</strong> rayo que se propaga en el segundo medio tras cruzar la interfaz.<br>• <strong>Normal:</strong> recta perpendicular a la superficie en el punto de incidencia.<br>• <strong>Ángulo de incidencia \(\theta_1\):</strong> ángulo entre el rayo incidente y la normal.<br>• <strong>Ángulo de refracción \(\theta_2\):</strong> ángulo entre el rayo refractado y la normal.</p></div>
+<h3 class="sub-title">Índice de Refracción Absoluto</h3>
+<p>El <strong>índice de refracción absoluto</strong> \(n\) de un medio es una magnitud adimensional que cuantifica en qué proporción se reduce la velocidad de la luz respecto al vacío:</p>
+<div class="formula-box">\[ n = \frac{c}{v} \]
+<p style="font-size:.8rem;color:var(--text)">\(n\): índice de refracción (adimensional). \(c = 3 \times 10^8\) m/s: velocidad de la luz en el vacío. \(v\): velocidad de la luz en el medio (m/s).</p></div>
+<div class="img-box"><img src="IMAGENES/Diagrama de Variables de Snell.png" alt="Diagrama de variables" onclick="openImg(this.src)"><div class="img-cap">Fig. 1 — Diagrama de variables de la Ley de Snell</div></div>
+<p>Dado que \(v \leq c\) en cualquier medio material, siempre se cumple \(n \geq 1\). El vacío tiene exactamente \(n = 1{,}000\); el aire posee \(n \approx 1{,}0003\), valor tan próximo a la unidad que en muchos cálculos se aproxima a 1.</p>
+<table class="styled-table"><thead><tr><th>Medio</th><th>\(n\)</th><th>\(v\) (×10⁸ m/s)</th></tr></thead><tbody>
+<tr><td>Vacío</td><td>1,000</td><td>3,00</td></tr><tr><td>Aire</td><td>1,0003</td><td>2,999</td></tr><tr><td>Agua</td><td>1,333</td><td>2,25</td></tr><tr><td>Vidrio Crown</td><td>1,523</td><td>1,97</td></tr><tr><td>Vidrio Flint</td><td>1,620</td><td>1,85</td></tr><tr><td>Diamante</td><td>2,417</td><td>1,24</td></tr></tbody></table>
+<h3 class="sub-title">Índice de Refracción Relativo</h3>
+<p>Cuando la luz pasa del medio 1 al medio 2, el índice relativo \(n_{12}\) se define como:</p>
+<div class="formula-box">\[ n_{12} = \frac{n_2}{n_1} = \frac{v_1}{v_2} \]</div>
+<div class="note-box"><p>📌 «La velocidad de la luz en cada medio determina completamente su comportamiento al refractarse.» — Msc. Néstor Fabio Montoya Palacios.</p></div>
+<span class="page-num">1</span></div><div class="spiral"><div class="spiral-ring"></div><div class="spiral-ring"></div><div class="spiral-ring"></div><div class="spiral-ring"></div><div class="spiral-ring"></div><div class="spiral-ring"></div><div class="spiral-ring"></div><div class="spiral-ring"></div><div class="spiral-ring"></div><div class="spiral-ring"></div></div>
+<div class="page page-right">
+<h2 class="section-title"><i class="fas fa-scroll"></i> La Ley de Snell</h2>
+<p>La ley cuantitativa de la refracción fue descubierta empíricamente por el matemático y astrónomo neerlandés <strong>Willebrord Snell van Royen</strong> (1580–1626) alrededor de 1621, aunque nunca llegó a publicarla en vida. De forma independiente, el filósofo y matemático francés <strong>René Descartes</strong> la formuló en su obra <em>La Dioptrique</em> (1637). La ley se fundamenta en el <strong>principio de Fermat</strong>: la luz recorre entre dos puntos el camino que minimiza el tiempo de tránsito.</p>
+<p>La deducción rigurosa de la Ley de Snell puede realizarse mediante cálculo variacional aplicado al principio de Fermat, o bien mediante la teoría ondulatoria de Huygens, que considera la propagación de frentes de onda a velocidades distintas en cada medio.</p>
+<h3 class="sub-title">Primera Ley de la Refracción</h3>
+<div class="def-box"><p>El <strong>rayo incidente</strong>, la <strong>normal</strong> a la superficie de separación en el punto de incidencia y el <strong>rayo refractado</strong> se encuentran todos contenidos en un <strong>mismo plano</strong>, denominado plano de incidencia.</p></div>
+<div class="img-box"><img src="IMAGENES/Analogía del Vehículo.png" alt="Analogía del vehículo" onclick="openImg(this.src)"><div class="img-cap">Fig. 2 — Analogía: un vehículo cambia de dirección al pasar del asfalto a la arena</div></div>
+<h3 class="sub-title">Segunda Ley — Ecuación de Snell</h3>
+<p>La relación cuantitativa establece que el producto del índice de refracción por el seno del ángulo que forma el rayo con la normal se conserva al cruzar la interfaz:</p>
+<div class="formula-box">\[ n_1 \sin(\theta_1) = n_2 \sin(\theta_2) \]
+<p style="font-size:.8rem;color:var(--text)">\(n_1\), \(n_2\): índices de refracción del medio incidente y refractado. \(\theta_1\), \(\theta_2\): ángulos medidos desde la normal.</p></div>
+<p>En términos de las velocidades de propagación en cada medio, dado que \(n = c/v\):</p>
+<div class="formula-box">\[ \frac{\sin(\theta_1)}{\sin(\theta_2)} = \frac{v_1}{v_2} = \frac{n_2}{n_1} \]</div>
+<div class="example-box"><p><strong>Un rayo de luz pasa del aire al agua con un ángulo de incidencia \(\theta_1 = 45°\).</strong> Calcular el ángulo de refracción.</p>
+<p>Datos: \(n_1 = 1{,}0003\) (aire), \(n_2 = 1{,}333\) (agua).</p>
+<p>\[\sin(\theta_2) = \frac{n_1}{n_2}\sin(\theta_1) = \frac{1{,}0003}{1{,}333} \times \sin(45°) = 0{,}7504 \times 0{,}7071 = 0{,}5305\]</p>
+<p>\[\theta_2 = \arcsin(0{,}5305) = 32{,}0°\]</p>
+<p>El rayo se <strong>acerca a la normal</strong> porque pasa a un medio ópticamente más denso (\(n_2 > n_1\)).</p></div>
+<div class="note-box"><p>📌 «La elegancia de la Ley de Snell radica en la conservación del producto \(n\sin\theta\) a través de cualquier interfaz óptica.» — Msc. Néstor Fabio Montoya Palacios.</p></div>
+<span class="page-num">2</span></div></div>
+<div class="spread" data-spread="2">
+<div class="page page-left">
+<h2 class="section-title"><i class="fas fa-exchange-alt"></i> Comportamiento de los Rayos en la Interfaz</h2>
+<p>Al cruzar la frontera entre dos medios con diferente índice de refracción, la dirección del rayo cambia de forma predecible según la Ley de Snell. El comportamiento específico depende de la relación entre las densidades ópticas de ambos medios involucrados.</p>
+<h3 class="sub-title">Caso 1: \(n_1 < n_2\) — Acercamiento a la normal</h3>
+<p>Cuando la luz pasa de un medio menos denso a uno más denso ópticamente (por ejemplo, del aire al vidrio), la velocidad de propagación disminuye. De la Ley de Snell se deduce que \(\sin(\theta_2) < \sin(\theta_1)\), por lo tanto \(\theta_2 < \theta_1\). El rayo refractado se <strong>acerca a la normal</strong>. Este es el caso más común en la experiencia cotidiana, como cuando la luz entra al agua de una piscina.</p>
+<div class="img-box"><img src="IMAGENES/Comparativa de Desviación (Díptico).png" alt="Comparativa" onclick="openImg(this.src)"><div class="img-cap">Fig. 3 — Desviación del rayo al pasar del aire al vidrio</div></div>
+<h3 class="sub-title">Caso 2: \(n_1 > n_2\) — Alejamiento de la normal</h3>
+<p>Cuando la luz viaja de un medio más denso a uno menos denso ópticamente (por ejemplo, del vidrio al aire), la velocidad aumenta. Ahora \(\sin(\theta_2) > \sin(\theta_1)\), lo que implica \(\theta_2 > \theta_1\). El rayo refractado se <strong>aleja de la normal</strong>. Este caso es crucial porque puede conducir al fenómeno de la reflexión interna total.</p>
+<h3 class="sub-title">Caso 3: Incidencia normal (\(\theta_1 = 0°\))</h3>
+<p>Si el rayo incide perpendicularmente a la interfaz, \(\sin(0°) = 0\) y, por la Ley de Snell, \(\sin(\theta_2) = 0\), es decir \(\theta_2 = 0°\). El rayo atraviesa la interfaz <strong>sin desviarse</strong>, aunque su velocidad sí cambia al entrar en el nuevo medio. Este es el caso trivial de la refracción.</p>
+<div class="example-box"><p><strong>Un rayo pasa del vidrio Crown (\(n_1 = 1{,}523\)) al agua (\(n_2 = 1{,}333\)) con \(\theta_1 = 30°\).</strong></p>
+<p>\[\sin(\theta_2) = \frac{n_1}{n_2}\sin(\theta_1) = \frac{1{,}523}{1{,}333} \times \sin(30°) = 1{,}1426 \times 0{,}5000 = 0{,}5713\]</p>
+<p>\[\theta_2 = \arcsin(0{,}5713) = 34{,}8°\]</p>
+<p>Como \(n_1 > n_2\), el rayo se aleja de la normal: \(34{,}8° > 30°\). ✓</p></div>
+<div class="warning-box"><p>⚠️ <strong>Nota importante:</strong> La <strong>frecuencia</strong> de la luz no cambia al pasar de un medio a otro; lo que varía es la velocidad y la longitud de onda: \(\lambda_{\text{medio}} = \lambda_{\text{vacío}} / n\).</p></div>
+<div class="note-box"><p>📌 «El análisis del comportamiento del rayo en la interfaz revela la naturaleza ondulatoria de la luz: conservación de frecuencia y cambio de longitud de onda.» — Msc. Néstor Fabio Montoya Palacios.</p></div>
+<span class="page-num">3</span></div><div class="spiral"><div class="spiral-ring"></div><div class="spiral-ring"></div><div class="spiral-ring"></div><div class="spiral-ring"></div><div class="spiral-ring"></div><div class="spiral-ring"></div><div class="spiral-ring"></div><div class="spiral-ring"></div><div class="spiral-ring"></div><div class="spiral-ring"></div></div>
+<div class="page page-right">
+<h2 class="section-title"><i class="fas fa-angle-double-up"></i> Ángulo Crítico y Reflexión Interna Total</h2>
+<p>Cuando la luz viaja de un medio con mayor índice de refracción hacia uno con menor índice (\(n_1 > n_2\)), el rayo refractado se aleja de la normal. A medida que se incrementa el ángulo de incidencia, el ángulo de refracción crece más rápidamente hasta alcanzar un valor límite de 90°. El ángulo de incidencia que produce exactamente \(\theta_2 = 90°\) se denomina <strong>ángulo crítico</strong> o <strong>ángulo límite</strong> (\(\theta_c\)).</p>
+<h3 class="sub-title">Deducción matemática del ángulo crítico</h3>
+<p>Partiendo de la Ley de Snell y sustituyendo \(\theta_2 = 90°\):</p>
+<div class="formula-box">\[ n_1 \sin(\theta_c) = n_2 \sin(90°) = n_2 \]
+\[ \boxed{\sin(\theta_c) = \frac{n_2}{n_1}} \quad \Rightarrow \quad \theta_c = \arcsin\!\left(\frac{n_2}{n_1}\right) \]
+<p style="font-size:.8rem;color:var(--text)">Condición indispensable: \(n_1 > n_2\) (la luz debe viajar del medio más denso al menos denso ópticamente).</p></div>
+<h3 class="sub-title">Reflexión Interna Total (RIT)</h3>
+<p>Para ángulos de incidencia <strong>mayores</strong> que el ángulo crítico (\(\theta_1 > \theta_c\)), la ecuación de Snell exigiría \(\sin(\theta_2) > 1\), lo cual es imposible. En consecuencia, no existe rayo refractado: <strong>toda la energía luminosa se refleja</strong> de vuelta al medio más denso. Este fenómeno se denomina Reflexión Interna Total y es la base del funcionamiento de las fibras ópticas y del brillo excepcional del diamante.</p>
+<div class="img-box"><img src="IMAGENES/Esquema basico de Refraccion.png" alt="Esquema de refracción" onclick="openImg(this.src)"><div class="img-cap">Fig. 4 — Esquema completo: Ley de Snell, ángulo crítico, dispersión y arcoíris</div></div>
+<div class="example-box"><p><strong>Ángulo crítico de la interfaz agua–aire:</strong></p>
+<p>\(n_1 = 1{,}333\) (agua), \(n_2 = 1{,}0003\) (aire).</p>
+<p>\[\sin(\theta_c) = \frac{1{,}0003}{1{,}333} = 0{,}7504 \quad \Rightarrow \quad \theta_c = 48{,}6°\]</p>
+<p>Todo rayo que incida desde el agua con \(\theta_1 > 48{,}6°\) sufrirá reflexión interna total en la interfaz agua–aire.</p></div>
+<div class="example-box"><p><strong>Ángulo crítico del diamante en aire:</strong></p>
+<p>\(n_1 = 2{,}417\) (diamante), \(n_2 = 1{,}0003\) (aire).</p>
+<p>\[\theta_c = \arcsin\!\left(\frac{1{,}0003}{2{,}417}\right) = \arcsin(0{,}4139) = 24{,}4°\]</p>
+<p>Este ángulo crítico tan pequeño provoca que la mayoría de los rayos internos sufran múltiples reflexiones, generando el brillo y centelleo característicos de esta gema preciosa.</p></div>
+<div class="note-box"><p>📌 «La Reflexión Interna Total es el principio físico que hace posible las telecomunicaciones modernas por fibra óptica.» — Msc. Néstor Fabio Montoya Palacios.</p></div>
+<span class="page-num">4</span></div></div>
+
+<div class="spread" data-spread="3">
+<div class="page page-left">
+<h2 class="section-title"><i class="fas fa-water"></i> Profundidad Aparente y Desplazamiento Lateral</h2>
+<p>La refracción de la luz produce fenómenos cotidianos que pueden analizarse con rigor matemático. Dos de los más importantes son la <strong>profundidad aparente</strong> de objetos sumergidos y el <strong>desplazamiento lateral</strong> de rayos que atraviesan láminas de caras paralelas.</p>
+<h3 class="sub-title">Profundidad aparente</h3>
+<p>Cuando observamos un objeto sumergido en un líquido —como una moneda en el fondo de una piscina—, este parece ubicarse a menor profundidad que la real. Esto ocurre porque los rayos de luz que emergen del agua se alejan de la normal al pasar al aire (\(n_1 > n_2\)), y nuestro sistema visual prolonga estos rayos refractados en línea recta hacia atrás, situando la imagen más cerca de la superficie.</p>
+<div class="img-box"><img src="IMAGENES/El lapiz quebrado.png" alt="El lápiz quebrado" onclick="openImg(this.src)"><div class="img-cap">Fig. 5 — El clásico «lápiz roto»: la refracción desplaza la imagen de la porción sumergida</div></div>
+<p>Para observación casi perpendicular (ángulos pequeños respecto a la normal), la relación entre la profundidad aparente \(d'\) y la profundidad real \(d\) es:</p>
+<div class="formula-box">\[ d' = d \cdot \frac{n_{\text{observador}}}{n_{\text{objeto}}} \]
+<p style="font-size:.8rem;color:var(--text)">\(d\): profundidad real del objeto (m). \(d'\): profundidad aparente (m). \(n_{\text{observador}}\): índice del medio donde se encuentra el observador. \(n_{\text{objeto}}\): índice del medio donde se encuentra el objeto.</p></div>
+<div class="example-box"><p><strong>Una piscina tiene 2,0 m de profundidad real.</strong> (\(n_{\text{agua}} = 1{,}333\), \(n_{\text{aire}} \approx 1{,}000\)).</p>
+<p>\[d' = 2{,}0 \times \frac{1{,}000}{1{,}333} = 2{,}0 \times 0{,}750 = 1{,}50 \text{ m}\]</p>
+<p>El fondo aparenta estar a solo 1,50 m de profundidad. Esta ilusión óptica puede resultar peligrosa en contextos de seguridad acuática, ya que los bañistas subestiman la profundidad real del agua.</p></div>
+<h3 class="sub-title">Desplazamiento lateral en láminas de caras paralelas</h3>
+<p>Cuando un rayo de luz atraviesa una lámina de caras paralelas (por ejemplo, un vidrio plano de ventana), el rayo emergente sale <strong>paralelo al incidente</strong> pero desplazado lateralmente una distancia \(\delta\). Este desplazamiento depende del espesor de la lámina, del ángulo de incidencia y del índice de refracción:</p>
+<div class="formula-box">\[ \delta = e \cdot \frac{\sin(\theta_1 - \theta_2)}{\cos(\theta_2)} \]
+<p style="font-size:.8rem;color:var(--text)">\(\delta\): desplazamiento lateral (m). \(e\): espesor de la lámina (m). \(\theta_1\): ángulo de incidencia. \(\theta_2\): ángulo de refracción dentro de la lámina.</p></div>
+<div class="note-box"><p>📌 «La profundidad aparente engaña sistemáticamente al ojo humano: todo objeto sumergido parece más cercano a la superficie de lo que realmente está.» — Msc. Néstor Fabio Montoya Palacios.</p></div>
+<span class="page-num">5</span></div><div class="spiral"><div class="spiral-ring"></div><div class="spiral-ring"></div><div class="spiral-ring"></div><div class="spiral-ring"></div><div class="spiral-ring"></div><div class="spiral-ring"></div><div class="spiral-ring"></div><div class="spiral-ring"></div><div class="spiral-ring"></div><div class="spiral-ring"></div></div>
+<div class="page page-right">
+<h2 class="section-title"><i class="fas fa-rainbow"></i> Dispersión de la Luz</h2>
+<p>La <strong>dispersión cromática</strong> es el fenómeno por el cual la luz blanca se descompone en sus componentes espectrales (colores) al atravesar un medio refringente como un prisma. Este fenómeno fue estudiado sistemáticamente por <strong>Isaac Newton</strong> en 1666, quien demostró que la luz blanca no es un color puro sino una superposición de todos los colores del espectro visible.</p>
+<h3 class="sub-title">Dependencia del índice de refracción con la longitud de onda</h3>
+<p>El índice de refracción de un material transparente <strong>no es constante</strong>: depende de la longitud de onda \(\lambda\) de la radiación luminosa incidente. Esta dependencia se cuantifica mediante la ecuación empírica de Cauchy:</p>
+<div class="formula-box">\[ n(\lambda) = A + \frac{B}{\lambda^2} + \frac{C}{\lambda^4} + \cdots \]
+<p style="font-size:.8rem;color:var(--text)">\(A\), \(B\), \(C\): constantes empíricas características del material. \(\lambda\): longitud de onda de la luz (m).</p></div>
+<p>En la mayoría de los materiales transparentes, \(n\) <strong>aumenta</strong> conforme \(\lambda\) <strong>disminuye</strong>. En consecuencia, la luz violeta (\(\lambda \approx 400\) nm) se refracta más intensamente que la luz roja (\(\lambda \approx 700\) nm).</p>
+<h3 class="sub-title">El prisma óptico y la separación espectral</h3>
+<p>Un prisma óptico explota esta dependencia para separar espacialmente los distintos colores. Cada longitud de onda experimenta un ángulo de desviación diferente al atravesar las dos superficies del prisma, generando un abanico espectral completo.</p>
+<table class="styled-table"><thead><tr><th>Color</th><th>\(\lambda\) (nm)</th><th>\(n\) vidrio Crown</th></tr></thead><tbody>
+<tr><td style="color:#e74c3c">Rojo</td><td>700</td><td>1,514</td></tr>
+<tr><td style="color:#f39c12">Amarillo</td><td>580</td><td>1,523</td></tr>
+<tr><td style="color:#27ae60">Verde</td><td>550</td><td>1,526</td></tr>
+<tr><td style="color:#2980b9">Azul</td><td>470</td><td>1,531</td></tr>
+<tr><td style="color:#8e44ad">Violeta</td><td>400</td><td>1,541</td></tr></tbody></table>
+<h3 class="sub-title">El arcoíris como fenómeno de dispersión natural</h3>
+<p>Las gotas de lluvia en suspensión actúan como millones de pequeños prismas esféricos: la luz solar se refracta al entrar en la gota, se refleja internamente en la cara posterior y se refracta de nuevo al salir, dispersándose en los colores del espectro. El arcoíris primario aparece a un ángulo de aproximadamente 42° respecto a la línea que une al observador con su sombra proyectada por el Sol.</p>
+<div class="img-box"><img src="IMAGENES/Gemini_Generated_Image_go62yggo62yggo62.png" alt="Fenómenos ópticos" onclick="openImg(this.src)"><div class="img-cap">Fig. 6 — Visualización de fenómenos de dispersión y refracción</div></div>
+<div class="note-box"><p>📌 «La dispersión cromática demuestra que lo que llamamos "luz blanca" es en realidad una superposición de infinitas longitudes de onda del espectro visible.» — Msc. Néstor Fabio Montoya Palacios.</p></div>
+<span class="page-num">6</span></div></div>
+<div class="spread" data-spread="4">
+<div class="page page-left">
+<h2 class="section-title"><i class="fas fa-pen"></i> Ejercicios tipo ICFES</h2>
+<div class="quiz-q" id="q1"><h4>1. El índice de refracción del agua es 1,333. La velocidad de la luz en el agua es aproximadamente:</h4>
+<div class="quiz-opt" onclick="ck(this,'q1',0)">A) 4,00 × 10⁸ m/s</div><div class="quiz-opt" onclick="ck(this,'q1',1)">B) 2,25 × 10⁸ m/s</div><div class="quiz-opt" onclick="ck(this,'q1',0)">C) 3,00 × 10⁸ m/s</div><div class="quiz-opt" onclick="ck(this,'q1',0)">D) 1,33 × 10⁸ m/s</div>
+<div class="quiz-feedback" id="q1-fb">\(v = c/n = 3 \times 10^8 / 1{,}333 = 2{,}25 \times 10^8\) m/s.</div></div>
+<div class="quiz-q" id="q2"><h4>2. Un rayo de luz pasa del aire al vidrio. El ángulo de refracción, comparado con el de incidencia:</h4>
+<div class="quiz-opt" onclick="ck(this,'q2',0)">A) Aumenta</div><div class="quiz-opt" onclick="ck(this,'q2',1)">B) Disminuye</div><div class="quiz-opt" onclick="ck(this,'q2',0)">C) Permanece igual</div><div class="quiz-opt" onclick="ck(this,'q2',0)">D) Se duplica</div>
+<div class="quiz-feedback" id="q2-fb">Aire → vidrio: \(n_1 < n_2\), el rayo se acerca a la normal, \(\theta_2 < \theta_1\).</div></div>
+<div class="quiz-q" id="q3"><h4>3. La reflexión interna total ocurre cuando:</h4>
+<div class="quiz-opt" onclick="ck(this,'q3',0)">A) La luz pasa de menor a mayor densidad óptica</div><div class="quiz-opt" onclick="ck(this,'q3',1)">B) \(n_1 > n_2\) y \(\theta_1 > \theta_c\)</div><div class="quiz-opt" onclick="ck(this,'q3',0)">C) Siempre que hay refracción</div><div class="quiz-opt" onclick="ck(this,'q3',0)">D) El rayo incide perpendicularmente</div>
+<div class="quiz-feedback" id="q3-fb">RIT requiere dos condiciones: \(n_1 > n_2\) y \(\theta_1 > \theta_c\).</div></div>
+<div class="quiz-q" id="q4"><h4>4. El ángulo crítico del diamante (\(n = 2{,}42\)) en aire es aproximadamente:</h4>
+<div class="quiz-opt" onclick="ck(this,'q4',1)">A) 24,4°</div><div class="quiz-opt" onclick="ck(this,'q4',0)">B) 48,8°</div><div class="quiz-opt" onclick="ck(this,'q4',0)">C) 41,8°</div><div class="quiz-opt" onclick="ck(this,'q4',0)">D) 65,0°</div>
+<div class="quiz-feedback" id="q4-fb">\(\theta_c = \arcsin(1/2{,}42) = \arcsin(0{,}413) \approx 24{,}4°\).</div></div>
+<div class="quiz-q" id="q5"><h4>5. ¿Qué fenómeno explica que una piscina parezca menos profunda de lo que realmente es?</h4>
+<div class="quiz-opt" onclick="ck(this,'q5',0)">A) Reflexión interna total</div><div class="quiz-opt" onclick="ck(this,'q5',0)">B) Difracción</div><div class="quiz-opt" onclick="ck(this,'q5',1)">C) Refracción (profundidad aparente)</div><div class="quiz-opt" onclick="ck(this,'q5',0)">D) Dispersión cromática</div>
+<div class="quiz-feedback" id="q5-fb">La refracción en la interfaz agua–aire genera \(d' = d \cdot n_2/n_1 < d\).</div></div>
+<div class="note-box"><p>📌 <strong>Clave de respuestas:</strong> 1-B, 2-B, 3-B, 4-A, 5-C.</p></div>
+<button class="sim-btn" onclick="openSim()"><i class="fas fa-flask"></i> Abrir Simulador Interactivo de Leyes de Snell</button>
+<button class="sim-btn" onclick="openSim()"><i class="fas fa-flask"></i> Abrir Simulador Interactivo de Leyes de Snell</button>
+<span class="page-num">7</span></div><div class="spiral"><div class="spiral-ring"></div><div class="spiral-ring"></div><div class="spiral-ring"></div><div class="spiral-ring"></div><div class="spiral-ring"></div><div class="spiral-ring"></div><div class="spiral-ring"></div><div class="spiral-ring"></div><div class="spiral-ring"></div><div class="spiral-ring"></div></div>
+<div class="page page-right">
+<h2 class="section-title"><i class="fas fa-calculator"></i> Problemas de Desarrollo Matemático</h2>
+<div class="example-box"><p><strong>Problema 1:</strong> Un rayo de luz incide desde el aire sobre una superficie de vidrio Flint (\(n = 1{,}620\)) con un ángulo de incidencia de 50°. Determine el ángulo de refracción.</p>
+<details><summary>Ver solución completa</summary><p>Aplicando la Ley de Snell: \(n_1\sin\theta_1 = n_2\sin\theta_2\)</p>
+<p>\(1{,}000 \times \sin(50°) = 1{,}620 \times \sin(\theta_2)\)</p>
+<p>\(\sin(\theta_2) = \frac{0{,}7660}{1{,}620} = 0{,}4728\)</p>
+<p>\(\theta_2 = \arcsin(0{,}4728) = 28{,}2°\)</p>
+<p>El rayo se acerca a la normal al pasar a un medio más denso ópticamente.</p></details></div>
+<div class="example-box"><p><strong>Problema 2:</strong> Calcule el ángulo crítico para la interfaz vidrio Crown (\(n = 1{,}523\)) — agua (\(n = 1{,}333\)).</p>
+<details><summary>Ver solución completa</summary><p>\(\sin(\theta_c) = \frac{n_2}{n_1} = \frac{1{,}333}{1{,}523} = 0{,}8753\)</p>
+<p>\(\theta_c = \arcsin(0{,}8753) = 61{,}1°\)</p>
+<p>Para ángulos de incidencia mayores a 61,1° ocurrirá reflexión interna total en la interfaz vidrio–agua.</p></details></div>
+<div class="example-box"><p><strong>Problema 3:</strong> Una moneda yace en el fondo de un recipiente con agua (\(n = 1{,}333\)) de 40 cm de profundidad. (a) ¿A qué profundidad aparente se observa? (b) Si se agrega una capa de aceite (\(n = 1{,}47\)) de 10 cm sobre el agua, ¿cuál es la profundidad aparente total vista desde el aire?</p>
+<details><summary>Ver solución completa</summary>
+<p><strong>(a) Sin aceite:</strong> \(d' = 40 \times \frac{1{,}000}{1{,}333} = 30{,}0\) cm.</p>
+<p><strong>(b) Con aceite:</strong> Profundidad aparente del agua vista desde el aceite: \(d'_1 = 40 \times \frac{1{,}47}{1{,}333} = 44{,}1\) cm.</p>
+<p>Total en aceite: \(44{,}1 + 10 = 54{,}1\) cm.</p>
+<p>Vista desde el aire: \(d'_{\text{total}} = 54{,}1 \times \frac{1{,}000}{1{,}47} = 36{,}8\) cm.</p></details></div>
+<div class="note-box"><p>📌 «Los problemas de óptica geométrica exigen un manejo algebraico riguroso y una interpretación física coherente de cada resultado numérico.» — Msc. Néstor Fabio Montoya Palacios.</p></div>
+<span class="page-num">8</span></div></div>
+
+<div class="spread" data-spread="5">
+<div class="page page-left">
+<h2 class="section-title"><i class="fas fa-sitemap"></i> Resumen y Aplicaciones Tecnológicas</h2>
+<h3 class="sub-title">Tabla síntesis de fórmulas</h3>
+<table class="styled-table"><thead><tr><th>Fórmula</th><th>Nombre</th><th>Aplicación</th></tr></thead><tbody>
+<tr><td>\(n = c/v\)</td><td>Índice de refracción</td><td>Velocidad en medios</td></tr>
+<tr><td>\(n_1\sin\theta_1 = n_2\sin\theta_2\)</td><td>Ley de Snell</td><td>Ángulos de refracción</td></tr>
+<tr><td>\(\sin\theta_c = n_2/n_1\)</td><td>Ángulo crítico</td><td>Límite para RIT</td></tr>
+<tr><td>\(d' = d \cdot n_2/n_1\)</td><td>Profundidad aparente</td><td>Objetos sumergidos</td></tr>
+<tr><td>\(\delta = e\sin(\theta_1-\theta_2)/\cos\theta_2\)</td><td>Desplazamiento lateral</td><td>Láminas paralelas</td></tr>
+<tr><td>\(n(\lambda) = A + B/\lambda^2\)</td><td>Ecuación de Cauchy</td><td>Dispersión cromática</td></tr></tbody></table>
+<h3 class="sub-title">Aplicaciones tecnológicas de la refracción</h3>
+<div class="def-box"><p><strong>Fibra óptica:</strong> cables de vidrio ultrapuro que transmiten información mediante pulsos de luz confinados por RIT. Se utilizan en telecomunicaciones de alta velocidad, internet y endoscopia médica.</p></div>
+<div class="def-box"><p><strong>Lentes ópticas:</strong> las lentes convergentes (biconvexas) concentran la luz en un foco; las divergentes (bicóncavas) la dispersan. Son la base de gafas, microscopios, telescopios y cámaras.</p></div>
+<div class="def-box"><p><strong>Espejismos:</strong> capas de aire a distinta temperatura generan gradientes continuos de índice de refracción que curvan los rayos hasta producir RIT, creando imágenes invertidas del cielo.</p></div>
+<div class="def-box"><p><strong>Prismas y espectrometría:</strong> se emplean para analizar la composición espectral de fuentes luminosas, permitiendo identificar elementos químicos por sus líneas de emisión o absorción.</p></div>
+<div class="note-box"><p>📌 «Cada aplicación tecnológica de la refracción es un tributo a la potencia predictiva de la Ley de Snell.» — Msc. Néstor Fabio Montoya Palacios.</p></div>
+<span class="page-num">9</span></div><div class="spiral"><div class="spiral-ring"></div><div class="spiral-ring"></div><div class="spiral-ring"></div><div class="spiral-ring"></div><div class="spiral-ring"></div><div class="spiral-ring"></div><div class="spiral-ring"></div><div class="spiral-ring"></div><div class="spiral-ring"></div><div class="spiral-ring"></div></div>
+<div class="page page-right cover-page" style="background:linear-gradient(160deg,#0d4a6b,#1a7bb5)!important">
+<h2 class="section-title" style="color:#fff;border-color:rgba(255,255,255,.2);background:rgba(255,255,255,.05)"><i class="fas fa-book"></i> Glosario de Términos</h2>
+<div style="text-align:left;width:100%;max-width:380px;color:rgba(255,255,255,.85)">
+<div class="gloss-item" style="border-color:rgba(255,255,255,.1)"><span class="gloss-term" style="color:#90caf9">Ángulo crítico:</span> ángulo de incidencia que produce refracción a 90°.</div>
+<div class="gloss-item" style="border-color:rgba(255,255,255,.1)"><span class="gloss-term" style="color:#90caf9">Densidad óptica:</span> propiedad del medio que determina cuánto reduce la velocidad de la luz.</div>
+<div class="gloss-item" style="border-color:rgba(255,255,255,.1)"><span class="gloss-term" style="color:#90caf9">Dispersión:</span> separación de la luz blanca en colores por variación de \(n\) con \(\lambda\).</div>
+<div class="gloss-item" style="border-color:rgba(255,255,255,.1)"><span class="gloss-term" style="color:#90caf9">Fibra óptica:</span> guía de ondas basada en reflexión interna total.</div>
+<div class="gloss-item" style="border-color:rgba(255,255,255,.1)"><span class="gloss-term" style="color:#90caf9">Índice de refracción:</span> cociente \(c/v\); siempre \(\geq 1\).</div>
+<div class="gloss-item" style="border-color:rgba(255,255,255,.1)"><span class="gloss-term" style="color:#90caf9">Ley de Snell:</span> \(n_1\sin\theta_1 = n_2\sin\theta_2\).</div>
+<div class="gloss-item" style="border-color:rgba(255,255,255,.1)"><span class="gloss-term" style="color:#90caf9">Normal:</span> recta perpendicular a la superficie en el punto de incidencia.</div>
+<div class="gloss-item" style="border-color:rgba(255,255,255,.1)"><span class="gloss-term" style="color:#90caf9">Principio de Fermat:</span> la luz viaja por el camino de mínimo tiempo.</div>
+<div class="gloss-item" style="border-color:rgba(255,255,255,.1)"><span class="gloss-term" style="color:#90caf9">Profundidad aparente:</span> posición visual de un objeto sumergido; siempre menor que la real.</div>
+<div class="gloss-item" style="border-color:rgba(255,255,255,.1)"><span class="gloss-term" style="color:#90caf9">Reflexión Interna Total:</span> reflexión completa cuando \(\theta > \theta_c\) y \(n_1 > n_2\).</div>
+<div class="gloss-item" style="border-color:rgba(255,255,255,.1)"><span class="gloss-term" style="color:#90caf9">Refracción:</span> cambio de dirección de la luz al pasar entre medios con diferente \(n\).</div>
+</div>
+<div style="margin-top:18px">
+<div class="cover-wave" style="font-size:2.8em">&#x1F52C;</div>
+<h1 class="book-title" style="font-size:1.5em;color:#fff">Fin del Cuaderno</h1>
+<p style="color:rgba(255,255,255,.75);margin:6px 0;font-size:.8em">«La naturaleza es un libro escrito en lenguaje matemático.» — Galileo Galilei</p>
+<h3 class="sub-title" style="color:rgba(255,255,255,.85);justify-content:center;font-size:.85em">Bibliografía</h3>
+<p style="font-size:.7em;color:rgba(255,255,255,.55);text-align:left;max-width:340px">• Serway, R. A. & Jewett, J. W. <em>Física para ciencias e ingeniería</em>. 10.ª ed.<br>• Young, H. D. & Freedman, R. A. <em>Física universitaria</em>. 15.ª ed.<br>• Hecht, E. <em>Óptica</em>. 5.ª ed.<br>• Resnick, Halliday & Krane. <em>Física</em>. 5.ª ed.</p>
+<p style="color:rgba(255,255,255,.9);font-weight:800;margin-top:12px;font-size:.85em">Presentado por: Juan José Pérez Herrera &amp; Deisy Patricia Angarita</p>
+<p style="font-size:.75em;color:rgba(255,255,255,.5)">UTP— Pereira, Risaralda — 2026</p>
+</div>
+<span class="page-num" style="color:rgba(255,255,255,.3)">10</span></div></div>
+
+<div class="spread" data-spread="6">
+<div class="page page-left sim-page" style="padding:16px">
+<h2 class="section-title" style="margin:4px 0 8px"><i class="fas fa-flask"></i> Simulador Interactivo — Leyes de Snell</h2>
+<p style="margin:0 0 6px;font-size:.82em">Experimenta con los ángulos de incidencia, cambia los medios y observa en tiempo real cómo se comporta la luz al refractarse. Usa los controles para explorar la Ley de Snell, el ángulo crítico y la reflexión interna total.</p>
+<button class="sim-fullscreen" onclick="simFullscreen()" title="Pantalla completa"><i class="fas fa-expand"></i> Pantalla Completa</button>
+<iframe id="sim-embed" src="SIMULACION/SIMULADOR DE LEYES DE SNELL.html" title="Simulador de Leyes de Snell" style="flex:1;width:100%;border-radius:10px;border:1px solid rgba(21,101,192,.1)"></iframe>
+<span class="page-num">11</span>
+</div>
+<div class="spiral"><div class="spiral-ring"></div><div class="spiral-ring"></div><div class="spiral-ring"></div><div class="spiral-ring"></div><div class="spiral-ring"></div><div class="spiral-ring"></div><div class="spiral-ring"></div><div class="spiral-ring"></div><div class="spiral-ring"></div><div class="spiral-ring"></div></div>
+<div class="page page-right sim-page" style="padding:16px">
+<h2 class="section-title" style="margin:4px 0 8px"><i class="fas fa-microscope"></i> Laboratorio Virtual de Óptica</h2>
+<p style="margin:0 0 6px;font-size:.82em">Este simulador permite visualizar los conceptos del cuaderno en acción. Modifica el ángulo de incidencia con el deslizador, selecciona diferentes medios ópticos y observa cómo cambia el rayo refractado en tiempo real.</p>
+<div class="def-box" style="text-align:left;font-size:.82em">
+<p><strong>📌 Guía rápida del simulador:</strong></p>
+<p>• <strong>Ángulo de incidencia:</strong> ajusta el deslizador para ver cómo varía \(\theta_2\).</p>
+<p>• <strong>Medio 1 y Medio 2:</strong> selecciona distintos materiales (aire, agua, vidrio, diamante).</p>
+<p>• <strong>Ángulo crítico:</strong> al superar \(\theta_c\), observa la Reflexión Interna Total.</p>
+<p>• <strong>Valores numéricos:</strong> el simulador muestra \(\theta_1\), \(\theta_2\), \(n_1\), \(n_2\) en tiempo real.</p>
+</div>
+<div class="note-box" style="font-size:.82em"><p>📌 «La simulación interactiva es el puente entre la teoría matemática y la intuición física.» — Msc. Néstor Fabio Montoya Palacios.</p></div>
+<div class="warning-box" style="font-size:.82em"><p>⚠️ <strong>Nota:</strong> Para mejor experiencia, usa el botón de <strong>Pantalla Completa</strong> en la página izquierda. Presiona <strong>ESC</strong> para salir.</p></div>
+<span class="page-num">12</span>
+</div>
+</div>
+</div></div>
+
+<div id="nav-bar">
+<button class="nav-btn" onclick="goTo(0)" title="Portada" style="background:linear-gradient(135deg,#f59e0b,#ef4444)"><i class="fas fa-book-open"></i></button>
+<button class="nav-btn" id="btn-prev" onclick="prev()" title="Anterior"><i class="fas fa-chevron-left"></i></button>
+<button class="nav-btn" id="btn-next" onclick="next()" title="Siguiente"><i class="fas fa-chevron-right"></i></button>
+<button class="nav-btn" onclick="goTo(0)" title="Índice"><i class="fas fa-list"></i></button>
+</div>
+
+<button id="chat-toggle" onclick="toggleChat()" title="Asistente IA"><i class="fas fa-robot"></i></button>
+<div id="chat-panel">
+<div id="chat-header"><span><i class="fas fa-atom" style="margin-right:6px"></i>Tutor de Óptica</span><button onclick="toggleChat()"><i class="fas fa-times"></i></button></div>
+<div id="api-key-area">
+<label><i class="fas fa-key" style="margin-right:4px"></i>API Key de Google Gemini Flash</label>
+<input type="password" id="api-key-input" placeholder="Ingresa tu API Key aquí...">
+<button id="api-key-btn" onclick="saveKey()"><i class="fas fa-check" style="margin-right:4px"></i>Guardar y Conectar</button>
+</div>
+<div id="scientist-selector" style="display:none">
+<button class="sci-btn active" onclick="selectSci(0)" title="Isaac Newton">
+<div class="sci-face"><svg viewBox="0 0 40 40"><circle cx="20" cy="16" r="10" fill="#f0d5a8"/><ellipse cx="20" cy="38" rx="14" ry="10" fill="#4a3728"/><path d="M12 12c0-6 16-6 16 0" fill="#8B7355" stroke="#6B5B45" stroke-width=".5"/><circle cx="16" cy="15" r="1.5" fill="#2c1810"/><circle cx="24" cy="15" r="1.5" fill="#2c1810"/><path d="M17 20q3 3 6 0" fill="none" stroke="#8B6B4A" stroke-width=".8"/><path d="M10 10c-4 2-6 8-2 14" fill="#8B7355" stroke="none"/><path d="M30 10c4 2 6 8 2 14" fill="#8B7355" stroke="none"/></svg></div>
+<span class="sci-name">Newton</span></button>
+<button class="sci-btn" onclick="selectSci(1)" title="Willebrord Snell">
+<div class="sci-face"><svg viewBox="0 0 40 40"><circle cx="20" cy="16" r="10" fill="#f0d5a8"/><ellipse cx="20" cy="38" rx="14" ry="10" fill="#1a3a5c"/><rect x="10" y="8" width="20" height="4" rx="2" fill="#2c1810"/><circle cx="16" cy="15" r="1.5" fill="#2c1810"/><circle cx="24" cy="15" r="1.5" fill="#2c1810"/><path d="M16 21q4 2 8 0" fill="none" stroke="#8B6B4A" stroke-width=".8"/><path d="M14 22v5" stroke="#8B6B4A" stroke-width="1.5" fill="none"/><path d="M26 22v5" stroke="#8B6B4A" stroke-width="1.5" fill="none"/><path d="M14 27q6 3 12 0" fill="none" stroke="#8B6B4A" stroke-width="1"/></svg></div>
+<span class="sci-name">Snell</span></button>
+<button class="sci-btn" onclick="selectSci(2)" title="René Descartes">
+<div class="sci-face"><svg viewBox="0 0 40 40"><circle cx="20" cy="16" r="10" fill="#f0d5a8"/><ellipse cx="20" cy="38" rx="14" ry="10" fill="#1a1a2e"/><path d="M10 10c0-8 20-8 20 0v2c0 0-4-3-10-3s-10 3-10 3z" fill="#2c1810"/><circle cx="16" cy="15" r="1.5" fill="#2c1810"/><circle cx="24" cy="15" r="1.5" fill="#2c1810"/><path d="M18 20q2 2 4 0" fill="none" stroke="#8B6B4A" stroke-width=".8"/><path d="M15 23c0 2 2 4 5 4s5-2 5-4" fill="none" stroke="#8B6B4A" stroke-width="1.2"/><line x1="18" y1="23" x2="13" y2="25" stroke="#8B6B4A" stroke-width="1"/><line x1="22" y1="23" x2="27" y2="25" stroke="#8B6B4A" stroke-width="1"/></svg></div>
+<span class="sci-name">Descartes</span></button>
+<button class="sci-btn" onclick="selectSci(3)" title="Christiaan Huygens">
+<div class="sci-face"><svg viewBox="0 0 40 40"><circle cx="20" cy="16" r="10" fill="#f0d5a8"/><ellipse cx="20" cy="38" rx="14" ry="10" fill="#3d3d5c"/><path d="M8 14c0 0 2-10 12-10s12 10 12 10c0 0-3-2-12-2s-12 2-12 2z" fill="#5c4033"/><path d="M8 14c-2 4-1 8 2 10" fill="#5c4033"/><path d="M32 14c2 4 1 8-2 10" fill="#5c4033"/><circle cx="16" cy="15" r="1.5" fill="#2c1810"/><circle cx="24" cy="15" r="1.5" fill="#2c1810"/><path d="M17 20q3 2 6 0" fill="none" stroke="#8B6B4A" stroke-width=".8"/></svg></div>
+<span class="sci-name">Huygens</span></button>
+<button class="sci-btn" onclick="selectSci(4)" title="Pierre de Fermat">
+<div class="sci-face"><svg viewBox="0 0 40 40"><circle cx="20" cy="16" r="10" fill="#f0d5a8"/><ellipse cx="20" cy="38" rx="14" ry="10" fill="#2d2d4e"/><path d="M10 8c0-4 20-4 20 0v6c0 0-4-4-10-4s-10 4-10 4z" fill="#3d2b1f"/><circle cx="16" cy="15" r="1.5" fill="#2c1810"/><circle cx="24" cy="15" r="1.5" fill="#2c1810"/><path d="M17 20q3 1 6 0" fill="none" stroke="#8B6B4A" stroke-width=".8"/><path d="M16 22v3" stroke="#8B6B4A" stroke-width="1" fill="none"/><path d="M24 22v3" stroke="#8B6B4A" stroke-width="1" fill="none"/><path d="M16 25q4 2 8 0" fill="none" stroke="#8B6B4A" stroke-width=".8"/></svg></div>
+<span class="sci-name">Fermat</span></button>
+</div>
+<div class="sci-quote" id="sci-quote" style="display:none"></div>
+<div id="chat-messages"></div>
+<div id="chat-input-area" style="display:none">
+<input type="text" id="chat-input" placeholder="Pregunta sobre refracción..." onkeydown="if(event.key==='Enter')sendMsg()">
+<button id="chat-send" onclick="sendMsg()"><i class="fas fa-paper-plane"></i></button>
+</div>
+</div>
+
+<script>
+const spreads=document.querySelectorAll('.spread'),totalSpreads=spreads.length;
+let current=0,flipping=false,API_KEY='',currentSci=0;
+const scientists=[
+{name:'Isaac Newton',era:'1643–1727',specialty:'Dispersión de la luz y mecánica clásica',
+greeting:'¡Saludos! Soy Sir Isaac Newton. Fui yo quien demostró que la luz blanca es una mezcla de todos los colores al pasarla por un prisma en 1666. Pregúntame sobre dispersión, óptica o cualquier tema de este cuaderno.',
+phrases:['Como demostré con mi prisma, la luz blanca esconde un arcoíris en su interior.','La naturaleza es consistente consigo misma y conforme a sí misma.','Si he visto más lejos es porque estoy sobre hombros de gigantes.'],
+prompt:'Eres Isaac Newton, el genio inglés que descubrió la dispersión de la luz con prismas y formuló las leyes de la mecánica. Habla con autoridad pero con pasión por la experimentación. Menciona tus experimentos con prismas cuando sea relevante.'},
+{name:'Willebrord Snell',era:'1580–1626',specialty:'Ley de la refracción',
+greeting:'¡Buen día! Soy Willebrord Snell van Royen, matemático neerlandés. Descubrí la ley que lleva mi nombre: la relación entre los senos de los ángulos de incidencia y refracción. ¡Pregúntame lo que desees!',
+phrases:['Mi ley es simple pero poderosa: n₁ sin θ₁ = n₂ sin θ₂.','La geometría de la luz revela los secretos de la naturaleza.','Aunque nunca publiqué mi descubrimiento, la verdad siempre sale a la luz.'],
+prompt:'Eres Willebrord Snell, el matemático que descubrió la ley de la refracción. Habla con humildad y precisión matemática. Siempre relaciona las respuestas con tu ley n₁sinθ₁ = n₂sinθ₂.'},
+{name:'René Descartes',era:'1596–1650',specialty:'Dioptrique y racionalismo',
+greeting:'Cogito, ergo sum. Soy René Descartes. Publiqué la ley de la refracción en mi Dioptrique de 1637. Mi método racional puede iluminar cualquier duda sobre óptica que tengas.',
+phrases:['Pienso, luego existo — y la luz, al refractarse, nos muestra que existe orden en la naturaleza.','La duda es el principio de la sabiduría, también en la óptica.','Dividid cada dificultad en tantas partes como sea posible.'],
+prompt:'Eres René Descartes, filósofo y matemático francés. Habla de forma filosófica y metódica. Menciona tu obra Dioptrique cuando sea pertinente. Aplica tu método cartesiano de análisis paso a paso.'},
+{name:'Christiaan Huygens',era:'1629–1695',specialty:'Teoría ondulatoria de la luz',
+greeting:'¡Bienvenido! Soy Christiaan Huygens. Propuse que la luz se comporta como una onda, no como una partícula. Mi principio explica la refracción mediante frentes de onda. ¡Consultame!',
+phrases:['La luz es una onda — cada punto del frente actúa como fuente de ondas secundarias.','Mi principio demuestra que la refracción es consecuencia natural de la propagación ondulatoria.','La naturaleza ondulatoria de la luz lo explica todo: reflexión, refracción y difracción.'],
+prompt:'Eres Christiaan Huygens, el físico que propuso la teoría ondulatoria de la luz. Explica todo desde la perspectiva ondulatoria. Menciona tu principio de Huygens y los frentes de onda.'},
+{name:'Pierre de Fermat',era:'1601–1665',specialty:'Principio de tiempo mínimo',
+greeting:'¡Salutaciones! Soy Pierre de Fermat. Mi principio establece que la luz viaja por el camino que minimiza el tiempo de tránsito. De este principio variacional se deduce la Ley de Snell. ¡Pregunta con confianza!',
+phrases:['La luz es sabia: siempre elige el camino más rápido, no el más corto.','Mi principio de tiempo mínimo es la causa profunda de toda la óptica geométrica.','He encontrado una demostración maravillosa, pero este margen es demasiado estrecho para contenerla.'],
+prompt:'Eres Pierre de Fermat, matemático francés. Habla con elegancia matemática. Siempre relaciona con tu principio de mínimo tiempo. Menciona el cálculo variacional cuando sea apropiado.'}
+];
+function updateUI(){
+spreads.forEach((s,i)=>{s.classList.remove('active','flip-out-fwd','flip-out-back','flip-in-fwd','flip-in-back');s.style.display=(i===current)?'flex':'none';if(i===current)s.classList.add('active')});
+document.getElementById('btn-prev').disabled=current===0;
+document.getElementById('btn-next').disabled=current===totalSpreads-1;
+document.getElementById('progress-bar').style.width=((current)/(totalSpreads-1)*100)+'%';
+document.getElementById('page-info').textContent='Página '+(current*2+1)+'-'+(current*2+2)+' de '+(totalSpreads*2);
+if(typeof MathJax!=='undefined'&&MathJax.typesetPromise){MathJax.typesetPromise([spreads[current]]).catch(()=>{})}}
+function goTo(idx){
+if(idx<0||idx>=totalSpreads||idx===current||flipping)return;
+flipping=true;const fwd=idx>current;const oldS=spreads[current];const newS=spreads[idx];
+spreads.forEach(s=>s.classList.remove('active','flip-out-fwd','flip-out-back','flip-in-fwd','flip-in-back'));
+oldS.style.display='flex';oldS.classList.add(fwd?'flip-out-fwd':'flip-out-back');
+setTimeout(()=>{oldS.style.display='none';oldS.classList.remove('flip-out-fwd','flip-out-back');newS.style.display='flex';newS.classList.add(fwd?'flip-in-fwd':'flip-in-back');current=idx;
+setTimeout(()=>{newS.classList.remove('flip-in-fwd','flip-in-back');updateUI();flipping=false},500)},420)}
+function next(){goTo(current+1)}function prev(){goTo(current-1)}
+document.addEventListener('keydown',e=>{if(e.target.tagName==='INPUT'||e.target.tagName==='TEXTAREA')return;if(e.key==='ArrowRight')next();else if(e.key==='ArrowLeft')prev();if(e.key==='Escape'){closeSim();document.getElementById('img-modal').classList.remove('open')}});
+function ck(el,qid,ok){const c=document.getElementById(qid);if(c.dataset.a)return;c.dataset.a='1';c.querySelectorAll('.quiz-opt').forEach(o=>o.style.pointerEvents='none');if(ok)el.classList.add('correct');else{el.classList.add('wrong');c.querySelectorAll('.quiz-opt').forEach(o=>{if(o.getAttribute('onclick').includes(',1)'))o.classList.add('correct')})}const fb=document.getElementById(qid+'-fb');if(fb){fb.style.display='block';if(window.MathJax&&MathJax.typesetPromise)MathJax.typesetPromise([fb]).catch(()=>{})}}
+function toggleChat(){document.getElementById('chat-panel').classList.toggle('open')}
+function saveKey(){
+API_KEY=document.getElementById('api-key-input').value.trim();
+if(!API_KEY){alert('Por favor ingresa una API Key válida.');return}
+localStorage.setItem('gemini_key',API_KEY);
+document.getElementById('api-key-area').style.display='none';
+document.getElementById('chat-input-area').style.display='flex';
+document.getElementById('scientist-selector').style.display='flex';
+selectSci(0)}
+(function(){const k=localStorage.getItem('gemini_key');if(k){API_KEY=k;document.getElementById('api-key-area').style.display='none';document.getElementById('chat-input-area').style.display='flex';document.getElementById('scientist-selector').style.display='flex';selectSci(0)}})();
+function selectSci(idx){
+currentSci=idx;
+document.querySelectorAll('.sci-btn').forEach((b,i)=>{b.classList.toggle('active',i===idx)});
+const sci=scientists[idx];
+const q=document.getElementById('sci-quote');
+q.style.display='block';
+q.textContent='«'+sci.phrases[Math.floor(Math.random()*sci.phrases.length)]+'»';
+document.getElementById('chat-messages').innerHTML='';
+addMsg('bot','<strong>'+sci.name+'</strong> ('+sci.era+')<br><em>'+sci.specialty+'</em><br><br>'+sci.greeting)}
+function addMsg(role,text){
+const d=document.getElementById('chat-messages');const m=document.createElement('div');m.className='chat-msg '+role;m.innerHTML=text;d.appendChild(m);d.scrollTop=d.scrollHeight;
+if(typeof MathJax!=='undefined'&&MathJax.typesetPromise)MathJax.typesetPromise([m]).catch(()=>{})}
+async function sendMsg(){
+const inp=document.getElementById('chat-input');const msg=inp.value.trim();if(!msg||!API_KEY)return;
+inp.value='';addMsg('user',msg);
+const ti=document.createElement('div');ti.className='typing-indicator';ti.innerHTML='<span></span><span></span><span></span>';
+document.getElementById('chat-messages').appendChild(ti);
+document.getElementById('chat-messages').scrollTop=99999;
+const sci=scientists[currentSci];
+const q=document.getElementById('sci-quote');
+q.textContent='«'+sci.phrases[Math.floor(Math.random()*sci.phrases.length)]+'»';
+try{
+const r=await fetch('https://generativelanguage.googleapis.com/v1beta/models/gemini-2.0-flash:generateContent?key='+API_KEY,{
+method:'POST',headers:{'Content-Type':'application/json'},
+body:JSON.stringify({contents:[{parts:[{text:sci.prompt+' Responde en español de forma clara y académica. Usa LaTeX entre \\( \\) para inline y \\[ \\] para display. Contexto: Refracción de la Luz y Leyes de Snell. Pregunta: '+msg}]}],generationConfig:{maxOutputTokens:800,temperature:0.7}})});
+const data=await r.json();ti.remove();
+if(data.candidates&&data.candidates[0]){const t=data.candidates[0].content.parts[0].text;addMsg('bot',t.replace(/\n/g,'<br>'))}
+else if(data.error){addMsg('bot','❌ Error: '+data.error.message)}
+else{addMsg('bot','❌ Error en la respuesta. Verifica tu API Key.')}
+}catch(e){ti.remove();addMsg('bot','❌ Error de conexión: '+e.message)}}
+function openSim(){document.getElementById('sim-iframe').src='SIMULACION/SIMULADOR DE LEYES DE SNELL.html';document.getElementById('sim-overlay').classList.add('open')}
+function closeSim(){document.getElementById('sim-overlay').classList.remove('open');document.getElementById('sim-iframe').src=''}
+function openImg(src){document.getElementById('img-modal-img').src=src;document.getElementById('img-modal').classList.add('open')}
+function simFullscreen(){const iframe=document.getElementById('sim-embed');if(iframe.requestFullscreen)iframe.requestFullscreen();else if(iframe.webkitRequestFullscreen)iframe.webkitRequestFullscreen()}
+updateUI();
+</script>
+<div id="sim-overlay" onclick="if(event.target===this)closeSim()">
+<div id="sim-frame-wrap">
+<button id="sim-close" onclick="closeSim()" title="Cerrar simulador"><i class="fas fa-times"></i></button>
+<iframe id="sim-iframe" src="" title="Simulador de Leyes de Snell"></iframe>
+</div></div>
+<div id="img-modal" onclick="this.classList.remove('open')"><img id="img-modal-img" src="" alt="Imagen ampliada"></div>
+</body></html>
